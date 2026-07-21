@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#faf7ec; color:#1a2e21; font-family:'Manrope', system-ui, sans-serif; -webkit-font-smoothing:antialiased; scroll-behavior:smooth; }
+  * { box-sizing:border-box; }
+  a { text-decoration:none; color:#3d5f38; }
+  a:hover { color:#5a8a4a; }
+  section { scroll-margin-top:100px; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+
+
+<dc-import name="Header" active="eventos" hint-size="100%,90px" style="position:fixed;top:0;left:0;right:0;z-index:100"></dc-import>
+
+<main style="background:#faf7ec;">
+
+  <!-- ============ HERO — imagen full-bleed con título grande a la izquierda ============ -->
+  <section style="position:relative; min-height:100vh; padding:110px 20px 20px; display:flex; align-items:stretch;">
+    <div style="position:relative; flex:1; border-radius:24px; overflow:hidden;">
+      <image-slot id="eventos-hero" shape="rect" placeholder="Hero Eventos: reciclatón / evento comunitario ASOFRAIN" style="position:absolute; inset:0;"></image-slot>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,31,22,0.15) 0%, rgba(15,31,22,0.25) 50%, rgba(15,31,22,0.85) 100%); pointer-events:none;"></div>
+
+      <div style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end; padding:80px; color:#fbf8ee; pointer-events:none;">
+        <div style="font-size:11px; letter-spacing:3px; color:#c8a875; font-weight:600; margin-bottom:24px;">— 04 · EVENTOS Y CAMPAÑAS</div>
+        <h1 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(64px, 9vw, 148px); line-height:0.92; letter-spacing:-0.03em; margin:0 0 28px; max-width:1200px;">
+          La cultura del<br/>aprovechamiento <em style="font-style:italic; color:#c8a875;">se enseña.</em>
+        </h1>
+        <div style="display:flex; align-items:end; justify-content:space-between; gap:60px; flex-wrap:wrap;">
+          <p style="font-size:18px; line-height:1.5; color:rgba(251,248,238,0.85); max-width:520px; margin:0; font-weight:300;">
+            Trabajamos con tres poblaciones clave — niños, propiedad horizontal y ciudadanía — para consolidar territorios que separan en la fuente.
+          </p>
+          <div style="display:flex; gap:12px; pointer-events:auto;">
+            <a href="#campanas" style="padding:14px 26px; background:#faf7ec; color:#1a2e21; border-radius:100px; font-size:14px; font-weight:600; display:flex; align-items:center; gap:10px;" style-hover="{ transform:'translateY(-2px)' }">Ver campañas <span style="font-size:18px;">→</span></a>
+            <a href="#institucionales" style="padding:14px 26px; background:rgba(251,248,238,0.12); backdrop-filter:blur(12px); color:#fbf8ee; border:1px solid rgba(251,248,238,0.3); border-radius:100px; font-size:14px; font-weight:600;" style-hover="{ background:'rgba(251,248,238,0.2)' }">Eventos institucionales</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAMPAÑAS 3 SECTORES ============ -->
+  <section id="campanas" style="padding:140px 60px 100px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:60px; gap:60px; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:20px;">CAMPAÑAS DE SENSIBILIZACIÓN</div>
+          <h2 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(48px, 5.5vw, 84px); line-height:0.98; margin:0; letter-spacing:-0.02em;">Tres poblaciones, <em style="font-style:italic; color:#5a8a4a;">una misma raíz.</em></h2>
+        </div>
+        <p style="font-size:16px; line-height:1.6; color:#3d5f38; max-width:400px;">Reciclar es un hábito colectivo. Diseñamos programas específicos para cada audiencia.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+        <div style="background:#faf7ec; border-radius:22px; padding:36px 32px; min-height:520px; display:flex; flex-direction:column;">
+          <div style="height:200px; border-radius:14px; overflow:hidden; margin-bottom:24px; position:relative;">
+            <image-slot id="camp-ninos" shape="rounded" radius="14" placeholder="Reciclatón escolar" style="position:absolute; inset:0;"></image-slot>
+          </div>
+          <div style="font-size:11px; letter-spacing:2px; color:#3d5f38; font-weight:600; margin-bottom:10px;">01 · NIÑOS</div>
+          <div style="font-family:'Instrument Serif',serif; font-size:32px; line-height:1.05; margin-bottom:16px; letter-spacing:-0.01em;">Semillas que separan.</div>
+          <ul style="margin:0; padding-left:18px; font-size:14px; line-height:1.75; color:#3d5f38;">
+            <li>Reciclatones escolares</li>
+            <li>Talleres ambientales</li>
+            <li>Juegos y dinámicas educativas</li>
+            <li>Cuentos ecológicos</li>
+            <li>Concursos de reciclaje</li>
+          </ul>
+        </div>
+        <div style="background:#faf7ec; border-radius:22px; padding:36px 32px; min-height:520px; display:flex; flex-direction:column;">
+          <div style="height:200px; border-radius:14px; overflow:hidden; margin-bottom:24px; position:relative;">
+            <image-slot id="camp-ph" shape="rounded" radius="14" placeholder="Capacitación en propiedad horizontal" style="position:absolute; inset:0;"></image-slot>
+          </div>
+          <div style="font-size:11px; letter-spacing:2px; color:#3d5f38; font-weight:600; margin-bottom:10px;">02 · PROPIEDAD HORIZONTAL</div>
+          <div style="font-family:'Instrument Serif',serif; font-size:32px; line-height:1.05; margin-bottom:16px; letter-spacing:-0.01em;">Conjuntos que aprovechan.</div>
+          <ul style="margin:0; padding-left:18px; font-size:14px; line-height:1.75; color:#3d5f38;">
+            <li>Capacitaciones a administraciones y consejos</li>
+            <li>Señalización de puntos ecológicos</li>
+            <li>Jornadas de sensibilización</li>
+            <li>Reciclatones comunitarias</li>
+            <li>Asesoría técnica en separación en la fuente</li>
+          </ul>
+        </div>
+        <div style="background:#1a2e21; color:#fbf8ee; border-radius:22px; padding:36px 32px; min-height:520px; display:flex; flex-direction:column;">
+          <div style="height:200px; border-radius:14px; overflow:hidden; margin-bottom:24px; position:relative;">
+            <image-slot id="camp-general" shape="rounded" radius="14" placeholder="Campaña en el espacio público" style="position:absolute; inset:0;"></image-slot>
+          </div>
+          <div style="font-size:11px; letter-spacing:2px; color:#c8a875; font-weight:600; margin-bottom:10px;">03 · USUARIOS EN GENERAL</div>
+          <div style="font-family:'Instrument Serif',serif; font-size:32px; line-height:1.05; margin-bottom:16px; letter-spacing:-0.01em;">Barrios que se reconocen.</div>
+          <ul style="margin:0; padding-left:18px; font-size:14px; line-height:1.75; color:rgba(251,248,238,0.85);">
+            <li>Charlas comunitarias</li>
+            <li>Campañas de sensibilización ambiental</li>
+            <li>Jornadas de reciclaje</li>
+            <li>Asesoría en separación en la fuente</li>
+            <li>Acompañamiento territorial</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALERÍA ============ -->
+  <section style="padding:100px 60px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:44px; flex-wrap:wrap; gap:20px;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:16px;">GALERÍA · SENSIBILIZACIONES</div>
+          <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:1; margin:0; letter-spacing:-0.02em;">Momentos que <em style="font-style:italic; color:#5a8a4a;">resuenan.</em></h3>
+        </div>
+        <a href="#" style="font-size:13px; letter-spacing:1.5px; color:#3d5f38; font-weight:600;" style-hover="{ color:'#5a8a4a' }">VER TODAS →</a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:220px; gap:12px;">
+        <div style="grid-column:span 2; grid-row:span 2; border-radius:16px; overflow:hidden; position:relative;"><image-slot id="gal-1" shape="rounded" radius="16" placeholder="Foto 01" style="position:absolute; inset:0;"></image-slot></div>
+        <div style="border-radius:16px; overflow:hidden; position:relative;"><image-slot id="gal-2" shape="rounded" radius="16" placeholder="Foto 02" style="position:absolute; inset:0;"></image-slot></div>
+        <div style="border-radius:16px; overflow:hidden; position:relative;"><image-slot id="gal-3" shape="rounded" radius="16" placeholder="Foto 03" style="position:absolute; inset:0;"></image-slot></div>
+        <div style="border-radius:16px; overflow:hidden; position:relative;"><image-slot id="gal-4" shape="rounded" radius="16" placeholder="Foto 04" style="position:absolute; inset:0;"></image-slot></div>
+        <div style="border-radius:16px; overflow:hidden; position:relative;"><image-slot id="gal-5" shape="rounded" radius="16" placeholder="Foto 05" style="position:absolute; inset:0;"></image-slot></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EVENTOS INSTITUCIONALES ============ -->
+  <section id="institucionales" style="padding:120px 60px 100px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:50px; flex-wrap:wrap; gap:20px;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:16px;">EVENTOS INSTITUCIONALES</div>
+          <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:1; margin:0; letter-spacing:-0.02em;">La familia ASOFRAIN, <em style="font-style:italic; color:#5a8a4a;">celebrada.</em></h3>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button style="padding:10px 20px; background:#1a2e21; color:#fbf8ee; border:none; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;">Todos</button>
+          <button style="padding:10px 20px; background:transparent; border:1px solid rgba(26,46,33,0.2); color:#1a2e21; border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'rgba(26,46,33,0.05)' }">2026</button>
+          <button style="padding:10px 20px; background:transparent; border:1px solid rgba(26,46,33,0.2); color:#1a2e21; border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'rgba(26,46,33,0.05)' }">2025</button>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-mujer" shape="rect" placeholder="Día de la Mujer" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">08 MAR</div><div style="font-size:17px; font-weight:600;">Día Internacional de la Mujer</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-hombre" shape="rect" placeholder="Día del Hombre" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">19 MAR</div><div style="font-size:17px; font-weight:600;">Día del Hombre</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-madre" shape="rect" placeholder="Día de la Madre" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">MAYO</div><div style="font-size:17px; font-weight:600;">Día de la Madre</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-padre" shape="rect" placeholder="Día del Padre" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">JUNIO</div><div style="font-size:17px; font-weight:600;">Día del Padre</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-nino" shape="rect" placeholder="Día del Niño" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">ABRIL</div><div style="font-size:17px; font-weight:600;">Día del Niño</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-hallo" shape="rect" placeholder="Halloween ASOFRAIN" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">31 OCT</div><div style="font-size:17px; font-weight:600;">Halloween</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-navi" shape="rect" placeholder="Navidad ASOFRAIN" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">DICIEMBRE</div><div style="font-size:17px; font-weight:600;">Navidad</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-aniv" shape="rect" placeholder="Aniversarios" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">INSTITUCIONAL</div><div style="font-size:17px; font-weight:600;">Aniversarios y actividades</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06);"><div style="height:200px; position:relative;"><image-slot id="ev-integ" shape="rect" placeholder="Integración y bienestar" style="position:absolute; inset:0;"></image-slot></div><div style="padding:22px 24px;"><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:8px;">BIENESTAR</div><div style="font-size:17px; font-weight:600;">Jornadas de integración</div></div></div>
+        <div style="background:#faf7ec; border-radius:18px; overflow:hidden; border:1px solid rgba(26,46,33,0.06); grid-column:span 3;"><div style="padding:36px 40px; display:grid; grid-template-columns:1fr 2fr auto; gap:40px; align-items:center;"><div style="font-family:'Instrument Serif',serif; font-size:44px; color:#5a8a4a; line-height:1;">+10</div><div><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:6px;">EVENTOS AMBIENTALES Y COMUNITARIOS</div><div style="font-size:17px; font-weight:600;">Eventos adicionales cargables desde el dashboard institucional</div></div><a href="./Contacto.dc.html" style="padding:12px 22px; background:#1a2e21; color:#fbf8ee; border-radius:100px; font-size:13px; font-weight:600;" style-hover="{ background:'#5a8a4a' }">Consultar calendario →</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FRASE DE CIERRE ============ -->
+  <section style="padding:140px 60px; background:#1a2e21; color:#fbf8ee;">
+    <div style="max-width:1200px; margin:0 auto; text-align:center;">
+      <div style="font-size:11px; letter-spacing:2.5px; color:#c8a875; font-weight:600; margin-bottom:32px;">— DETRÁS DE CADA JORNADA</div>
+      <p style="font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(38px, 5vw, 68px); line-height:1.1; letter-spacing:-0.02em; margin:0; text-wrap:balance;">
+        "Porque detrás de cada recuperador ambiental hay una <em style="font-style:italic; color:#c8a875;">familia</em> que merece reconocimiento, bienestar y oportunidades para crecer juntos."
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<dc-import name="Footer" hint-size="100%,500px"></dc-import>
+</x-dc>
+</body>
+</html>

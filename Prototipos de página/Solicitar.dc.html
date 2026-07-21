@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#faf7ec; color:#1a2e21; font-family:'Manrope', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { text-decoration:none; color:#3d5f38; }
+  a:hover { color:#5a8a4a; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+
+
+<dc-import name="Header" hint-size="100%,90px" style="position:fixed;top:0;left:0;right:0;z-index:100"></dc-import>
+
+<main style="background:#faf7ec;">
+
+  <section style="padding:140px 60px 60px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <a href="./Inicio.dc.html" style="font-size:12px; letter-spacing:2px; color:#3d5f38; font-weight:600; margin-bottom:24px; display:inline-block;">← VOLVER AL INICIO</a>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:end; margin-top:20px;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:20px;">— SOLICITAR SERVICIO</div>
+          <h1 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(56px, 7.5vw, 116px); line-height:0.92; letter-spacing:-0.03em; margin:0;">
+            Empecemos<br/><em style="font-style:italic; color:#5a8a4a;">a aprovechar.</em>
+          </h1>
+        </div>
+        <p style="font-size:17px; line-height:1.6; color:#3d5f38; margin:0 0 20px; max-width:520px;">
+          Cuéntanos qué tipo de usuario eres y qué necesitas. Un asesor se comunicará contigo en menos de <strong>24 horas hábiles</strong> para agendar visita técnica sin costo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:40px 60px 140px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto; display:grid; grid-template-columns:1.6fr 1fr; gap:24px; align-items:start;">
+
+      <!-- Formulario -->
+      <div style="background:#faf7ec; border:1px solid rgba(26,46,33,0.1); border-radius:22px; padding:52px 52px;">
+        <div style="margin-bottom:32px;">
+          <label style="display:block; font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:14px;">01 · TIPO DE CLIENTE</label>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <div style="padding:11px 18px; background:#1a2e21; color:#fbf8ee; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer;">Propiedad horizontal</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Colegio</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Entidad pública</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Empresa</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Comercio</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Sector salud</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Sector hotelero</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Oficina</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Comunidad</div>
+            <div style="padding:11px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:100px; font-size:13px; font-weight:500; cursor:pointer;" style-hover="{ background:'#eae3cf' }">Otro</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <label style="display:block; font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:14px;">02 · DATOS DE CONTACTO</label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+            <div>
+              <label style="display:block; font-size:10.5px; letter-spacing:1px; color:#3d5f38; font-weight:500; margin-bottom:6px; opacity:0.8;">NOMBRE / RAZÓN SOCIAL</label>
+              <input type="text" placeholder="Nombre completo o empresa" style="width:100%; padding:14px 16px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:10px; font-family:'Manrope',sans-serif; font-size:14px; color:#1a2e21;"/>
+            </div>
+            <div>
+              <label style="display:block; font-size:10.5px; letter-spacing:1px; color:#3d5f38; font-weight:500; margin-bottom:6px; opacity:0.8;">LOCALIDAD</label>
+              <select style="width:100%; padding:14px 16px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:10px; font-family:'Manrope',sans-serif; font-size:14px; color:#1a2e21;">
+                <option>Selecciona una localidad</option><option>Suba</option><option>Engativá</option><option>Usaquén</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+            <div>
+              <label style="display:block; font-size:10.5px; letter-spacing:1px; color:#3d5f38; font-weight:500; margin-bottom:6px; opacity:0.8;">CORREO</label>
+              <input type="email" placeholder="contacto@ejemplo.com" style="width:100%; padding:14px 16px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:10px; font-family:'Manrope',sans-serif; font-size:14px; color:#1a2e21;"/>
+            </div>
+            <div>
+              <label style="display:block; font-size:10.5px; letter-spacing:1px; color:#3d5f38; font-weight:500; margin-bottom:6px; opacity:0.8;">TELÉFONO</label>
+              <input type="tel" placeholder="+57" style="width:100%; padding:14px 16px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:10px; font-family:'Manrope',sans-serif; font-size:14px; color:#1a2e21;"/>
+            </div>
+          </div>
+          <div>
+            <label style="display:block; font-size:10.5px; letter-spacing:1px; color:#3d5f38; font-weight:500; margin-bottom:6px; opacity:0.8;">DIRECCIÓN DEL PUNTO DE RECOLECCIÓN</label>
+            <input type="text" placeholder="Ej. Calle 123 # 45-67" style="width:100%; padding:14px 16px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:10px; font-family:'Manrope',sans-serif; font-size:14px; color:#1a2e21;"/>
+          </div>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <label style="display:block; font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600; margin-bottom:14px;">03 · DESCRIPCIÓN DE LA NECESIDAD</label>
+          <textarea placeholder="Volumen estimado, frecuencia deseada, tipos de material predominantes, particularidades del sitio, horario preferido..." style="width:100%; padding:16px 18px; background:#faf7ec; border:1px solid rgba(26,46,33,0.15); border-radius:10px; font-family:'Manrope',sans-serif; font-size:14px; color:#1a2e21; min-height:160px; resize:vertical;"></textarea>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; padding-top:20px; border-top:1px solid rgba(26,46,33,0.1);">
+          <label style="display:flex; align-items:center; gap:10px; font-size:12.5px; color:#3d5f38; cursor:pointer;">
+            <input type="checkbox" style="width:16px; height:16px; accent-color:#5a8a4a;"/>
+            Acepto el tratamiento de datos personales
+          </label>
+          <button style="padding:18px 34px; background:#1a2e21; color:#fbf8ee; border:none; border-radius:100px; font-family:'Manrope',sans-serif; font-size:14.5px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:12px;" style-hover="{ background:'#5a8a4a' }">
+            <span style="width:6px; height:6px; border-radius:50%; background:#c8a875;"></span>
+            Enviar solicitud <span style="font-size:18px;">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sidebar informativa -->
+      <div style="display:flex; flex-direction:column; gap:16px; position:sticky; top:110px;">
+        <div style="background:#1a2e21; color:#fbf8ee; border-radius:20px; padding:36px; position:relative; overflow:hidden;">
+          <div style="font-size:11px; letter-spacing:2px; color:#c8a875; font-weight:600; margin-bottom:16px;">— ¿QUÉ SIGUE?</div>
+          <div style="display:flex; flex-direction:column; gap:22px;">
+            <div style="display:flex; gap:14px; align-items:start;">
+              <div style="min-width:32px; height:32px; border-radius:50%; background:#c8a875; color:#1a2e21; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:15px; font-weight:600;">1</div>
+              <div><div style="font-size:14.5px; font-weight:600; margin-bottom:4px;">Recibimos tu solicitud</div><div style="font-size:12.5px; color:rgba(251,248,238,0.65); line-height:1.5;">Notificación automática al equipo comercial.</div></div>
+            </div>
+            <div style="display:flex; gap:14px; align-items:start;">
+              <div style="min-width:32px; height:32px; border-radius:50%; background:#c8a875; color:#1a2e21; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:15px; font-weight:600;">2</div>
+              <div><div style="font-size:14.5px; font-weight:600; margin-bottom:4px;">Un asesor te contacta</div><div style="font-size:12.5px; color:rgba(251,248,238,0.65); line-height:1.5;">En menos de 24 horas hábiles.</div></div>
+            </div>
+            <div style="display:flex; gap:14px; align-items:start;">
+              <div style="min-width:32px; height:32px; border-radius:50%; background:#c8a875; color:#1a2e21; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:15px; font-weight:600;">3</div>
+              <div><div style="font-size:14.5px; font-weight:600; margin-bottom:4px;">Visita técnica</div><div style="font-size:12.5px; color:rgba(251,248,238,0.65); line-height:1.5;">Diagnóstico y propuesta operativa sin costo.</div></div>
+            </div>
+            <div style="display:flex; gap:14px; align-items:start;">
+              <div style="min-width:32px; height:32px; border-radius:50%; background:#5a8a4a; color:#fbf8ee; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:15px; font-weight:600;">4</div>
+              <div><div style="font-size:14.5px; font-weight:600; margin-bottom:4px;">Inicio del servicio</div><div style="font-size:12.5px; color:rgba(251,248,238,0.65); line-height:1.5;">Ruta activa y trazabilidad al SUI.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#faf7ec; border:1px solid rgba(26,46,33,0.1); border-radius:20px; padding:32px 30px;">
+          <div style="font-size:11px; letter-spacing:2px; color:#3d5f38; font-weight:600; margin-bottom:14px;">CONTACTO DIRECTO</div>
+          <a href="tel:+573225105246" style="display:block; font-family:'Instrument Serif',serif; font-size:26px; margin-bottom:10px; color:#1a2e21; letter-spacing:-0.01em;" style-hover="{ color:'#5a8a4a' }">+57 322 510 5246</a>
+          <a href="mailto:asofrain.admi@gmail.com" style="display:block; font-family:'Instrument Serif',serif; font-size:20px; color:#1a2e21; letter-spacing:-0.01em; word-break:break-all;" style-hover="{ color:'#5a8a4a' }">asofrain.admi@gmail.com</a>
+        </div>
+
+        <div style="padding:20px 24px; background:rgba(200,168,117,0.2); border:1px solid rgba(200,168,117,0.4); border-radius:14px; font-size:13px; color:#3d5f38; line-height:1.55;">
+          <strong>Sin costo extra:</strong> el servicio público de aprovechamiento se acredita a tu factura de aseo. No pagas más por reciclar.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<dc-import name="Footer" hint-size="100%,500px"></dc-import>
+</x-dc>
+</body>
+</html>

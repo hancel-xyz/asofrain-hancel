@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#1a2e21; color:#fbf8ee; font-family:'Manrope', system-ui, sans-serif; -webkit-font-smoothing:antialiased; scroll-behavior:smooth; }
+  * { box-sizing:border-box; }
+  a { text-decoration:none; color:#c8a875; }
+  section { scroll-margin-top:100px; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+
+
+<dc-import name="Header" active="servicios" hint-size="100%,90px" style="position:fixed;top:0;left:0;right:0;z-index:100"></dc-import>
+
+<main>
+
+  <!-- ============ HERO — estilo ref 3 (imagen grande + info lateral) ============ -->
+  <section style="position:relative; min-height:100vh; padding:110px 20px 20px; display:flex; align-items:stretch; background:#1a2e21;">
+    <div style="position:relative; flex:1; border-radius:24px; overflow:hidden;">
+      <image-slot id="servicios-hero" shape="rect" placeholder="Hero Servicios: operación en ECA / compactación / camión selectivo" style="position:absolute; inset:0;"></image-slot>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,31,22,0.45) 0%, rgba(15,31,22,0.15) 50%, rgba(15,31,22,0.85) 100%); pointer-events:none;"></div>
+
+      <div style="position:relative; z-index:2; height:100%; display:grid; grid-template-columns:2fr 1fr; gap:40px; padding:80px; color:#fbf8ee; pointer-events:none;">
+        <div>
+          <div style="font-size:11px; letter-spacing:3px; color:#c8a875; font-weight:600; margin-bottom:24px;">— 03 · SERVICIOS</div>
+          <h1 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(64px, 9.5vw, 152px); line-height:0.9; letter-spacing:-0.03em; margin:0; max-width:900px;">
+            El ciclo,<br/><em style="font-style:italic; color:#c8a875;">de principio a fin.</em>
+          </h1>
+        </div>
+        <div style="align-self:start; border-top:1px solid rgba(251,248,238,0.4); padding-top:20px; pointer-events:auto;">
+          <div style="font-size:11px; letter-spacing:2px; color:#c8a875; font-weight:600; margin-bottom:14px;">003 — DESCRIPCIÓN</div>
+          <p style="font-size:14.5px; line-height:1.55; color:rgba(251,248,238,0.85); margin:0 0 20px;">Cinco procesos técnicos y un plus diferencial. Cada uno operado directamente por ASOFRAIN, con protocolos verificables y trazabilidad al SUI.</p>
+          <div style="border-bottom:1px solid rgba(251,248,238,0.3); padding-bottom:14px; margin-bottom:14px;"></div>
+          <div style="font-size:11px; letter-spacing:2px; color:rgba(251,248,238,0.6); font-weight:600;">DISPONIBLE EN 3 LOCALIDADES</div>
+          <div style="margin-top:8px; font-size:15px; font-family:'Instrument Serif',serif;">Suba · Engativá · Usaquén</div>
+        </div>
+      </div>
+
+      <div style="position:absolute; bottom:36px; left:80px; z-index:2; display:inline-flex; align-items:center; gap:14px; padding:14px 22px; background:rgba(251,248,238,0.12); backdrop-filter:blur(12px); border:1px solid rgba(251,248,238,0.3); border-radius:100px; color:#fbf8ee; font-size:13px; font-weight:600;">
+        <span style="width:38px; height:38px; border-radius:50%; background:#c8a875; color:#1a2e21; display:flex; align-items:center; justify-content:center; font-size:16px;">↗</span>
+        <a href="#descripcion" style="color:#fbf8ee;">Ver los 5 servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DESCRIPCIÓN — cards ============ -->
+  <section id="descripcion" style="padding:140px 60px 100px; background:#1a2e21;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:60px; gap:60px; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#c8a875; font-weight:600; margin-bottom:20px;">DESCRIPCIÓN DE SERVICIOS</div>
+          <h2 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(48px, 5.5vw, 84px); line-height:0.98; margin:0; letter-spacing:-0.02em;">Cinco procesos, <em style="font-style:italic; color:#c8a875;">un solo operador.</em></h2>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:16px; margin-bottom:80px;">
+        <div style="grid-column:span 2; background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:20px; padding:36px 32px; min-height:280px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">01</div>
+          <div><div style="font-size:22px; font-weight:600; margin-bottom:10px;">Recuperación de residuos aprovechables</div><div style="font-size:14px; color:rgba(251,248,238,0.7); line-height:1.55;">Identificación, selección y recuperación en la fuente de materiales con potencial de aprovechamiento.</div></div>
+        </div>
+        <div style="grid-column:span 2; background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:20px; padding:36px 32px; min-height:280px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">02</div>
+          <div><div style="font-size:22px; font-weight:600; margin-bottom:10px;">Recolección selectiva</div><div style="font-size:14px; color:rgba(251,248,238,0.7); line-height:1.55;">Rutas programadas puerta a puerta y por macrorruta, con horarios definidos por localidad.</div></div>
+        </div>
+        <div style="grid-column:span 2; background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:20px; padding:36px 32px; min-height:280px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">03</div>
+          <div><div style="font-size:22px; font-weight:600; margin-bottom:10px;">Transporte selectivo</div><div style="font-size:14px; color:rgba(251,248,238,0.7); line-height:1.55;">Vehículos autorizados, cumpliendo la normatividad de transporte de residuos aprovechables.</div></div>
+        </div>
+        <div style="grid-column:span 3; background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:20px; padding:36px 32px; min-height:280px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">04</div>
+          <div><div style="font-size:22px; font-weight:600; margin-bottom:10px;">Clasificación y almacenamiento</div><div style="font-size:14px; color:rgba(251,248,238,0.7); line-height:1.55;">En nuestras 5 ECAs — Rincón, Prieto Hermanos, Ecoambit, JM Reciclaje y JM Reciclaje 2 — con protocolos por tipo de material.</div></div>
+        </div>
+        <div style="grid-column:span 3; background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:20px; padding:36px 32px; min-height:280px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">05</div>
+          <div><div style="font-size:22px; font-weight:600; margin-bottom:10px;">Pesaje y trazabilidad</div><div style="font-size:14px; color:rgba(251,248,238,0.7); line-height:1.55;">Reporte al SUI (Sistema Único de Información) con toneladas efectivamente aprovechadas por usuario y por localidad, según requerimientos de la SSPD.</div></div>
+        </div>
+      </div>
+
+      <!-- Compactación plus -->
+      <div style="background:#c8a875; color:#1a2e21; border-radius:24px; padding:64px 64px; position:relative; overflow:hidden;">
+        <div style="display:grid; grid-template-columns:1fr 2fr; gap:60px; align-items:start;">
+          <div>
+            <div style="font-size:11px; letter-spacing:2.5px; font-weight:700; margin-bottom:16px;">— PLUS DIFERENCIAL</div>
+            <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:0.98; margin:0 0 20px; letter-spacing:-0.02em;">Compactación de material aprovechable.</h3>
+            <p style="font-size:16px; line-height:1.55; margin:0; opacity:0.85;">Optimizamos el volumen del material antes del transporte a la industria transformadora. Seis beneficios verificables.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px 40px;">
+            <div style="display:flex; align-items:start; gap:16px; padding:16px 0; border-bottom:1px solid rgba(26,46,33,0.2);"><div style="font-family:'Instrument Serif',serif; font-size:24px; line-height:1;">01</div><div><div style="font-size:16px; font-weight:600; margin-bottom:4px;">Reducción de volumen</div><div style="font-size:13px; opacity:0.7;">Hasta 4× menos espacio en transporte y almacenamiento.</div></div></div>
+            <div style="display:flex; align-items:start; gap:16px; padding:16px 0; border-bottom:1px solid rgba(26,46,33,0.2);"><div style="font-family:'Instrument Serif',serif; font-size:24px; line-height:1;">02</div><div><div style="font-size:16px; font-weight:600; margin-bottom:4px;">Menos viajes, menos emisiones</div><div style="font-size:13px; opacity:0.7;">Rutas optimizadas y menor huella de carbono.</div></div></div>
+            <div style="display:flex; align-items:start; gap:16px; padding:16px 0; border-bottom:1px solid rgba(26,46,33,0.2);"><div style="font-family:'Instrument Serif',serif; font-size:24px; line-height:1;">03</div><div><div style="font-size:16px; font-weight:600; margin-bottom:4px;">Mayor eficiencia operativa</div><div style="font-size:13px; opacity:0.7;">Más toneladas gestionadas por jornada.</div></div></div>
+            <div style="display:flex; align-items:start; gap:16px; padding:16px 0; border-bottom:1px solid rgba(26,46,33,0.2);"><div style="font-family:'Instrument Serif',serif; font-size:24px; line-height:1;">04</div><div><div style="font-size:16px; font-weight:600; margin-bottom:4px;">Mejor precio de venta</div><div style="font-size:13px; opacity:0.7;">Presentación estandarizada para la industria.</div></div></div>
+            <div style="display:flex; align-items:start; gap:16px; padding:16px 0;"><div style="font-family:'Instrument Serif',serif; font-size:24px; line-height:1;">05</div><div><div style="font-size:16px; font-weight:600; margin-bottom:4px;">Menos contaminación cruzada</div><div style="font-size:13px; opacity:0.7;">Separación firme entre corrientes de material.</div></div></div>
+            <div style="display:flex; align-items:start; gap:16px; padding:16px 0;"><div style="font-family:'Instrument Serif',serif; font-size:24px; line-height:1;">06</div><div><div style="font-size:16px; font-weight:600; margin-bottom:4px;">Bienestar para el equipo</div><div style="font-size:13px; opacity:0.7;">Menos esfuerzo físico en manipulación.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RUTAS Y HORARIOS ============ -->
+  <section id="rutas" style="padding:100px 60px; background:#1a2e21;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:44px; flex-wrap:wrap; gap:20px;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#c8a875; font-weight:600; margin-bottom:16px;">RUTAS, LOCALIDADES Y HORARIOS</div>
+          <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:1; margin:0; letter-spacing:-0.02em;">Dónde estamos, <em style="font-style:italic; color:#c8a875;">cuándo llegamos.</em></h3>
+        </div>
+        <div style="font-size:13px; color:rgba(251,248,238,0.65); max-width:360px; text-align:right;">Sujeto a programación operativa. Coordinamos directamente con cada usuario para confirmar día y hora exactos.</div>
+      </div>
+
+      <div style="border:1px solid rgba(251,248,238,0.15); border-radius:20px; overflow:hidden;">
+        <div style="display:grid; grid-template-columns:1fr 2fr 2fr 1fr; padding:20px 32px; background:rgba(251,248,238,0.05); font-size:11px; letter-spacing:2px; color:#c8a875; font-weight:600;">
+          <div>LOCALIDAD</div><div>DÍAS</div><div>HORARIO</div><div style="text-align:right;">ESTADO</div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 2fr 2fr 1fr; padding:28px 32px; align-items:center; border-top:1px solid rgba(251,248,238,0.1);">
+          <div style="font-family:'Instrument Serif',serif; font-size:32px;">Suba</div>
+          <div style="font-size:15px;">Lunes a sábado</div>
+          <div style="font-size:15px;">7:00 am – 5:00 pm</div>
+          <div style="text-align:right;"><span style="display:inline-block; padding:6px 14px; background:rgba(90,138,74,0.25); color:#a5c98e; border-radius:100px; font-size:12px; font-weight:600;">● Activa</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 2fr 2fr 1fr; padding:28px 32px; align-items:center; border-top:1px solid rgba(251,248,238,0.1);">
+          <div style="font-family:'Instrument Serif',serif; font-size:32px;">Engativá</div>
+          <div style="font-size:15px;">Lunes a sábado</div>
+          <div style="font-size:15px;">7:00 am – 5:00 pm</div>
+          <div style="text-align:right;"><span style="display:inline-block; padding:6px 14px; background:rgba(90,138,74,0.25); color:#a5c98e; border-radius:100px; font-size:12px; font-weight:600;">● Activa</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 2fr 2fr 1fr; padding:28px 32px; align-items:center; border-top:1px solid rgba(251,248,238,0.1);">
+          <div style="font-family:'Instrument Serif',serif; font-size:32px;">Usaquén</div>
+          <div style="font-size:15px;">Lunes a sábado</div>
+          <div style="font-size:15px;">7:00 am – 5:00 pm</div>
+          <div style="text-align:right;"><span style="display:inline-block; padding:6px 14px; background:rgba(90,138,74,0.25); color:#a5c98e; border-radius:100px; font-size:12px; font-weight:600;">● Activa</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTORES ATENDIDOS ============ -->
+  <section id="sectores" style="padding:100px 60px; background:#1a2e21;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="margin-bottom:44px;">
+        <div style="font-size:11px; letter-spacing:2.5px; color:#c8a875; font-weight:600; margin-bottom:16px;">SECTORES ATENDIDOS</div>
+        <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:1; margin:0; letter-spacing:-0.02em;">Nueve sectores, <em style="font-style:italic; color:#c8a875;">una misma ciudad.</em></h3>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#c8a875; display:flex; align-items:center; justify-content:center; color:#1a2e21; font-family:'Instrument Serif',serif; font-size:24px;">P</div><div><div style="font-size:17px; font-weight:600;">Propiedad horizontal</div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Conjuntos residenciales y oficinas</div></div></div>
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#c8a875; display:flex; align-items:center; justify-content:center; color:#1a2e21; font-family:'Instrument Serif',serif; font-size:24px;">E</div><div><div style="font-size:17px; font-weight:600;">Entidades públicas</div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Distritales y nacionales</div></div></div>
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#c8a875; display:flex; align-items:center; justify-content:center; color:#1a2e21; font-family:'Instrument Serif',serif; font-size:24px;">I</div><div><div style="font-size:17px; font-weight:600;">Empresas e industria</div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Manufactura y servicios</div></div></div>
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#c8a875; display:flex; align-items:center; justify-content:center; color:#1a2e21; font-family:'Instrument Serif',serif; font-size:24px;">C</div><div><div style="font-size:17px; font-weight:600;">Instituciones educativas</div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Colegios y universidades</div></div></div>
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#c8a875; display:flex; align-items:center; justify-content:center; color:#1a2e21; font-family:'Instrument Serif',serif; font-size:24px;">M</div><div><div style="font-size:17px; font-weight:600;">Comercio</div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Locales, plazas y centros</div></div></div>
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#c8a875; display:flex; align-items:center; justify-content:center; color:#1a2e21; font-family:'Instrument Serif',serif; font-size:24px;">S</div><div><div style="font-size:17px; font-weight:600;">Sector salud <span style="font-size:11px; color:rgba(251,248,238,0.5);">*</span></div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Solo residuos ordinarios aprovechables</div></div></div>
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#c8a875; display:flex; align-items:center; justify-content:center; color:#1a2e21; font-family:'Instrument Serif',serif; font-size:24px;">H</div><div><div style="font-size:17px; font-weight:600;">Hotelero y gastronómico</div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Hoteles, restaurantes, food halls</div></div></div>
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#c8a875; display:flex; align-items:center; justify-content:center; color:#1a2e21; font-family:'Instrument Serif',serif; font-size:24px;">O</div><div><div style="font-size:17px; font-weight:600;">Oficinas y empresarial</div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Coworkings, sedes corporativas</div></div></div>
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:16px; padding:30px; display:flex; align-items:center; gap:20px;"><div style="width:52px; height:52px; border-radius:12px; background:#5a8a4a; display:flex; align-items:center; justify-content:center; color:#fbf8ee; font-family:'Instrument Serif',serif; font-size:24px;">U</div><div><div style="font-size:17px; font-weight:600;">Comunidades y ciudadanía</div><div style="font-size:12.5px; color:rgba(251,248,238,0.6); margin-top:2px;">Usuarios en general</div></div></div>
+      </div>
+      <div style="margin-top:20px; font-size:12px; color:rgba(251,248,238,0.5);">* Sector salud: únicamente residuos ordinarios aprovechables. Los residuos hospitalarios peligrosos se gestionan con prestadores especializados.</div>
+    </div>
+  </section>
+
+  <!-- ============ TARIFA Y PRODUCTOS ============ -->
+  <section id="tarifa" style="padding:100px 60px 140px; background:#1a2e21;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#c8a875; font-weight:600; margin-bottom:20px;">TARIFA Y PRODUCTOS</div>
+          <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:1; margin:0 0 24px; letter-spacing:-0.02em;">Un marco tarifario <em style="font-style:italic; color:#c8a875;">público y regulado.</em></h3>
+          <p style="font-size:16px; line-height:1.6; color:rgba(251,248,238,0.8); margin:0 0 20px;">El servicio público de aprovechamiento está regulado por la Comisión de Regulación de Agua Potable y Saneamiento Básico (CRA) mediante la Resolución 720 de 2015.</p>
+          <p style="font-size:16px; line-height:1.6; color:rgba(251,248,238,0.8); margin:0 0 32px;">El valor se calcula por tonelada efectivamente aprovechada y se acredita a la factura del servicio de aseo. El usuario no paga extra por reciclar — al contrario, incentiva su tarifa.</p>
+          <a href="./Normatividad.dc.html" style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; background:#c8a875; color:#1a2e21; border-radius:100px; font-size:14px; font-weight:600;" style-hover="{ background:'#fbf8ee' }">
+            Ver normatividad completa <span style="font-size:18px;">→</span>
+          </a>
+        </div>
+
+        <div style="background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.15); border-radius:20px; padding:40px 36px;">
+          <div style="font-size:11px; letter-spacing:2px; color:#c8a875; font-weight:600; margin-bottom:20px;">PRODUCTOS APROVECHADOS</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px 24px;">
+            <div style="padding:12px 0; border-bottom:1px solid rgba(251,248,238,0.1); font-size:15px;">Papel y cartón</div>
+            <div style="padding:12px 0; border-bottom:1px solid rgba(251,248,238,0.1); font-size:15px;">Plásticos (PET, PP, PEBD)</div>
+            <div style="padding:12px 0; border-bottom:1px solid rgba(251,248,238,0.1); font-size:15px;">Vidrio</div>
+            <div style="padding:12px 0; border-bottom:1px solid rgba(251,248,238,0.1); font-size:15px;">Metales ferrosos</div>
+            <div style="padding:12px 0; border-bottom:1px solid rgba(251,248,238,0.1); font-size:15px;">Metales no ferrosos</div>
+            <div style="padding:12px 0; border-bottom:1px solid rgba(251,248,238,0.1); font-size:15px;">Tetrapak</div>
+            <div style="padding:12px 0; font-size:15px;">RAEE (electrónicos)</div>
+            <div style="padding:12px 0; font-size:15px;">Textiles</div>
+          </div>
+          <div style="margin-top:28px; padding:16px 20px; background:rgba(200,168,117,0.15); border:1px solid rgba(200,168,117,0.3); border-radius:12px; font-size:13px; color:#c8a875; line-height:1.5;">
+            Consulta el marco tarifario ilustrado y la lista completa de materiales desde la sección de Normatividad.
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:80px; padding:60px; background:rgba(251,248,238,0.05); border:1px solid rgba(251,248,238,0.1); border-radius:20px; display:grid; grid-template-columns:auto 1fr auto; gap:40px; align-items:center;">
+        <div style="width:80px; height:80px; border-radius:50%; background:#c8a875; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:44px; color:#1a2e21;">$</div>
+        <div>
+          <div style="font-family:'Instrument Serif',serif; font-size:32px; letter-spacing:-0.01em;">¿Listo para agendar tu servicio?</div>
+          <div style="margin-top:8px; font-size:14.5px; color:rgba(251,248,238,0.7);">Un asesor confirmará ruta, día y volumen estimado en menos de 24 horas hábiles.</div>
+        </div>
+        <a href="./Solicitar.dc.html" style="padding:16px 28px; background:#c8a875; color:#1a2e21; border-radius:100px; font-size:14px; font-weight:600; display:flex; align-items:center; gap:10px;" style-hover="{ background:'#fbf8ee' }">
+          Solicitar servicio <span style="font-size:18px;">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<dc-import name="Footer" hint-size="100%,500px"></dc-import>
+</x-dc>
+</body>
+</html>

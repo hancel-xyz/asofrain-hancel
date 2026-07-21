@@ -1,0 +1,1608 @@
+{
+  "sitio": {
+    "paginas": [
+      {
+        "id": "inicio",
+        "nombre": "Inicio",
+        "ruta": "/",
+        "secciones": {
+          "hero": {
+            "imagen_fondo": {
+              "valor": "https://39rch3cp.us-east.insforge.app/api/storage/buckets/media/objects/c99a0de8f1829ffe4d60dc2876595f43-1784618040897-ic0g67.jpg?v=c7637e20a31e4571e0c3cd7d63b46641",
+              "editable_admin": true,
+              "tipo": "imagen",
+              "key": "c99a0de8f1829ffe4d60dc2876595f43-1784618040897-ic0g67.jpg"
+            },
+            "titulo": {
+              "valor": "Nuestro futuro no es desechable, *actuemos* ahora.",
+              "editable_admin": true,
+              "tipo": "texto"
+            },
+            "descripcion": {
+              "valor": "Recuperamos, transportamos y aprovechamos residuos sólidos en Suba, Engativá y Usaquén — devolviéndoles valor.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            },
+            "cta": {
+              "texto": "Solicitar servicio",
+              "url": "/solicitar",
+              "editable_admin": true
+            }
+          },
+          "metricas": {
+            "dato_breve": {
+              "valor": "Impacto 2019 · 2026",
+              "editable_admin": true,
+              "tipo": "texto"
+            },
+            "titulo_principal": {
+              "valor": "Números que nutren la ciudad.",
+              "editable_admin": true,
+              "tipo": "texto"
+            },
+            "descripcion": {
+              "valor": "Cada tonelada aprovechada es un ciclo cerrado, un empleo digno para nuestros recuperadores ambientales y menos residuos enviados al relleno Doña Juana.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            },
+            "items": [
+              {
+                "id": "metrica_1",
+                "titulo": {
+                  "valor": "Toneladas aprovechadas",
+                  "fijo": true
+                },
+                "numero": {
+                  "valor": "699.564",
+                  "obligatorio": true,
+                  "tipo": "texto"
+                },
+                "descripcion": {
+                  "tipo_activo": "texto",
+                  "texto": {
+                    "valor": "Acumulado 2019 – 2026 en las tres localidades atendidas.",
+                    "obligatorio_uno_de_dos": true
+                  },
+                  "items": {
+                    "valor": [],
+                    "obligatorio_uno_de_dos": true
+                  }
+                }
+              },
+              {
+                "id": "metrica_2",
+                "titulo": {
+                  "valor": "Localidades",
+                  "fijo": true
+                },
+                "numero": {
+                  "valor": "3",
+                  "obligatorio": true,
+                  "tipo": "texto"
+                },
+                "descripcion": {
+                  "tipo_activo": "texto",
+                  "texto": {
+                    "valor": "Suba · Engativá · Usaquén",
+                    "obligatorio_uno_de_dos": true
+                  },
+                  "items": {
+                    "valor": [],
+                    "obligatorio_uno_de_dos": true
+                  }
+                }
+              },
+              {
+                "id": "metrica_3",
+                "titulo": {
+                  "valor": "ECAs ACTIVAS",
+                  "fijo": true
+                },
+                "numero": {
+                  "valor": "5",
+                  "obligatorio": true,
+                  "tipo": "texto"
+                },
+                "descripcion": {
+                  "tipo_activo": "texto",
+                  "texto": {
+                    "valor": "Estaciones de clasificación.",
+                    "obligatorio_uno_de_dos": true
+                  },
+                  "items": {
+                    "valor": [],
+                    "obligatorio_uno_de_dos": true
+                  }
+                }
+              },
+              {
+                "id": "metrica_4",
+                "titulo": {
+                  "valor": "ECAs:",
+                  "fijo": true
+                },
+                "numero": {
+                  "valor": "",
+                  "obligatorio": true,
+                  "tipo": "texto"
+                },
+                "descripcion": {
+                  "tipo_activo": "items",
+                  "texto": {
+                    "valor": "",
+                    "obligatorio_uno_de_dos": true
+                  },
+                  "items": {
+                    "valor": [
+                      "Rincón",
+                      "Prieto Hermanos",
+                      "Ecoambit",
+                      "JM Reciclaje",
+                      "JM Reciclaje 2"
+                    ],
+                    "obligatorio_uno_de_dos": true
+                  }
+                }
+              }
+            ]
+          },
+          "servicios_vista_general": {
+            "media": {
+              "tipo": "video_o_imagen",
+              "url": "",
+              "editable_admin": true
+            },
+            "titulo_media": {
+              "valor": "Un día con quienes recuperan la ciudad",
+              "editable_admin": true
+            },
+            "servicios": {
+              "titulo": {
+                "valor": "Un ciclo completo, operado por nosotros.",
+                "editable_admin": true
+              },
+              "cards": [
+                {
+                  "id": "servicio_1",
+                  "numero": {
+                    "valor": "01",
+                    "editable_admin": true
+                  },
+                  "titulo": {
+                    "valor": "Recuperación y recolección selectiva",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "servicio_2",
+                  "numero": {
+                    "valor": "02",
+                    "editable_admin": true
+                  },
+                  "titulo": {
+                    "valor": "Transporte selectivo",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "servicio_3",
+                  "numero": {
+                    "valor": "03",
+                    "editable_admin": true
+                  },
+                  "titulo": {
+                    "valor": "Clasificación y almacenamiento",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "servicio_4",
+                  "numero": {
+                    "valor": "04",
+                    "editable_admin": true
+                  },
+                  "titulo": {
+                    "valor": "Pesaje y trazabilidad al SUI",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "servicio_5",
+                  "numero": {
+                    "valor": "05",
+                    "editable_admin": true
+                  },
+                  "titulo": {
+                    "valor": "Compactación de material",
+                    "editable_admin": true
+                  }
+                }
+              ]
+            }
+          },
+          "frase": {
+            "titulo_pequeno": {
+              "valor": "Nuestra convicción",
+              "editable_admin": true
+            },
+            "texto": {
+              "valor": "Aprovechar no es solo recoger. Es reconocer el valor de lo que la ciudad estaba a punto de olvidar.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          }
+        }
+      },
+      {
+        "id": "nosotros",
+        "nombre": "Nosotros",
+        "ruta": "/nosotros",
+        "secciones": {
+          "hero": {
+            "imagen_fondo": {
+              "valor": "Se puede subir",
+              "editable_admin": true,
+              "tipo": "imagen"
+            },
+            "titulo": {
+              "valor": "Somos quienes recuperan la ciudad",
+              "editable_admin": true,
+              "tipo": "texto"
+            },
+            "descripcion": {
+              "valor": "ASOFRAIN E.S.P. — una organización de recuperadores ambientales que presta el servicio público de aprovechamiento en Bogotá desde 2006.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            },
+            "cta_1": {
+              "texto": "Conocer la historia",
+              "url": "",
+              "editable_admin": true
+            },
+            "cta_2": {
+              "texto": "Ver aliados",
+              "url": "",
+              "editable_admin": true
+            }
+          },
+          "quienes_somos": {
+            "titulo": {
+              "valor": "Una empresa pública, operada por sus recuperadores.",
+              "editable_admin": true
+            },
+            "descripcion": {
+              "valor": "ASOFRAIN E.S.P. es una Empresa de Servicios Públicos constituida por recuperadores ambientales, reconocida ante la Superintendencia de Servicios Públicos Domiciliarios (SSPD) como prestadora del servicio público de aprovechamiento en Bogotá D.C. Operamos bajo el marco tarifario CRA 720 de 2015 y el Decreto 596 de 2016, con enfoque territorial en las localidades de Suba, Engativá y Usaquén. Nuestra razón de ser combina un servicio esencial para la ciudad con la dignificación laboral de las familias recuperadoras que integran la organización.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          },
+          "historia": {
+            "titulo": {
+              "valor": "Desde 2006, tejiendo un ciclo de valor.",
+              "editable_admin": true
+            },
+            "filas": [
+              {
+                "id": "fila_1",
+                "ano": {
+                  "valor": "2006",
+                  "editable_admin": true,
+                  "tipo": "texto"
+                },
+                "titulo": {
+                  "valor": "Origen en Suba",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Un grupo de recuperadores ambientales de Suba se organiza informalmente para dignificar su labor y avanzar hacia la formalización.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "fila_2",
+                "ano": {
+                  "valor": "2013",
+                  "editable_admin": true,
+                  "tipo": "texto"
+                },
+                "titulo": {
+                  "valor": "Auto 275 y formalización",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Se avanza en el proceso de formalización tras los autos de la Corte Constitucional que reconocen a los recuperadores como sujetos de especial protección.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "fila_3",
+                "ano": {
+                  "valor": "2019",
+                  "editable_admin": true,
+                  "tipo": "texto"
+                },
+                "titulo": {
+                  "valor": "Nace ASOFRAIN E.S.P.",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Denominación actual como Empresa de Servicios Públicos. Registro ante la SSPD y la UAESP. Se abre operación en Engativá y Usaquén.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "fila_4",
+                "ano": {
+                  "valor": "Hoy",
+                  "editable_admin": true,
+                  "tipo": "texto"
+                },
+                "titulo": {
+                  "valor": "699.564 toneladas aprovechadas",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "5 estaciones de clasificación (ECAs), servicio consolidado en tres localidades y un programa creciente de sensibilización territorial.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              }
+            ]
+          },
+          "mision": {
+            "descripcion": {
+              "valor": "Prestar el servicio público de aprovechamiento en Bogotá con excelencia técnica, dignificando a nuestros recuperadores ambientales y devolviendo valor a la ciudad y al medio ambiente.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          },
+          "vision": {
+            "descripcion": {
+              "valor": "Ser referente nacional en aprovechamiento de residuos, con cobertura ampliada, tecnología de trazabilidad y un modelo replicable que consolide a Bogotá como una ciudad de economía circular.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          },
+          "valores": {
+            "titulo": {
+              "valor": "Ocho principios no negociables.",
+              "editable_admin": true
+            },
+            "cuadros": [
+              {
+                "id": "cuadro_1",
+                "numero": {
+                  "automatico": true,
+                  "valor": 1
+                },
+                "titulo": {
+                  "valor": "Compromiso ambiental",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Cada decisión operativa considera el impacto ecológico.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "cuadro_2",
+                "numero": {
+                  "automatico": true,
+                  "valor": 2
+                },
+                "titulo": {
+                  "valor": "Responsabilidad social",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Con nuestros recuperadores, sus familias, con Bogotá.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "cuadro_3",
+                "numero": {
+                  "automatico": true,
+                  "valor": 3
+                },
+                "titulo": {
+                  "valor": "Integridad",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Trazabilidad y transparencia en cada tonelada aprovechada.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "cuadro_4",
+                "numero": {
+                  "automatico": true,
+                  "valor": 4
+                },
+                "titulo": {
+                  "valor": "Respeto",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Trato digno al recuperador, al usuario y al material.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "cuadro_5",
+                "numero": {
+                  "automatico": true,
+                  "valor": 5
+                },
+                "titulo": {
+                  "valor": "Calidad",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Procesos técnicos verificables y mejora continua.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "cuadro_6",
+                "numero": {
+                  "automatico": true,
+                  "valor": 6
+                },
+                "titulo": {
+                  "valor": "Trabajo en equipo",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Somos una asociación antes que una empresa.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "cuadro_7",
+                "numero": {
+                  "automatico": true,
+                  "valor": 7
+                },
+                "titulo": {
+                  "valor": "Innovación",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Compactación, trazabilidad digital y rutas optimizadas.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "cuadro_8",
+                "numero": {
+                  "automatico": true,
+                  "valor": 8
+                },
+                "titulo": {
+                  "valor": "Servicio",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Atención cercana al usuario y respuesta oportuna.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              }
+            ]
+          },
+          "objeto_social": {
+            "titulo": {
+              "valor": "Aprovechar residuos, dignificar oficios.",
+              "editable_admin": true
+            },
+            "descripcion": {
+              "valor": "La prestación del servicio público de aprovechamiento en el marco del Decreto 596 de 2016, garantizando condiciones laborales dignas para las familias recuperadoras que integran la organización.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          },
+          "objeto_ambiental": {
+            "titulo": {
+              "valor": "Extender la vida útil del relleno Doña Juana.",
+              "editable_admin": true
+            },
+            "descripcion": {
+              "valor": "Reducir la cantidad de residuos aprovechables que terminan enterrados, promover la economía circular en la fuente y contribuir a las metas del PGIRS Bogotá.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          },
+          "frase_1": {
+            "titulo_pequeno": {
+              "valor": "COMPROMISO CON BOGOTÁ",
+              "editable_admin": true
+            },
+            "texto": {
+              "valor": "Con cada usuario, un ciclo cerrado. Con la ciudad, un pacto de economía circular.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          },
+          "entidades_aliadas": {
+            "nota": "Permite agregar más entidades",
+            "permite_agregar": true,
+            "titulo": {
+              "valor": "Operamos de la mano del ecosistema institucional.",
+              "editable_admin": true
+            },
+            "aliados": [
+              {
+                "id": "aliado_1",
+                "logo": {
+                  "valor": "Permite subir el logo",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "SSPD",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Superintendencia de Servicios Públicos Domiciliarios",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "aliado_2",
+                "logo": {
+                  "valor": "Permite subir el logo",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "UAESP",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Unidad Administrativa Especial de Servicios Públicos",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "aliado_3",
+                "logo": {
+                  "valor": "Permite subir el logo",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "ALCALDÍAS",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Alcaldías Locales de Suba, Engativá y Usaquén",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "aliado_4",
+                "logo": {
+                  "valor": "Permite subir el logo",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "RECOLECCIÓN",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Prestadores del servicio de recolección de residuos no aprovechables",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "aliado_5",
+                "logo": {
+                  "valor": "Permite subir el logo",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "CRA",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Comisión de Regulación de Agua Potable y Saneamiento Básico",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "aliado_6",
+                "logo": {
+                  "valor": "Permite subir el logo",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "MINVIVIENDA",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Ministerio de Vivienda, Ciudad y Territorio",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "aliado_7",
+                "logo": {
+                  "valor": "Permite subir el logo",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Secretaría Distrital de Ambiente",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Trabajamos con la SDA en programas de sensibilización territorial y en la meta distrital de aprovechamiento.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "servicios",
+        "nombre": "Servicios",
+        "ruta": "/servicios",
+        "secciones": {
+          "hero": {
+            "imagen_fondo": {
+              "valor": "Se puede subir la imagen",
+              "editable_admin": true,
+              "tipo": "imagen"
+            },
+            "titulo": {
+              "valor": "El ciclo de principio a fin",
+              "editable_admin": true
+            },
+            "cta": {
+              "nota": "QUITAR — este CTA se elimina del hero",
+              "eliminar": true
+            },
+            "descripcion": {
+              "valor": "Cinco procesos técnicos y un plus diferencial. Cada uno operado directamente por ASOFRAIN, con protocolos verificables y trazabilidad al SUI.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            },
+            "descripcion_2": {
+              "valor": "Suba · Engativá · Usaquén",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          },
+          "servicios": {
+            "titulo": {
+              "valor": "Cinco procesos, un solo operador.",
+              "editable_admin": true
+            },
+            "items": [
+              {
+                "id": "servicio_1",
+                "titulo": {
+                  "valor": "Recuperación de residuos aprovechables",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Identificación, selección y recuperación en la fuente de materiales con potencial de aprovechamiento.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "servicio_2",
+                "titulo": {
+                  "valor": "Recolección selectiva",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Rutas programadas puerta a puerta y por macrorruta, con horarios definidos por localidad.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "servicio_3",
+                "titulo": {
+                  "valor": "Transporte selectivo",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Vehículos autorizados, cumpliendo la normatividad de transporte de residuos aprovechables.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "servicio_4",
+                "titulo": {
+                  "valor": "Clasificación y almacenamiento",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "En nuestras 5 ECAs — Rincón, Prieto Hermanos, Ecoambit, JM Reciclaje y JM Reciclaje 2 — con protocolos por tipo de material.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "servicio_5",
+                "titulo": {
+                  "valor": "Pesaje y trazabilidad",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Reporte al SUI (Sistema Único de Información) con toneladas efectivamente aprovechadas por usuario y por localidad, según requerimientos de la SSPD.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              }
+            ]
+          },
+          "servicio_destacado_plus": {
+            "subtitulo_pequeno": {
+              "valor": "PLUS DIFERENCIAL",
+              "editable_admin": true
+            },
+            "titulo": {
+              "valor": "Compactación de material aprovechable.",
+              "editable_admin": true
+            },
+            "descripcion": {
+              "valor": "Optimizamos el volumen del material antes del transporte a la industria transformadora. Seis beneficios verificables.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            },
+            "items": [
+              {
+                "id": "item_1",
+                "titulo": {
+                  "valor": "Reducción de volumen",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Hasta 4× menos espacio en transporte y almacenamiento.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "item_2",
+                "titulo": {
+                  "valor": "Menos viajes, menos emisiones",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Rutas optimizadas y menor huella de carbono.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "item_3",
+                "titulo": {
+                  "valor": "Mayor eficiencia operativa",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Más toneladas gestionadas por jornada.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "item_4",
+                "titulo": {
+                  "valor": "Mejor precio de venta",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Presentación estandarizada para la industria.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "item_5",
+                "titulo": {
+                  "valor": "Menos contaminación cruzada",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Separación firme entre corrientes de material.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "item_6",
+                "titulo": {
+                  "valor": "Bienestar para el equipo",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Menos esfuerzo físico en manipulación.",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              }
+            ]
+          },
+          "rutas_localidades_horarios": {
+            "nota": "Permite agregar más localidades/sectores",
+            "permite_agregar": true,
+            "titulo": {
+              "valor": "Dónde estamos, cuándo llegamos.",
+              "editable_admin": true
+            },
+            "descripcion": {
+              "valor": "Sujeto a programación operativa. Coordinamos directamente con cada usuario para confirmar día y hora exactos.",
+              "editable_admin": true
+            },
+            "tabla": {
+              "columnas": [
+                "Localidad",
+                "Días",
+                "Horario",
+                "Estado"
+              ],
+              "filas": [
+                {
+                  "id": "fila_1",
+                  "localidad": {
+                    "valor": "Suba",
+                    "editable_admin": true
+                  },
+                  "dias": {
+                    "valor": "Lunes a sábado",
+                    "editable_admin": true
+                  },
+                  "horario": {
+                    "valor": "7:00 am – 5:00 pm",
+                    "editable_admin": true
+                  },
+                  "estado": {
+                    "valor": "Desde el admin se estable con un swith si está activa o no , en este caso si está activa",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "fila_2",
+                  "localidad": {
+                    "valor": "Engativá",
+                    "editable_admin": true
+                  },
+                  "dias": {
+                    "valor": "Lunes a sábado",
+                    "editable_admin": true
+                  },
+                  "horario": {
+                    "valor": "7:00 am – 5:00 pm",
+                    "editable_admin": true
+                  },
+                  "estado": {
+                    "valor": "Desde el admin se estable con un swith si está activa o no , en este caso si está activa",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "fila_3",
+                  "localidad": {
+                    "valor": "Usaquén",
+                    "editable_admin": true
+                  },
+                  "dias": {
+                    "valor": "Lunes a sábado",
+                    "editable_admin": true
+                  },
+                  "horario": {
+                    "valor": "7:00 am – 5:00 pm",
+                    "editable_admin": true
+                  },
+                  "estado": {
+                    "valor": "Desde el admin se estable con un swith si está activa o no , en este caso si está activa",
+                    "editable_admin": true
+                  }
+                }
+              ]
+            }
+          },
+          "sectores_atendidos": {
+            "nota": "El cuadro de color con letra debe ser ahora una imagen del mismo tamaño y características",
+            "permite_agregar": true,
+            "titulo": {
+              "valor": "Nueve sectores, una misma ciudad.",
+              "editable_admin": true
+            },
+            "sectores": [
+              {
+                "id": "sector_1",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen",
+                  "key": "136d85f3444b3878034a3ec0bec37308-1784613209816-52o3zw.jpg"
+                },
+                "titulo": {
+                  "valor": "Propiedad horizontal",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Conjuntos residenciales y oficinas",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "sector_2",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Entidades públicas",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Distritales y nacionales",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "sector_3",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Empresas e industria",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Manufactura y servicios",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "sector_4",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Instituciones educativas",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Colegios y universidades",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "sector_5",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Comercio",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Locales, plazas y centros",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "sector_6",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Sector salud",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Solo residuos ordinarios aprovechables",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "sector_7",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Hotelero y gastronómico",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Hoteles, restaurantes, food halls",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "sector_8",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Oficinas y empresarial",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Coworkings, sedes corporativas",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              },
+              {
+                "id": "sector_9",
+                "imagen": {
+                  "valor": "Se puede subir la imagen",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "titulo": {
+                  "valor": "Comunidades y ciudadanía",
+                  "editable_admin": true
+                },
+                "descripcion": {
+                  "valor": "Usuarios en general",
+                  "editable_admin": true,
+                  "tipo": "texto_largo"
+                }
+              }
+            ]
+          },
+          "tarifas_y_productos": {
+            "titulo": {
+              "valor": "Un marco tarifario público y regulado.",
+              "editable_admin": true
+            },
+            "descripcion": {
+              "valor": "El servicio público de aprovechamiento está regulado por la Comisión de Regulación de Agua Potable y Saneamiento Básico (CRA) mediante la Resolución 720 de 2015. El valor se calcula por tonelada efectivamente aprovechada y se acredita a la factura del servicio de aseo. El usuario no paga extra por reciclar — al contrario, incentiva su tarifa.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            },
+            "cta": {
+              "texto": "Ver normatividad completa →",
+              "url": "",
+              "editable_admin": true
+            },
+            "productos_aprovechados": {
+              "nota": "Permite agregar más productos",
+              "permite_agregar": true,
+              "items": [
+                {
+                  "id": "producto_1",
+                  "nombre": {
+                    "valor": "Papel y cartón",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "producto_2",
+                  "nombre": {
+                    "valor": "Vidrio",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "producto_3",
+                  "nombre": {
+                    "valor": "Metales no ferrosos",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "producto_4",
+                  "nombre": {
+                    "valor": "RAEE (electrónicos)",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "producto_5",
+                  "nombre": {
+                    "valor": "Plásticos (PET, PP, PEBD)",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "producto_6",
+                  "nombre": {
+                    "valor": "Metales ferrosos",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "producto_7",
+                  "nombre": {
+                    "valor": "Tetrapak",
+                    "editable_admin": true
+                  }
+                },
+                {
+                  "id": "producto_8",
+                  "nombre": {
+                    "valor": "Textiles",
+                    "editable_admin": true
+                  }
+                }
+              ]
+            }
+          },
+          "cta_final": {
+            "titulo": {
+              "valor": "¿Listo para agendar tu servicio?",
+              "editable_admin": true
+            },
+            "descripcion": {
+              "valor": "Un asesor confirmará ruta, día y volumen estimado en menos de 24 horas hábiles.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            },
+            "boton": {
+              "texto": "Solicitar servicio →",
+              "url": "",
+              "editable_admin": true
+            }
+          }
+        }
+      },
+      {
+        "id": "iniciativas",
+        "nombre": "Iniciativas",
+        "ruta": "/iniciativas",
+        "nota_ruta": "Esta ruta no existe como página. Solo actúa como menú que enlaza a /sensibilizacion y /eventos",
+        "es_router": true,
+        "enlaces_menu": [
+          {
+            "label": "Sensibilización",
+            "ruta": "/sensibilizacion"
+          },
+          {
+            "label": "Eventos",
+            "ruta": "/eventos"
+          }
+        ]
+      },
+      {
+        "id": "sensibilizacion",
+        "nombre": "Sensibilización",
+        "ruta": "/sensibilizacion",
+        "nota": "Antes era una sección de Iniciativas, ahora es página independiente",
+        "secciones": {
+          "encabezado": {
+            "titulo": {
+              "valor": "Tres poblaciones, una misma raíz.",
+              "editable_admin": true
+            },
+            "descripcion": {
+              "valor": "Reciclar es un hábito colectivo. Diseñamos programas específicos para cada audiencia.",
+              "editable_admin": true,
+              "tipo": "texto_largo"
+            }
+          },
+          "tipos_sensibilizacion": {
+            "permite_agregar": true,
+            "tipos": [
+              {
+                "id": "tipo_1",
+                "imagen": {
+                  "valor": "Se carga desde admin",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "tipo": {
+                  "valor": "01 · NIÑOS",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Semillas que separan.",
+                  "editable_admin": true
+                },
+                "vinetas": {
+                  "permite_agregar": true,
+                  "items": [
+                    {
+                      "id": "vineta_1",
+                      "valor": "Reciclatones escolares",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_2",
+                      "valor": "Talleres ambientales",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_3",
+                      "valor": "Juegos y dinámicas educativas",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_4",
+                      "valor": "Cuentos ecológicos",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_5",
+                      "valor": "Concursos de reciclaje",
+                      "editable_admin": true
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "tipo_2",
+                "imagen": {
+                  "valor": "Se carga desde admin",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "tipo": {
+                  "valor": "02 · PROPIEDAD HORIZONTAL",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Conjuntos que aprovechan.",
+                  "editable_admin": true
+                },
+                "vinetas": {
+                  "permite_agregar": true,
+                  "items": [
+                    {
+                      "id": "vineta_1",
+                      "valor": "Capacitaciones a administraciones y consejos",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_2",
+                      "valor": "Señalización de puntos ecológicos",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_3",
+                      "valor": "Jornadas de sensibilización",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_4",
+                      "valor": "Reciclatones comunitarias",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_5",
+                      "valor": "Asesoría técnica en separación en la fuente",
+                      "editable_admin": true
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "tipo_3",
+                "imagen": {
+                  "valor": "Se carga desde admin",
+                  "editable_admin": true,
+                  "tipo": "imagen"
+                },
+                "tipo": {
+                  "valor": "03 · USUARIOS EN GENERAL",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Barrios que se reconocen.",
+                  "editable_admin": true
+                },
+                "vinetas": {
+                  "permite_agregar": true,
+                  "items": [
+                    {
+                      "id": "vineta_1",
+                      "valor": "Charlas comunitarias",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_2",
+                      "valor": "Campañas de sensibilización ambiental",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_3",
+                      "valor": "Jornadas de reciclaje",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_4",
+                      "valor": "Asesoría en separación en la fuente",
+                      "editable_admin": true
+                    },
+                    {
+                      "id": "vineta_5",
+                      "valor": "Acompañamiento territorial",
+                      "editable_admin": true
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "galeria": {
+            "permite_agregar": true,
+            "titulo": {
+              "valor": "Momentos especiales en Asofrain.",
+              "editable_admin": true
+            },
+            "imagenes": [
+              {
+                "id": "imagen_1784613953280_2pd2a",
+                "url": "Se sube desde admin",
+                "alt": "",
+                "editable_admin": true,
+                "key": "beautiful-golden-retriever-cute--1784614092286-fj1y7k.webp"
+              },
+              {
+                "id": "imagen_1",
+                "url": "https://39rch3cp.us-east.insforge.app/api/storage/buckets/media/objects/Group-552-1784614092288-fjg1ff.png?v=3ad7f45ee4e29667147cc1e5248819e1",
+                "alt": "",
+                "editable_admin": true,
+                "key": "Group-552-1784614092288-fjg1ff.png"
+              },
+              {
+                "id": "imagen_2",
+                "url": "Se sube desde admin",
+                "alt": "",
+                "editable_admin": true
+              },
+              {
+                "id": "imagen_3",
+                "url": "Se sube desde admin",
+                "alt": "",
+                "editable_admin": true
+              },
+              {
+                "id": "imagen_4",
+                "url": "Se sube desde admin",
+                "alt": "",
+                "editable_admin": true
+              },
+              {
+                "id": "imagen_5",
+                "url": "Se sube desde admin",
+                "alt": "",
+                "editable_admin": true
+              },
+              {
+                "id": "imagen_6",
+                "url": "Se sube desde admin",
+                "alt": "",
+                "editable_admin": true
+              },
+              {
+                "id": "imagen_7",
+                "url": "Se sube desde admin",
+                "alt": "",
+                "editable_admin": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "eventos",
+        "nombre": "Eventos",
+        "ruta": "/eventos",
+        "nota": "Antes era una sección de Iniciativas, ahora es página independiente. Se quita el calendario, la card de +10 eventos y la frase 'Porque detrás de...'",
+        "secciones": {
+          "listado_eventos": {
+            "titulo": {
+              "valor": "La familia ASOFRAIN, celebrada.",
+              "editable_admin": true
+            },
+            "filtro_por_ano": {
+              "activo": true,
+              "editable_admin": true,
+              "valor_default": "Año actual"
+            },
+            "permite_agregar": true,
+            "cards": [
+              {
+                "id": "evento_1",
+                "foto": {
+                  "url": "https://39rch3cp.us-east.insforge.app/api/storage/buckets/media/objects/aaa823bab01102a8b84d86139499ed11-1784608766961-i5z1ah.jpg?v=ae18a39bc582873041f822692a29a9a8",
+                  "alt": "",
+                  "editable_admin": true,
+                  "key": "aaa823bab01102a8b84d86139499ed11-1784608766961-i5z1ah.jpg"
+                },
+                "fecha": {
+                  "valor": "2026-05-10",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Día Internacional de la Mujer",
+                  "editable_admin": true
+                }
+              },
+              {
+                "id": "evento_2",
+                "foto": {
+                  "url": "Se sube desde admin",
+                  "alt": "",
+                  "editable_admin": true
+                },
+                "fecha": {
+                  "valor": "",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Día del Hombre",
+                  "editable_admin": true
+                }
+              },
+              {
+                "id": "evento_3",
+                "foto": {
+                  "url": "Se sube desde admin",
+                  "alt": "",
+                  "editable_admin": true
+                },
+                "fecha": {
+                  "valor": "",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Día de la Madre",
+                  "editable_admin": true
+                }
+              },
+              {
+                "id": "evento_4",
+                "foto": {
+                  "url": "Se sube desde admin",
+                  "alt": "",
+                  "editable_admin": true
+                },
+                "fecha": {
+                  "valor": "",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Día del Padre",
+                  "editable_admin": true
+                }
+              },
+              {
+                "id": "evento_5",
+                "foto": {
+                  "url": "Se sube desde admin",
+                  "alt": "",
+                  "editable_admin": true
+                },
+                "fecha": {
+                  "valor": "",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Día del Niño",
+                  "editable_admin": true
+                }
+              },
+              {
+                "id": "evento_6",
+                "foto": {
+                  "url": "Se sube desde admin",
+                  "alt": "",
+                  "editable_admin": true
+                },
+                "fecha": {
+                  "valor": "",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Halloween",
+                  "editable_admin": true
+                }
+              },
+              {
+                "id": "evento_7",
+                "foto": {
+                  "url": "Se sube desde admin",
+                  "alt": "",
+                  "editable_admin": true
+                },
+                "fecha": {
+                  "valor": "",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Navidad",
+                  "editable_admin": true
+                }
+              },
+              {
+                "id": "evento_8",
+                "foto": {
+                  "url": "Se sube desde admin",
+                  "alt": "",
+                  "editable_admin": true
+                },
+                "fecha": {
+                  "valor": "",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Aniversarios y actividades",
+                  "editable_admin": true
+                }
+              },
+              {
+                "id": "evento_9",
+                "foto": {
+                  "url": "Se sube desde admin",
+                  "alt": "",
+                  "editable_admin": true
+                },
+                "fecha": {
+                  "valor": "",
+                  "editable_admin": true
+                },
+                "titulo": {
+                  "valor": "Jornadas de integración",
+                  "editable_admin": true
+                }
+              }
+            ]
+          }
+        },
+        "secciones_eliminadas": [
+          "hero_iniciativas",
+          "calendario",
+          "card_mas_de_10_eventos",
+          "frase_porque_detras_de"
+        ]
+      }
+    ]
+  }
+}

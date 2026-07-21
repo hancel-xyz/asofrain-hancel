@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; }
+  a { text-decoration:none; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+
+
+<div style="position:fixed; top:16px; left:16px; right:16px; z-index:100; font-family:'Manrope', system-ui, sans-serif; pointer-events:none;">
+  <header style="pointer-events:auto; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:12px 20px 12px 24px; background:#faf7ec; border:1px solid rgba(26,46,33,0.08); border-radius:100px; box-shadow:0 8px 30px -12px rgba(26,46,33,0.15);">
+    <a href="./Inicio.dc.html" style="display:flex; align-items:center; gap:10px; color:#3d5f38; padding:4px 8px;">
+      <div style="width:32px; height:32px; border-radius:8px; background:#3d5f38; display:flex; align-items:center; justify-content:center; color:#c8a875; font-family:'Instrument Serif',serif; font-size:18px; font-style:italic;">a</div>
+      <span style="font-family:'Instrument Serif',serif; font-size:22px; font-style:italic; letter-spacing:-0.01em;">asofrain</span>
+    </a>
+
+    <nav style="display:flex; align-items:center; gap:6px;">
+      <a href="./Inicio.dc.html" style="padding:10px 20px; font-size:14px; font-weight:{{ inicioWeight }}; color:#3d5f38; background:{{ inicioBg }}; border-radius:100px;" style-hover="{ background:'#eae5d0' }">Inicio</a>
+
+      <div style="position:relative;" style-hover="{ '--dd':'flex' }">
+        <a href="./Nosotros.dc.html" style="padding:10px 18px; font-size:14px; font-weight:{{ nosotrosWeight }}; color:#3d5f38; background:{{ nosotrosBg }}; border-radius:100px; display:flex; align-items:center; gap:8px;" style-hover="{ background:'#eae5d0' }">
+          Nosotros
+          <span style="font-size:10px; opacity:0.7;">▾</span>
+        </a>
+        <div style="position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%); display:var(--dd,none); flex-direction:row; gap:14px; background:#faf7ec; border:1px solid rgba(26,46,33,0.08); border-radius:22px; padding:20px; box-shadow:0 24px 60px -20px rgba(26,46,33,0.25); width:720px;">
+          <a href="./Nosotros.dc.html#quienes-somos" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; background:linear-gradient(135deg, #c8a875, #8a9584); position:relative;">
+              <image-slot id="nav-nos-1" shape="rounded" radius="14" placeholder="Foto equipo ASOFRAIN" style="position:absolute; inset:0;"></image-slot>
+            </div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Quiénes somos</div>
+          </a>
+          <a href="./Nosotros.dc.html#historia" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; background:linear-gradient(135deg, #5a8a4a, #3d5f38); position:relative;">
+              <image-slot id="nav-nos-2" shape="rounded" radius="14" placeholder="Historia" style="position:absolute; inset:0;"></image-slot>
+            </div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Historia</div>
+          </a>
+          <a href="./Nosotros.dc.html#valores" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; background:linear-gradient(135deg, #1a2e21, #3d5f38); position:relative;">
+              <image-slot id="nav-nos-3" shape="rounded" radius="14" placeholder="Valores" style="position:absolute; inset:0;"></image-slot>
+            </div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Valores y aliados</div>
+          </a>
+        </div>
+      </div>
+
+      <div style="position:relative;" style-hover="{ '--dd':'flex' }">
+        <a href="./Servicios.dc.html" style="padding:10px 18px; font-size:14px; font-weight:{{ serviciosWeight }}; color:#3d5f38; background:{{ serviciosBg }}; border-radius:100px; display:flex; align-items:center; gap:8px;" style-hover="{ background:'#eae5d0' }">
+          Servicios
+          <span style="font-size:10px; opacity:0.7;">▾</span>
+        </a>
+        <div style="position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%); display:var(--dd,none); flex-direction:row; gap:14px; background:#faf7ec; border:1px solid rgba(26,46,33,0.08); border-radius:22px; padding:20px; box-shadow:0 24px 60px -20px rgba(26,46,33,0.25); width:840px;">
+          <a href="./Servicios.dc.html#descripcion" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; position:relative;"><image-slot id="nav-serv-1" shape="rounded" radius="14" placeholder="Descripción de servicios" style="position:absolute; inset:0; background:linear-gradient(135deg,#c8a875,#a58756);"></image-slot></div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Descripción</div>
+          </a>
+          <a href="./Servicios.dc.html#rutas" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; position:relative;"><image-slot id="nav-serv-2" shape="rounded" radius="14" placeholder="Rutas y horarios" style="position:absolute; inset:0; background:linear-gradient(135deg,#5a8a4a,#3d5f38);"></image-slot></div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Rutas y horarios</div>
+          </a>
+          <a href="./Servicios.dc.html#sectores" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; position:relative;"><image-slot id="nav-serv-3" shape="rounded" radius="14" placeholder="Sectores atendidos" style="position:absolute; inset:0; background:linear-gradient(135deg,#8a9584,#3d5f38);"></image-slot></div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Sectores</div>
+          </a>
+          <a href="./Servicios.dc.html#tarifa" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; position:relative;"><image-slot id="nav-serv-4" shape="rounded" radius="14" placeholder="Tarifa" style="position:absolute; inset:0; background:linear-gradient(135deg,#c8a875,#3d5f38);"></image-slot></div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Tarifa y productos</div>
+          </a>
+        </div>
+      </div>
+
+      <div style="position:relative;" style-hover="{ '--dd':'flex' }">
+        <a href="./Eventos.dc.html" style="padding:10px 18px; font-size:14px; font-weight:{{ eventosWeight }}; color:#3d5f38; background:{{ eventosBg }}; border-radius:100px; display:flex; align-items:center; gap:8px;" style-hover="{ background:'#eae5d0' }">
+          Eventos
+          <span style="font-size:10px; opacity:0.7;">▾</span>
+        </a>
+        <div style="position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%); display:var(--dd,none); flex-direction:row; gap:14px; background:#faf7ec; border:1px solid rgba(26,46,33,0.08); border-radius:22px; padding:20px; box-shadow:0 24px 60px -20px rgba(26,46,33,0.25); width:560px;">
+          <a href="./Eventos.dc.html#campanas" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; position:relative;"><image-slot id="nav-ev-1" shape="rounded" radius="14" placeholder="Campañas" style="position:absolute; inset:0; background:linear-gradient(135deg,#5a8a4a,#c8a875);"></image-slot></div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Campañas de sensibilización</div>
+          </a>
+          <a href="./Eventos.dc.html#institucionales" style="flex:1; text-align:left; color:#3d5f38;" style-hover="{ opacity:0.85 }">
+            <div style="width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; position:relative;"><image-slot id="nav-ev-2" shape="rounded" radius="14" placeholder="Institucionales" style="position:absolute; inset:0; background:linear-gradient(135deg,#c8a875,#8a9584);"></image-slot></div>
+            <div style="margin-top:12px; font-size:14px; font-weight:600;">Eventos institucionales</div>
+          </a>
+        </div>
+      </div>
+
+      <a href="./Contacto.dc.html" style="padding:10px 20px; font-size:14px; font-weight:{{ contactoWeight }}; color:#3d5f38; background:{{ contactoBg }}; border-radius:100px;" style-hover="{ background:'#eae5d0' }">Contacto</a>
+    </nav>
+
+    <a href="./Solicitar.dc.html" style="padding:11px 22px; font-size:13.5px; font-weight:600; background:#3d5f38; color:#faf7ec; border-radius:100px;" style-hover="{ background:'#1a2e21' }">
+      Solicitar servicio
+    </a>
+  </header>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1400,&quot;height&quot;:120},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;inicio&quot;,&quot;options&quot;:[&quot;inicio&quot;,&quot;nosotros&quot;,&quot;servicios&quot;,&quot;eventos&quot;,&quot;contacto&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active || '';
+    const on = { weight: 700, bg: '#eae5d0' };
+    const off = { weight: 500, bg: '#faf7ec' };
+    const p = (k) => (active === k ? on : off);
+    const i = p('inicio'), n = p('nosotros'), s = p('servicios'), e = p('eventos'), c = p('contacto');
+    return {
+      inicioWeight: i.weight, inicioBg: i.bg,
+      nosotrosWeight: n.weight, nosotrosBg: n.bg,
+      serviciosWeight: s.weight, serviciosBg: s.bg,
+      eventosWeight: e.weight, eventosBg: e.bg,
+      contactoWeight: c.weight, contactoBg: c.bg,
+    };
+  }
+}
+</script>
+</body>
+</html>

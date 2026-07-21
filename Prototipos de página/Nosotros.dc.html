@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#faf7ec; color:#1a2e21; font-family:'Manrope', system-ui, sans-serif; -webkit-font-smoothing:antialiased; scroll-behavior:smooth; }
+  * { box-sizing:border-box; }
+  a { text-decoration:none; color:#3d5f38; }
+  a:hover { color:#5a8a4a; }
+  section { scroll-margin-top:100px; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+
+
+<dc-import name="Header" active="nosotros" hint-size="100%,90px" style="position:fixed;top:0;left:0;right:0;z-index:100"></dc-import>
+
+<main style="background:#faf7ec;">
+
+  <!-- ============ HERO — estilo ref 2 (imagen full-bleed, título grande a la izquierda) ============ -->
+  <section style="position:relative; min-height:100vh; padding:110px 20px 20px; display:flex; align-items:stretch;">
+    <div style="position:relative; flex:1; border-radius:24px; overflow:hidden;">
+      <image-slot id="nosotros-hero" shape="rect" placeholder="Hero Nosotros: retrato de recuperadores ambientales / bodega" style="position:absolute; inset:0;"></image-slot>
+      <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(15,31,22,0.85) 0%, rgba(15,31,22,0.55) 45%, rgba(15,31,22,0.2) 100%); pointer-events:none;"></div>
+
+      <div style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:center; padding:60px 80px; color:#fbf8ee; pointer-events:none; max-width:1400px;">
+        <div style="font-size:11px; letter-spacing:3px; color:#c8a875; font-weight:600; margin-bottom:24px;">— 02 · NOSOTROS</div>
+        <h1 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(64px, 9vw, 148px); line-height:0.92; letter-spacing:-0.03em; margin:0 0 28px; max-width:1000px;">
+          Somos <em style="font-style:italic; color:#c8a875;">quienes</em><br/>recuperan la ciudad.
+        </h1>
+        <p style="font-size:18px; line-height:1.55; color:rgba(251,248,238,0.85); max-width:560px; margin:0 0 32px; font-weight:300;">
+          ASOFRAIN E.S.P. — una organización de recuperadores ambientales que presta el servicio público de aprovechamiento en Bogotá desde 2006.
+        </p>
+        <div style="pointer-events:auto; display:flex; gap:12px;">
+          <a href="#historia" style="padding:14px 26px; background:#faf7ec; color:#1a2e21; border-radius:100px; font-size:14px; font-weight:600; display:flex; align-items:center; gap:10px;" style-hover="{ transform:'translateY(-2px)' }">
+            Conocer historia <span style="font-size:18px;">→</span>
+          </a>
+          <a href="#entidades" style="padding:14px 26px; background:rgba(251,248,238,0.1); backdrop-filter:blur(12px); color:#fbf8ee; border:1px solid rgba(251,248,238,0.3); border-radius:100px; font-size:14px; font-weight:600;" style-hover="{ background:'rgba(251,248,238,0.18)' }">Ver aliados</a>
+        </div>
+      </div>
+
+      <div style="position:absolute; bottom:36px; right:60px; z-index:2; color:rgba(251,248,238,0.7); font-family:'Instrument Serif',serif; font-size:22px; font-style:italic; text-align:right; max-width:400px; line-height:1.3;">
+        "Detrás de cada tonelada aprovechada, un oficio digno."
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUIÉNES SOMOS ============ -->
+  <section id="quienes-somos" style="padding:140px 60px 100px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:20px;">QUIÉNES SOMOS</div>
+          <h2 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(48px, 5.5vw, 84px); line-height:0.98; margin:0; letter-spacing:-0.02em;">
+            Una empresa <em style="font-style:italic; color:#5a8a4a;">pública,</em> operada por sus recuperadores.
+          </h2>
+        </div>
+        <div style="font-size:17px; line-height:1.65; color:#1a2e21;">
+          <p style="margin:0 0 22px;">ASOFRAIN E.S.P. es una Empresa de Servicios Públicos constituida por recuperadores ambientales, reconocida ante la <strong>Superintendencia de Servicios Públicos Domiciliarios (SSPD)</strong> como prestadora del <strong>servicio público de aprovechamiento</strong> en Bogotá D.C.</p>
+          <p style="margin:0 0 22px;">Operamos bajo el marco tarifario CRA 720 de 2015 y el Decreto 596 de 2016, con enfoque territorial en las localidades de Suba, Engativá y Usaquén.</p>
+          <p style="margin:0; color:#3d5f38;">Nuestra razón de ser combina un servicio esencial para la ciudad con la dignificación laboral de las familias recuperadoras que integran la organización.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HISTORIA ============ -->
+  <section id="historia" style="padding:100px 60px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:20px;">HISTORIA</div>
+          <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:1; margin:0; letter-spacing:-0.02em;">Desde 2006, tejiendo un ciclo de valor.</h3>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <div style="display:grid; grid-template-columns:130px 1fr; gap:30px; padding:28px 0; border-bottom:1px solid rgba(26,46,33,0.12);">
+            <div style="font-family:'Instrument Serif',serif; font-size:52px; line-height:1; color:#c8a875;">2006</div>
+            <div><div style="font-size:18px; font-weight:600; margin-bottom:6px;">Origen en Suba</div><div style="font-size:14.5px; color:#3d5f38; line-height:1.55;">Un grupo de recuperadores ambientales de Suba se organiza informalmente para dignificar su labor y avanzar hacia la formalización.</div></div>
+          </div>
+          <div style="display:grid; grid-template-columns:130px 1fr; gap:30px; padding:28px 0; border-bottom:1px solid rgba(26,46,33,0.12);">
+            <div style="font-family:'Instrument Serif',serif; font-size:52px; line-height:1; color:#c8a875;">2013</div>
+            <div><div style="font-size:18px; font-weight:600; margin-bottom:6px;">Auto 275 y formalización</div><div style="font-size:14.5px; color:#3d5f38; line-height:1.55;">Se avanza en el proceso de formalización tras los autos de la Corte Constitucional que reconocen a los recuperadores como sujetos de especial protección.</div></div>
+          </div>
+          <div style="display:grid; grid-template-columns:130px 1fr; gap:30px; padding:28px 0; border-bottom:1px solid rgba(26,46,33,0.12);">
+            <div style="font-family:'Instrument Serif',serif; font-size:52px; line-height:1; color:#c8a875;">2019</div>
+            <div><div style="font-size:18px; font-weight:600; margin-bottom:6px;">Nace ASOFRAIN E.S.P.</div><div style="font-size:14.5px; color:#3d5f38; line-height:1.55;">Denominación actual como Empresa de Servicios Públicos. Registro ante la SSPD y la UAESP. Se abre operación en Engativá y Usaquén.</div></div>
+          </div>
+          <div style="display:grid; grid-template-columns:130px 1fr; gap:30px; padding:28px 0;">
+            <div style="font-family:'Instrument Serif',serif; font-size:52px; line-height:1; color:#5a8a4a;">Hoy</div>
+            <div><div style="font-size:18px; font-weight:600; margin-bottom:6px;">699.564 toneladas aprovechadas</div><div style="font-size:14.5px; color:#3d5f38; line-height:1.55;">5 estaciones de clasificación (ECAs), servicio consolidado en tres localidades y un programa creciente de sensibilización territorial.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISIÓN Y VISIÓN ============ -->
+  <section id="mision-vision" style="padding:100px 60px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div style="background:#faf7ec; border-radius:22px; padding:52px 48px; min-height:400px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600;">MISIÓN</div>
+          <p style="font-family:'Instrument Serif',serif; font-weight:400; font-size:36px; line-height:1.15; margin:24px 0 0; letter-spacing:-0.01em;">
+            Prestar el servicio público de aprovechamiento en Bogotá con excelencia técnica, dignificando a nuestros recuperadores ambientales y devolviendo valor a la ciudad y al medio ambiente.
+          </p>
+        </div>
+        <div style="background:#1a2e21; color:#fbf8ee; border-radius:22px; padding:52px 48px; min-height:400px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;">
+          <div style="font-size:11px; letter-spacing:2.5px; color:#c8a875; font-weight:600; position:relative; z-index:2;">VISIÓN · 2035</div>
+          <p style="font-family:'Instrument Serif',serif; font-weight:400; font-size:36px; line-height:1.15; margin:24px 0 0; letter-spacing:-0.01em; position:relative; z-index:2;">
+            Ser referente nacional en aprovechamiento de residuos, con cobertura ampliada, tecnología de trazabilidad y un modelo replicable que consolide a Bogotá como una ciudad de economía circular.
+          </p>
+          <div style="position:absolute; right:-60px; bottom:-60px; width:320px; height:320px; border-radius:50%; background:radial-gradient(circle, rgba(200,168,117,0.2) 0%, transparent 70%);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VALORES ============ -->
+  <section id="valores" style="padding:100px 60px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="margin-bottom:50px;">
+        <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:16px;">VALORES INSTITUCIONALES</div>
+        <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:1; margin:0; letter-spacing:-0.02em;">Ocho principios <em style="font-style:italic; color:#5a8a4a;">no negociables.</em></h3>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid rgba(26,46,33,0.12); border-left:1px solid rgba(26,46,33,0.12);">
+        <div style="padding:36px 30px; border-right:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12);"><div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">01</div><div style="margin-top:24px; font-size:18px; font-weight:600;">Compromiso ambiental</div><div style="margin-top:8px; font-size:13.5px; color:#3d5f38; line-height:1.55;">Cada decisión operativa considera el impacto ecológico.</div></div>
+        <div style="padding:36px 30px; border-right:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12);"><div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">02</div><div style="margin-top:24px; font-size:18px; font-weight:600;">Responsabilidad social</div><div style="margin-top:8px; font-size:13.5px; color:#3d5f38; line-height:1.55;">Con nuestros recuperadores, sus familias, con Bogotá.</div></div>
+        <div style="padding:36px 30px; border-right:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12);"><div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">03</div><div style="margin-top:24px; font-size:18px; font-weight:600;">Integridad</div><div style="margin-top:8px; font-size:13.5px; color:#3d5f38; line-height:1.55;">Trazabilidad y transparencia en cada tonelada aprovechada.</div></div>
+        <div style="padding:36px 30px; border-right:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12);"><div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">04</div><div style="margin-top:24px; font-size:18px; font-weight:600;">Respeto</div><div style="margin-top:8px; font-size:13.5px; color:#3d5f38; line-height:1.55;">Trato digno al recuperador, al usuario y al material.</div></div>
+        <div style="padding:36px 30px; border-right:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12);"><div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">05</div><div style="margin-top:24px; font-size:18px; font-weight:600;">Calidad</div><div style="margin-top:8px; font-size:13.5px; color:#3d5f38; line-height:1.55;">Procesos técnicos verificables y mejora continua.</div></div>
+        <div style="padding:36px 30px; border-right:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12);"><div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">06</div><div style="margin-top:24px; font-size:18px; font-weight:600;">Trabajo en equipo</div><div style="margin-top:8px; font-size:13.5px; color:#3d5f38; line-height:1.55;">Somos una asociación antes que una empresa.</div></div>
+        <div style="padding:36px 30px; border-right:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12);"><div style="font-family:'Instrument Serif',serif; font-size:36px; color:#c8a875; line-height:1;">07</div><div style="margin-top:24px; font-size:18px; font-weight:600;">Innovación</div><div style="margin-top:8px; font-size:13.5px; color:#3d5f38; line-height:1.55;">Compactación, trazabilidad digital y rutas optimizadas.</div></div>
+        <div style="padding:36px 30px; border-right:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12); background:#c8a875;"><div style="font-family:'Instrument Serif',serif; font-size:36px; color:#1a2e21; line-height:1;">08</div><div style="margin-top:24px; font-size:18px; font-weight:600; color:#1a2e21;">Servicio</div><div style="margin-top:8px; font-size:13.5px; color:#1a2e21; line-height:1.55; opacity:0.75;">Atención cercana al usuario y respuesta oportuna.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OBJETO SOCIAL / AMBIENTAL ============ -->
+  <section style="padding:100px 60px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; padding:60px 0; border-top:1px solid rgba(26,46,33,0.12); border-bottom:1px solid rgba(26,46,33,0.12);">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:20px;">OBJETO SOCIAL</div>
+          <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:40px; line-height:1.05; margin:0 0 22px; letter-spacing:-0.01em;">Aprovechar residuos, dignificar oficios.</h3>
+          <p style="font-size:16px; line-height:1.65; color:#3d5f38; margin:0;">La prestación del servicio público de aprovechamiento en el marco del Decreto 596 de 2016, garantizando condiciones laborales dignas para las familias recuperadoras que integran la organización.</p>
+        </div>
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:20px;">OBJETO AMBIENTAL</div>
+          <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:40px; line-height:1.05; margin:0 0 22px; letter-spacing:-0.01em;">Extender la vida útil del relleno Doña Juana.</h3>
+          <p style="font-size:16px; line-height:1.65; color:#3d5f38; margin:0;">Reducir la cantidad de residuos aprovechables que terminan enterrados, promover la economía circular en la fuente y contribuir a las metas del PGIRS Bogotá.</p>
+        </div>
+      </div>
+      <div style="padding:60px 0; text-align:center;">
+        <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:24px;">COMPROMISO CON BOGOTÁ</div>
+        <p style="font-family:'Instrument Serif',serif; font-weight:400; font-size:44px; line-height:1.15; margin:0 auto; max-width:900px; letter-spacing:-0.01em;">
+          Con cada usuario, un ciclo cerrado. Con la ciudad, <em style="font-style:italic; color:#5a8a4a;">un pacto de economía circular.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENTIDADES ============ -->
+  <section id="entidades" style="padding:120px 60px 140px; background:#faf7ec;">
+    <div style="max-width:1360px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:50px; flex-wrap:wrap; gap:20px;">
+        <div>
+          <div style="font-size:11px; letter-spacing:2.5px; color:#3d5f38; font-weight:600; margin-bottom:16px;">ENTIDADES ALIADAS</div>
+          <h3 style="font-family:'Instrument Serif',serif; font-weight:400; font-size:56px; line-height:1; margin:0; letter-spacing:-0.02em;">Operamos <em style="font-style:italic; color:#5a8a4a;">de la mano</em><br/>del ecosistema institucional.</h3>
+        </div>
+        <div style="font-size:14px; color:#3d5f38; max-width:360px;">Alineados con las entidades regulatorias, de vigilancia y de política pública del sector.</div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
+        <div style="background:#faf7ec; border-radius:18px; padding:36px 30px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="width:56px; height:56px; border-radius:14px; background:#faf7ec; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:26px; color:#1a2e21;">S</div>
+          <div><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600;">SSPD</div><div style="margin-top:6px; font-size:15px; font-weight:600;">Superintendencia de Servicios Públicos Domiciliarios</div></div>
+        </div>
+        <div style="background:#faf7ec; border-radius:18px; padding:36px 30px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="width:56px; height:56px; border-radius:14px; background:#faf7ec; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:26px; color:#1a2e21;">U</div>
+          <div><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600;">UAESP</div><div style="margin-top:6px; font-size:15px; font-weight:600;">Unidad Administrativa Especial de Servicios Públicos</div></div>
+        </div>
+        <div style="background:#faf7ec; border-radius:18px; padding:36px 30px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="width:56px; height:56px; border-radius:14px; background:#faf7ec; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:26px; color:#1a2e21;">A</div>
+          <div><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600;">ALCALDÍAS</div><div style="margin-top:6px; font-size:15px; font-weight:600;">Alcaldías Locales de Suba, Engativá y Usaquén</div></div>
+        </div>
+        <div style="background:#faf7ec; border-radius:18px; padding:36px 30px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="width:56px; height:56px; border-radius:14px; background:#faf7ec; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:26px; color:#1a2e21;">R</div>
+          <div><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600;">RECOLECCIÓN</div><div style="margin-top:6px; font-size:15px; font-weight:600;">Prestadores del servicio de recolección de residuos no aprovechables</div></div>
+        </div>
+        <div style="background:#faf7ec; border-radius:18px; padding:36px 30px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="width:56px; height:56px; border-radius:14px; background:#faf7ec; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:26px; color:#1a2e21;">C</div>
+          <div><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600;">CRA</div><div style="margin-top:6px; font-size:15px; font-weight:600;">Comisión de Regulación de Agua Potable y Saneamiento Básico</div></div>
+        </div>
+        <div style="background:#faf7ec; border-radius:18px; padding:36px 30px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="width:56px; height:56px; border-radius:14px; background:#faf7ec; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:26px; color:#1a2e21;">M</div>
+          <div><div style="font-size:11px; letter-spacing:1.5px; color:#3d5f38; font-weight:600;">MINVIVIENDA</div><div style="margin-top:6px; font-size:15px; font-weight:600;">Ministerio de Vivienda, Ciudad y Territorio</div></div>
+        </div>
+        <div style="background:#1a2e21; color:#fbf8ee; border-radius:18px; padding:36px 30px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between; grid-column:span 3;">
+          <div style="width:56px; height:56px; border-radius:14px; background:#c8a875; display:flex; align-items:center; justify-content:center; font-family:'Instrument Serif',serif; font-size:26px; color:#1a2e21;">S</div>
+          <div style="display:flex; justify-content:space-between; align-items:end; gap:40px;">
+            <div><div style="font-size:11px; letter-spacing:1.5px; color:#c8a875; font-weight:600;">SDA</div><div style="margin-top:6px; font-size:22px; font-weight:600;">Secretaría Distrital de Ambiente</div></div>
+            <div style="font-size:13.5px; color:rgba(251,248,238,0.7); max-width:420px;">Trabajamos con la SDA en programas de sensibilización territorial y en la meta distrital de aprovechamiento.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<dc-import name="Footer" hint-size="100%,500px"></dc-import>
+</x-dc>
+</body>
+</html>
