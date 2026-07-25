@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Instrument_Serif } from "next/font/google";
+import { Manrope, Instrument_Serif, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,11 +10,19 @@ const manrope = Manrope({
   variable: "--font-sans",
 });
 
+// Kept for pages not yet migrated to the new brand system.
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
   style: ["normal", "italic"],
   variable: "--font-instrument",
+});
+
+// New brand display font — clean geometric grotesk for editorial headlines.
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -30,9 +38,9 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn("h-full", "antialiased", manrope.variable, instrumentSerif.variable, "font-sans")}
+      className={cn("h-full", "antialiased", manrope.variable, instrumentSerif.variable, spaceGrotesk.variable, "font-sans")}
     >
-      <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#1a2e21]">
+      <body className="min-h-full flex flex-col bg-white text-[#111111]">
         <TooltipProvider>{children}</TooltipProvider>
         <Toaster position="top-center" richColors />
       </body>

@@ -36,8 +36,8 @@ export function EventosFilterableGrid({
             onClick={() => setSelectedYear(null)}
             className={`snap-start px-5 py-2.5 rounded-full text-[13px] font-semibold cursor-pointer whitespace-nowrap transition-colors ${
               selectedYear === null
-                ? "bg-[#1a2e21] text-[#FAF8F5] border-none"
-                : "bg-transparent border border-[#1a2e21]/20 text-[#1a2e21] font-medium hover:bg-[#1a2e21]/5"
+                ? "bg-[#62AF9D] text-[#111111] border-none"
+                : "bg-transparent border border-black/15 text-[#111111] font-medium hover:bg-black/[0.03]"
             }`}
           >
             Todos
@@ -48,8 +48,8 @@ export function EventosFilterableGrid({
               onClick={() => setSelectedYear(year)}
               className={`snap-start px-5 py-2.5 rounded-full text-[13px] font-semibold cursor-pointer whitespace-nowrap transition-colors ${
                 selectedYear === year
-                  ? "bg-[#1a2e21] text-[#FAF8F5] border-none"
-                  : "bg-transparent border border-[#1a2e21]/20 text-[#1a2e21] font-medium hover:bg-[#1a2e21]/5"
+                  ? "bg-[#62AF9D] text-[#111111] border-none"
+                  : "bg-transparent border border-black/15 text-[#111111] font-medium hover:bg-black/[0.03]"
               }`}
             >
               {year}
@@ -59,17 +59,17 @@ export function EventosFilterableGrid({
       )}
 
       {visibleCards.length === 0 ? (
-        <p className="text-[14px] text-[#3d5f38]/70">No hay eventos para este año.</p>
+        <p className="text-[14px] text-[#4b5563]">No hay eventos para este año.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {visibleCards.map((card) => (
-            <div key={card.id} className="bg-[#FAF8F5] rounded-[24px] overflow-hidden border border-[#1a2e21]/5 shadow-sm">
+            <div key={card.id} className="bg-[#F2F9F7] rounded-[24px] overflow-hidden">
               <div className="h-[180px] md:h-[200px] relative">
-                <ImageSlot src={card.fotoUrl} placeholder={card.fotoAlt || card.titulo} className="bg-[#1a2e21]/10 text-[#1a2e21]/30" />
+                <ImageSlot src={card.fotoUrl} placeholder={card.fotoAlt || card.titulo} className="bg-[#62AF9D]/15 text-[#111111]/40" />
               </div>
               <div className="p-5 md:p-[22px_24px]">
-                <div className="text-[11px] tracking-[1.5px] text-[#3d5f38] font-semibold mb-2">{formatEventDateLabel(card.fecha)}</div>
-                <div className="text-[16px] md:text-[17px] font-semibold leading-tight">{card.titulo}</div>
+                <div className="text-[11px] tracking-[1.5px] text-[#62AF9D] font-semibold mb-2">{formatEventDateLabel(card.fecha)}</div>
+                <div className="text-[16px] md:text-[17px] font-semibold leading-tight text-[#111111]">{card.titulo}</div>
               </div>
             </div>
           ))}

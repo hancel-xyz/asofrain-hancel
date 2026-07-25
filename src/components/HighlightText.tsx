@@ -7,10 +7,10 @@ interface HighlightTextProps {
   className?: string;
 }
 
-export function HighlightText({ 
-  text, 
-  highlightClassName = "font-instrument font-normal italic text-[#5a8a4a]",
-  className 
+export function HighlightText({
+  text,
+  highlightClassName = "font-display font-semibold not-italic text-[#62AF9D]",
+  className
 }: HighlightTextProps) {
   if (!text) return null;
 
@@ -22,7 +22,7 @@ export function HighlightText({
       {parts.map((part, i) => {
         if (part.startsWith('*') && part.endsWith('*')) {
           return (
-            <em key={i} className={cn("italic", highlightClassName)}>
+            <em key={i} className={cn(highlightClassName)}>
               {part.slice(1, -1)}
             </em>
           );

@@ -28,14 +28,14 @@ export default async function EventosPage() {
   ).sort((a, b) => b - a);
 
   return (
-    <div className="bg-[#FAF8F5] font-sans">
+    <div className="bg-white font-sans">
       {/* LISTADO DE EVENTOS */}
-      <section className="px-4 md:px-[60px] pt-[130px] md:pt-[160px] pb-[80px] md:pb-[100px] bg-[#FAF8F5]">
+      <section className="px-4 md:px-[60px] pt-[130px] md:pt-[160px] pb-[80px] md:pb-[100px] bg-white">
         <div className="max-w-[1360px] mx-auto">
           <div className="mb-[40px] md:mb-[50px]">
-            <div className="text-[11px] tracking-[2.5px] text-[#3d5f38] font-semibold mb-3 md:mb-4 uppercase">EVENTOS INSTITUCIONALES</div>
-            <h1 className="font-instrument font-normal text-[clamp(44px,7vw,84px)] leading-none m-0 tracking-[-0.02em] max-w-[900px]">
-              <HighlightText text={s?.titulo.valor || ""} highlightClassName="italic text-[#5a8a4a]" />
+            <div className="text-[11px] tracking-[2.5px] text-[#62AF9D] font-semibold mb-3 md:mb-4 uppercase">EVENTOS INSTITUCIONALES</div>
+            <h1 className="font-display font-semibold text-[clamp(36px,6vw,64px)] leading-none m-0 tracking-[-0.02em] max-w-[900px] text-[#111111]">
+              <HighlightText text={s?.titulo.valor || ""} />
             </h1>
           </div>
 
