@@ -18,7 +18,6 @@ export default async function HomePage() {
   const pageData = data?.sitio.paginas.find((p: any) => p.id === "inicio");
   const heroData = pageData?.secciones.hero;
   const mediaUrl: string | undefined = pageData?.secciones.servicios_vista_general.media.url;
-  const heroStat = pageData?.secciones.metricas.items?.[0];
 
   return (
     <div className="bg-white font-sans overflow-hidden">
@@ -75,19 +74,6 @@ export default async function HomePage() {
             </a>
           </div>
         </div>
-
-        {/* Floating glass stat card */}
-        {heroStat && (
-          <div className={cn("hidden sm:block absolute bottom-8 md:bottom-12 z-10 w-[260px] p-6 rounded-[18px] bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-[0_8px_32px_rgba(0,0,0,0.12)]", "right-6 md:right-12 lg:right-[100px]")}>
-            <div className="font-display font-semibold text-[22px] leading-[1.15] mb-3">
-              {heroStat.titulo.valor},
-            </div>
-            <div className="h-px bg-white/25 mb-3"></div>
-            <div className="text-[13px] leading-[1.6] text-white/75">
-              <span className="text-white font-semibold">{heroStat.numero.valor}</span> {heroStat.descripcion?.texto?.valor}
-            </div>
-          </div>
-        )}
       </section>
 
       {/* MÉTRICAS */}
