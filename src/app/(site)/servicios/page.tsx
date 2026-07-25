@@ -14,7 +14,7 @@ export default async function ServiciosPage() {
   return (
     <div className="bg-white font-sans">
       {/* HERO */}
-      <section className="relative min-h-[100svh] overflow-hidden bg-[#0d2b24]">
+      <section className="relative min-h-[100svh] flex flex-col overflow-hidden bg-[#0d2b24]">
         {isRealImageUrl(s?.hero.imagen_fondo?.valor) ? (
           <Image
             src={s.hero.imagen_fondo.valor}
@@ -25,7 +25,7 @@ export default async function ServiciosPage() {
             className="object-cover object-center"
           />
         ) : (
-          <ImageSlot placeholder="Hero Servicios: operación en ECA / compactación / camión selectivo" className="bg-[#0d2b24] text-white/30" />
+          <div className="absolute inset-0"><ImageSlot placeholder="Hero Servicios: operación en ECA / compactación / camión selectivo" className="bg-[#0d2b24] text-white/30" /></div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 md:from-black/50 via-transparent to-transparent pointer-events-none"></div>
@@ -38,21 +38,23 @@ export default async function ServiciosPage() {
           <rect width="100%" height="100%" filter="url(#grain-servicios)" />
         </svg>
 
-        <div className={`relative z-10 min-h-[100svh] flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 md:gap-10 ${HERO_MARGIN} pt-[90px] pb-[100px] max-w-[1600px] mx-auto md:items-end justify-center md:justify-end text-white`}>
-          <div>
-            <div className="text-[11px] tracking-[3px] text-[#62AF9D] font-semibold mb-4 md:mb-6 uppercase">— 03 · SERVICIOS</div>
-            <h1 className="font-display font-semibold text-[clamp(36px,7vw,88px)] leading-[1.02] tracking-[-0.02em] m-0 max-w-[820px]">
-              <HighlightText text={s?.hero.titulo.valor || ""} highlightClassName="font-display font-semibold not-italic text-white" />
-            </h1>
-          </div>
-          <div className="self-start border-t border-white/30 pt-5 mt-4 md:mt-0">
-            <div className="text-[11px] tracking-[2px] text-[#62AF9D] font-semibold mb-3.5 uppercase">003 — DESCRIPCIÓN</div>
-            <p className="text-[14.5px] leading-[1.55] text-white/85 m-0 mb-5">
-              {s?.hero.descripcion.valor}
-            </p>
-            <div className="border-b border-white/25 pb-3.5 mb-3.5"></div>
-            <div className="text-[11px] tracking-[2px] text-white/60 font-semibold uppercase">DISPONIBLE EN 3 LOCALIDADES</div>
-            <div className="mt-2 text-[15px] font-display font-medium">{s?.hero.descripcion_2.valor}</div>
+        <div className={`relative z-10 flex-1 flex flex-col justify-end ${HERO_MARGIN} pt-[90px] pb-[100px] max-w-[1600px] mx-auto w-full text-white`}>
+          <div className="flex flex-col md:flex-row md:items-end gap-8 md:gap-10">
+            <div className="md:flex-[2]">
+              <div className="text-[11px] tracking-[3px] text-[#62AF9D] font-semibold mb-4 md:mb-6 uppercase">— 03 · SERVICIOS</div>
+              <h1 className="font-display font-semibold text-[clamp(36px,7vw,88px)] leading-[1.02] tracking-[-0.02em] m-0 max-w-[820px]">
+                <HighlightText text={s?.hero.titulo.valor || ""} highlightClassName="font-display font-semibold not-italic text-white" />
+              </h1>
+            </div>
+            <div className="md:flex-1 self-start border-t border-white/30 pt-5 mt-4 md:mt-0">
+              <div className="text-[11px] tracking-[2px] text-[#62AF9D] font-semibold mb-3.5 uppercase">003 — DESCRIPCIÓN</div>
+              <p className="text-[14.5px] leading-[1.55] text-white/85 m-0 mb-5">
+                {s?.hero.descripcion.valor}
+              </p>
+              <div className="border-b border-white/25 pb-3.5 mb-3.5"></div>
+              <div className="text-[11px] tracking-[2px] text-white/60 font-semibold uppercase">DISPONIBLE EN 3 LOCALIDADES</div>
+              <div className="mt-2 text-[15px] font-display font-medium">{s?.hero.descripcion_2.valor}</div>
+            </div>
           </div>
         </div>
 

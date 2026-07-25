@@ -13,7 +13,7 @@ export default async function NosotrosPage() {
   return (
     <div className="bg-white font-sans">
       {/* HERO — full-bleed photo, matches the header treatment site-wide */}
-      <section className="relative min-h-[100svh] overflow-hidden bg-[#0d2b24]">
+      <section className="relative min-h-[100svh] flex flex-col overflow-hidden bg-[#0d2b24]">
         {isRealImageUrl(pageData?.secciones.hero.imagen_fondo?.valor) ? (
           <Image
             src={pageData.secciones.hero.imagen_fondo.valor}
@@ -24,7 +24,7 @@ export default async function NosotrosPage() {
             className="object-cover object-center"
           />
         ) : (
-          <ImageSlot placeholder="Hero Nosotros: retrato de recuperadores ambientales / bodega" className="bg-[#0d2b24] text-white/30" />
+          <div className="absolute inset-0"><ImageSlot placeholder="Hero Nosotros: retrato de recuperadores ambientales / bodega" className="bg-[#0d2b24] text-white/30" /></div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 md:from-black/50 via-transparent to-transparent pointer-events-none"></div>
@@ -37,7 +37,7 @@ export default async function NosotrosPage() {
           <rect width="100%" height="100%" filter="url(#grain-nosotros)" />
         </svg>
 
-        <div className={`relative z-10 min-h-[100svh] flex flex-col justify-center ${HERO_MARGIN} pt-[90px] pb-[100px] max-w-[1600px] mx-auto text-white`}>
+        <div className={`relative z-10 flex-1 flex flex-col justify-center ${HERO_MARGIN} pt-[90px] pb-[100px] max-w-[1600px] mx-auto w-full text-white`}>
           <div className="text-[11px] tracking-[3px] text-[#62AF9D] font-semibold mb-4 md:mb-6 uppercase">— 02 · NOSOTROS</div>
           <h1 className="font-display font-semibold text-[clamp(36px,6vw,76px)] leading-[1.05] tracking-[-0.02em] mb-5 md:mb-6 max-w-[820px] m-0">
             <HighlightText text={pageData?.secciones.hero.titulo.valor || ""} highlightClassName="font-display font-semibold not-italic text-white" />
