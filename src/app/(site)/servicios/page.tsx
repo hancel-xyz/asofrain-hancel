@@ -14,7 +14,7 @@ export default async function ServiciosPage() {
   return (
     <div className="bg-white font-sans">
       {/* HERO */}
-      <section className="relative h-[100svh] overflow-hidden bg-[#0d2b24]">
+      <section className="relative min-h-[100svh] overflow-hidden bg-[#0d2b24]">
         {isRealImageUrl(s?.hero.imagen_fondo?.valor) ? (
           <Image
             src={s.hero.imagen_fondo.valor}
@@ -38,7 +38,7 @@ export default async function ServiciosPage() {
           <rect width="100%" height="100%" filter="url(#grain-servicios)" />
         </svg>
 
-        <div className={`relative z-10 h-full flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 md:gap-10 ${HERO_MARGIN} pt-[90px] pb-[100px] max-w-[1600px] mx-auto md:items-end justify-center md:justify-end text-white`}>
+        <div className={`relative z-10 min-h-[100svh] flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 md:gap-10 ${HERO_MARGIN} pt-[90px] pb-[100px] max-w-[1600px] mx-auto md:items-end justify-center md:justify-end text-white`}>
           <div>
             <div className="text-[11px] tracking-[3px] text-[#62AF9D] font-semibold mb-4 md:mb-6 uppercase">— 03 · SERVICIOS</div>
             <h1 className="font-display font-semibold text-[clamp(36px,7vw,88px)] leading-[1.02] tracking-[-0.02em] m-0 max-w-[820px]">

@@ -13,7 +13,7 @@ export default async function NosotrosPage() {
   return (
     <div className="bg-white font-sans">
       {/* HERO — full-bleed photo, matches the header treatment site-wide */}
-      <section className="relative h-[100svh] overflow-hidden bg-[#0d2b24]">
+      <section className="relative min-h-[100svh] overflow-hidden bg-[#0d2b24]">
         {isRealImageUrl(pageData?.secciones.hero.imagen_fondo?.valor) ? (
           <Image
             src={pageData.secciones.hero.imagen_fondo.valor}
@@ -37,7 +37,7 @@ export default async function NosotrosPage() {
           <rect width="100%" height="100%" filter="url(#grain-nosotros)" />
         </svg>
 
-        <div className={`relative z-10 h-full flex flex-col justify-center ${HERO_MARGIN} pt-[90px] pb-[100px] max-w-[1600px] mx-auto text-white`}>
+        <div className={`relative z-10 min-h-[100svh] flex flex-col justify-center ${HERO_MARGIN} pt-[90px] pb-[100px] max-w-[1600px] mx-auto text-white`}>
           <div className="text-[11px] tracking-[3px] text-[#62AF9D] font-semibold mb-4 md:mb-6 uppercase">— 02 · NOSOTROS</div>
           <h1 className="font-display font-semibold text-[clamp(36px,6vw,76px)] leading-[1.05] tracking-[-0.02em] mb-5 md:mb-6 max-w-[820px] m-0">
             <HighlightText text={pageData?.secciones.hero.titulo.valor || ""} highlightClassName="font-display font-semibold not-italic text-white" />

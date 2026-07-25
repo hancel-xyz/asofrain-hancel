@@ -23,7 +23,7 @@ export default async function HomePage() {
   return (
     <div className="bg-white font-sans overflow-hidden">
       {/* FULL SCREEN HERO — the real photo defined in the admin, cinematic grading on top */}
-      <section className="relative h-[100svh] overflow-hidden bg-[#0d2b24]">
+      <section className="relative min-h-[100svh] overflow-hidden bg-[#0d2b24]">
         {isRealImageUrl(heroData?.imagen_fondo?.valor) ? (
           <Image
             src={heroData.imagen_fondo.valor}
@@ -52,7 +52,7 @@ export default async function HomePage() {
         </svg>
 
         {/* Content */}
-        <div className={cn("relative z-10 h-full flex flex-col justify-center pt-[90px] pb-[100px] max-w-[1600px] mx-auto text-white", HERO_MARGIN)}>
+        <div className={cn("relative z-10 min-h-[100svh] flex flex-col justify-center pt-[90px] pb-[100px] max-w-[1600px] mx-auto text-white", HERO_MARGIN)}>
           <h1 className="font-display font-semibold text-[clamp(36px,5.5vw,72px)] leading-[1.08] tracking-[-0.02em] mb-5 md:mb-6 max-w-[720px] text-balance">
             {heroData ? (
               <HighlightText text={heroData.titulo.valor} highlightClassName="font-display font-semibold not-italic text-white" />
