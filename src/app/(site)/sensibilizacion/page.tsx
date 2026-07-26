@@ -16,7 +16,7 @@ export default async function SensibilizacionPage() {
   return (
     <div className="bg-white font-sans">
       {/* ENCABEZADO */}
-      <section className="px-4 md:px-[60px] pt-[130px] md:pt-[160px] pb-[60px] md:pb-[100px] bg-white">
+      <section className="px-4 md:px-[60px] pt-[110px] md:pt-[130px] pb-[50px] md:pb-[80px] bg-white">
         <div className="max-w-[1360px] mx-auto">
           <div className="flex justify-between items-start md:items-end mb-[10px] gap-5 md:gap-[60px] flex-col md:flex-row flex-wrap">
             <div>
@@ -31,7 +31,7 @@ export default async function SensibilizacionPage() {
       </section>
 
       {/* TIPOS DE SENSIBILIZACIÓN */}
-      <section id="campanas" className="px-4 md:px-[60px] pb-[60px] md:pb-[100px] bg-white scroll-mt-[100px]">
+      <section id="campanas" className="px-4 md:px-[60px] pb-[50px] md:pb-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {s?.tipos_sensibilizacion.tipos.map((tipo: any, idx: number) => {
@@ -56,7 +56,7 @@ export default async function SensibilizacionPage() {
       </section>
 
       {/* GALERÍA */}
-      <section className="px-4 md:px-[60px] py-[60px] md:py-[100px] bg-white">
+      <section className="px-4 md:px-[60px] py-[50px] md:py-[80px] bg-white">
         <div className="max-w-[1360px] mx-auto">
           <div className="mb-[40px] md:mb-[44px]">
             <div className="text-[11px] tracking-[2.5px] text-[#62AF9D] font-semibold mb-3 md:mb-4 uppercase">GALERÍA · SENSIBILIZACIONES</div>

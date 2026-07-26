@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function SolicitarPage() {
   return (
     <div className="bg-white font-sans">
-      <section className="px-4 md:px-[60px] pt-[110px] md:pt-[140px] pb-[40px] md:pb-[60px] bg-white">
+      <section className="px-4 md:px-[60px] pt-[100px] md:pt-[120px] pb-[30px] md:pb-[50px] bg-white">
         <div className="max-w-[1360px] mx-auto">
           <Link href="/" className="inline-block text-[11px] md:text-[12px] tracking-[2px] text-[#62AF9D] font-semibold mb-6 hover:text-[#111111] transition-colors">← VOLVER AL INICIO</Link>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[80px] items-end mt-2 md:mt-5">
@@ -20,7 +20,7 @@ export default function SolicitarPage() {
         </div>
       </section>
 
-      <section className="px-4 md:px-[60px] pt-[20px] md:pt-10 pb-[80px] md:pb-[140px] bg-white">
+      <section className="px-4 md:px-[60px] pt-[20px] md:pt-10 pb-[60px] md:pb-[100px] bg-white">
         <div className="max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6 items-start">
 
           {/* Formulario */}

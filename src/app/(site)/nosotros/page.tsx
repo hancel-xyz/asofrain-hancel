@@ -21,7 +21,7 @@ export default async function NosotrosPage() {
   return (
     <div className="bg-white font-sans">
       {/* HERO — full-bleed photo, matches the header treatment site-wide */}
-      <section className="relative min-h-[100svh] flex flex-col overflow-hidden bg-[#0d2b24]">
+      <section className="relative min-h-screen min-h-[100dvh] flex flex-col overflow-hidden bg-[#0d2b24]">
         {isRealImageUrl(pageData?.secciones.hero.imagen_fondo?.valor) ? (
           <Image
             src={pageData.secciones.hero.imagen_fondo.valor}
@@ -73,7 +73,7 @@ export default async function NosotrosPage() {
       </section>
 
       {/* QUIÉNES SOMOS */}
-      <section id="quienes-somos" className="px-4 md:px-[60px] pt-[80px] md:pt-[140px] pb-[60px] md:pb-[100px] bg-white scroll-mt-[100px]">
+      <section id="quienes-somos" className="px-4 md:px-[60px] pt-[60px] md:pt-[110px] pb-[50px] md:pb-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 md:gap-[80px] items-start">
             <div>
@@ -90,7 +90,7 @@ export default async function NosotrosPage() {
       </section>
 
       {/* HISTORIA */}
-      <section id="historia" className="px-4 md:px-[60px] py-[60px] md:py-[100px] bg-white scroll-mt-[100px]">
+      <section id="historia" className="px-4 md:px-[60px] py-[50px] md:py-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 md:gap-[80px] items-start">
             <div>
@@ -118,7 +118,7 @@ export default async function NosotrosPage() {
       </section>
 
       {/* MISIÓN Y VISIÓN */}
-      <section id="mision-vision" className="px-4 md:px-[60px] py-[60px] md:py-[100px] bg-white scroll-mt-[100px]">
+      <section id="mision-vision" className="px-4 md:px-[60px] py-[50px] md:py-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             <div className="bg-white border border-black/[0.08] rounded-[24px] px-8 md:px-12 py-10 md:py-[52px] min-h-[300px] md:min-h-[400px] flex flex-col justify-between">
@@ -138,7 +138,7 @@ export default async function NosotrosPage() {
       </section>
 
       {/* VALORES */}
-      <section id="valores" className="px-4 md:px-[60px] py-[60px] md:py-[100px] bg-white scroll-mt-[100px]">
+      <section id="valores" className="px-4 md:px-[60px] py-[50px] md:py-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="mb-10 md:mb-[50px]">
             <div className="text-[11px] tracking-[2.5px] text-[#62AF9D] font-semibold mb-3 md:mb-4 uppercase">VALORES INSTITUCIONALES</div>
@@ -162,7 +162,7 @@ export default async function NosotrosPage() {
       </section>
 
       {/* OBJETO SOCIAL / AMBIENTAL */}
-      <section className="px-4 md:px-[60px] py-[60px] md:py-[100px] bg-white">
+      <section className="px-4 md:px-[60px] py-[50px] md:py-[80px] bg-white">
         <div className="max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[80px] py-10 md:py-[60px] border-y border-black/[0.08]">
             <div>
@@ -190,7 +190,7 @@ export default async function NosotrosPage() {
       </section>
 
       {/* ENTIDADES */}
-      <section id="entidades" className="px-4 md:px-[60px] pt-[60px] md:pt-[120px] pb-[80px] md:pb-[140px] bg-white scroll-mt-[100px]">
+      <section id="entidades" className="px-4 md:px-[60px] pt-[50px] md:pt-[90px] pb-[60px] md:pb-[100px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="flex justify-between items-start md:items-end mb-[40px] md:mb-[50px] flex-col md:flex-row gap-5">
             <div>

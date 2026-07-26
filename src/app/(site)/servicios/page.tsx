@@ -14,7 +14,7 @@ export default async function ServiciosPage() {
   return (
     <div className="bg-white font-sans">
       {/* HERO */}
-      <section className="relative min-h-[100svh] flex flex-col overflow-hidden bg-[#0d2b24]">
+      <section className="relative min-h-screen min-h-[100dvh] flex flex-col overflow-hidden bg-[#0d2b24]">
         {isRealImageUrl(s?.hero.imagen_fondo?.valor) ? (
           <Image
             src={s.hero.imagen_fondo.valor}
@@ -65,7 +65,7 @@ export default async function ServiciosPage() {
       </section>
 
       {/* DESCRIPCIÓN — cards */}
-      <section id="descripcion" className="px-4 md:px-[60px] pt-[80px] md:pt-[140px] pb-[60px] md:pb-[100px] bg-white scroll-mt-[100px]">
+      <section id="descripcion" className="px-4 md:px-[60px] pt-[60px] md:pt-[110px] pb-[50px] md:pb-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="mb-10 md:mb-[60px]">
             <div className="text-[11px] tracking-[2.5px] text-[#62AF9D] font-semibold mb-4 md:mb-5 uppercase">DESCRIPCIÓN DE SERVICIOS</div>
@@ -114,7 +114,7 @@ export default async function ServiciosPage() {
       </section>
 
       {/* RUTAS Y HORARIOS */}
-      <section id="rutas" className="px-4 md:px-[60px] py-[60px] md:py-[100px] bg-white scroll-mt-[100px]">
+      <section id="rutas" className="px-4 md:px-[60px] py-[50px] md:py-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="flex justify-between items-start md:items-end mb-[40px] md:mb-[44px] flex-col md:flex-row gap-4 md:gap-5">
             <div>
@@ -151,7 +151,7 @@ export default async function ServiciosPage() {
       </section>
 
       {/* SECTORES ATENDIDOS */}
-      <section id="sectores" className="px-4 md:px-[60px] py-[60px] md:py-[100px] bg-white scroll-mt-[100px]">
+      <section id="sectores" className="px-4 md:px-[60px] py-[50px] md:py-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="mb-[40px] md:mb-[44px]">
             <div className="text-[11px] tracking-[2.5px] text-[#62AF9D] font-semibold mb-3 md:mb-4 uppercase">SECTORES ATENDIDOS</div>
@@ -176,7 +176,7 @@ export default async function ServiciosPage() {
       </section>
 
       {/* TARIFA Y PRODUCTOS */}
-      <section id="tarifa" className="px-4 md:px-[60px] pt-[60px] md:pt-[100px] pb-[80px] md:pb-[100px] bg-white scroll-mt-[100px]">
+      <section id="tarifa" className="px-4 md:px-[60px] pt-[50px] md:pt-[80px] pb-[60px] md:pb-[80px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-[60px] items-start">
             <div>

@@ -18,7 +18,7 @@ export default async function HomePage() {
   return (
     <div className="bg-white font-sans overflow-hidden">
       {/* FULL SCREEN HERO — the real photo defined in the admin, cinematic grading on top */}
-      <section className="relative min-h-[100svh] flex flex-col overflow-hidden bg-[#0d2b24]">
+      <section className="relative min-h-screen min-h-[100dvh] flex flex-col overflow-hidden bg-[#0d2b24]">
         {isRealImageUrl(heroData?.imagen_fondo?.valor) ? (
           <Image
             src={heroData.imagen_fondo.valor}
@@ -73,7 +73,7 @@ export default async function HomePage() {
       </section>
 
       {/* MÉTRICAS */}
-      <section id="metricas" className="px-4 md:px-6 py-[60px] md:py-[80px] scroll-mt-[100px]">
+      <section id="metricas" className="px-4 md:px-6 py-[50px] md:py-[70px] scroll-mt-[100px]">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[60px] mb-10 md:mb-12 items-end">
             <div>
@@ -136,7 +136,7 @@ export default async function HomePage() {
       </section>
 
       {/* VIDEO + SERVICIOS PREVIEW */}
-      <section className="px-4 md:px-6 py-[60px] pb-[80px] md:pb-[100px]">
+      <section className="px-4 md:px-6 py-[50px] pb-[60px] md:pb-[80px]">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5">
 
           <div className="relative rounded-[24px] md:rounded-[28px] overflow-hidden min-h-[400px] md:min-h-[520px] bg-[#111111]">
@@ -182,8 +182,8 @@ export default async function HomePage() {
       </section>
 
       {/* FRASE DE CIERRE */}
-      <section className="px-4 md:px-6 py-[80px] md:py-[120px]">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-[60px] py-[60px] md:py-[80px] bg-[#62AF9D] rounded-[24px] md:rounded-[32px] text-center">
+      <section className="px-4 md:px-6 py-[60px] md:py-[90px]">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-[60px] py-[50px] md:py-[70px] bg-[#62AF9D] rounded-[24px] md:rounded-[32px] text-center">
           <div className="text-[11px] tracking-widest text-[#111111]/70 font-semibold mb-6 uppercase">{pageData?.secciones.frase.titulo_pequeno.valor}</div>
           <p className="font-display font-semibold text-[clamp(28px,5vw,56px)] leading-[1.1] tracking-[-0.01em] mx-auto max-w-[1000px] text-balance text-[#111111]">
             <HighlightText text={pageData?.secciones.frase.texto.valor || ""} highlightClassName="font-display font-medium not-italic text-white" />

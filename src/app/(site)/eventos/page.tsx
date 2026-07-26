@@ -30,7 +30,7 @@ export default async function EventosPage() {
   return (
     <div className="bg-white font-sans">
       {/* LISTADO DE EVENTOS */}
-      <section className="px-4 md:px-[60px] pt-[130px] md:pt-[160px] pb-[80px] md:pb-[100px] bg-white">
+      <section className="px-4 md:px-[60px] pt-[110px] md:pt-[130px] pb-[60px] md:pb-[80px] bg-white">
         <div className="max-w-[1360px] mx-auto">
           <div className="mb-[40px] md:mb-[50px]">
             <div className="text-[11px] tracking-[2.5px] text-[#62AF9D] font-semibold mb-3 md:mb-4 uppercase">EVENTOS INSTITUCIONALES</div>
