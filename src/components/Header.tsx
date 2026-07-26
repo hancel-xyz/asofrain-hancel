@@ -173,13 +173,24 @@ export function Header() {
             </Link>
           </nav>
 
-          <button
-            className={cn("lg:hidden p-2 rounded-full transition-colors focus:outline-none", onDark ? "text-white hover:bg-white/10" : "text-[#111111] hover:bg-black/[0.04]")}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex lg:hidden items-center gap-2">
+            <Link
+              href="/solicitar"
+              className={cn(
+                "inline-flex px-4 py-2 text-[13px] font-semibold rounded-full transition-colors hover:bg-[#62AF9D] hover:text-[#111111]",
+                onDark ? "bg-white text-[#111111]" : "bg-[#111111] text-white"
+              )}
+            >
+              Solicitar servicio
+            </Link>
+            <button
+              className={cn("p-2 rounded-full transition-colors focus:outline-none", onDark ? "text-white hover:bg-white/10" : "text-[#111111] hover:bg-black/[0.04]")}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRightIcon } from "lucide-react";
 import { ImageSlot, isRealImageUrl } from "@/components/ImageSlot";
 import { getEstructura } from "@/lib/data";
 import { HighlightText } from "@/components/HighlightText";
@@ -185,8 +186,9 @@ export default async function ServiciosPage() {
                 <HighlightText text={s?.tarifas_y_productos.titulo.valor || ""} />
               </h3>
               <p className="text-[15.5px] md:text-[16px] leading-[1.6] text-[#4b5563] m-0 mb-8 whitespace-pre-wrap">{s?.tarifas_y_productos.descripcion.valor}</p>
-              <Link href={s?.tarifas_y_productos.cta.url || "#"} className="inline-flex items-center gap-2.5 px-[26px] py-[14px] bg-[#111111] text-white rounded-full text-[14px] font-semibold hover:bg-[#62AF9D] hover:text-[#111111] transition-colors w-full sm:w-auto justify-center">
+              <Link href={s?.tarifas_y_productos.cta.url || "/normatividad"} className="inline-flex items-center gap-2.5 px-[26px] py-[14px] bg-[#111111] text-white rounded-full text-[14px] font-semibold hover:bg-[#62AF9D] hover:text-[#111111] transition-colors w-full sm:w-auto justify-center">
                 {s?.tarifas_y_productos.cta.texto}
+                <ArrowRightIcon className="w-4 h-4" />
               </Link>
             </div>
 
@@ -213,8 +215,9 @@ export default async function ServiciosPage() {
               <div className="font-display font-semibold text-[26px] md:text-[30px] tracking-[-0.01em] leading-tight mb-2 md:mb-0">{s?.cta_final.titulo.valor}</div>
               <div className="mt-1 md:mt-2 text-[14px] md:text-[14.5px] text-[#111111]/70 max-w-[400px] mx-auto md:mx-0">{s?.cta_final.descripcion.valor}</div>
             </div>
-            <Link href={s?.cta_final.boton.url || "#"} className="px-[26px] md:px-[28px] py-[14px] md:py-[16px] bg-[#111111] text-white rounded-full text-[14px] font-semibold flex items-center justify-center gap-2.5 hover:bg-white hover:text-[#111111] transition-colors mt-2 md:mt-0 w-full sm:w-auto">
+            <Link href={s?.cta_final.boton.url || "/solicitar"} className="px-[26px] md:px-[28px] py-[14px] md:py-[16px] bg-[#111111] text-white rounded-full text-[14px] font-semibold flex items-center justify-center gap-2.5 hover:bg-white hover:text-[#111111] transition-colors mt-2 md:mt-0 w-full sm:w-auto">
               {s?.cta_final.boton.texto}
+              <ArrowRightIcon className="w-4 h-4" />
             </Link>
           </div>
         </div>
