@@ -125,34 +125,29 @@ export async function updateNosotrosEntidadesAliadas(formData: FormData) {
   const estructura = await getEstructura();
   const page = estructura?.sitio.paginas.find((p: any) => p.id === "nosotros");
   const existingAliados = page?.secciones.entidades_aliadas.aliados ?? [];
+  const existingById = new Map<string, any>(existingAliados.map((a: any) => [a.id, a]));
 
-  // Extract all the ids dynamically based on what was submitted
-  const ids = new Set<string>();
-  for (const key of Array.from(formData.keys())) {
-    if (key.startsWith("a_")) {
-      const parts = key.split("_"); // e.g. a_1_titulo
-      if (parts.length >= 3) {
-        ids.add(parts[1]);
-      }
-    }
-  }
+  // The admin UI lets you add/remove aliados client-side, so the set of ids
+  // to persist (and their order) comes from the submission itself
+  // (aliados_id, one per row, in order) rather than from the previously saved array.
+  const ids = formData.getAll("aliados_id").map((v) => v.toString()).filter(Boolean);
 
   const aliados = await Promise.all(
-    Array.from(ids).sort().map(async (id) => {
-      const existing = existingAliados.find((a: any) => a.id === `aliado_${id}`);
-      const uploaded = await uploadMediaFile(formData.get(`a_${id}_logo`), {
+    ids.map(async (id) => {
+      const existing = existingById.get(id);
+      const uploaded = await uploadMediaFile(formData.get(`${id}_logo`), {
         pageSlug: "nosotros",
         sectionKey: "entidades_aliadas",
       });
       const logo = uploaded
         ? { ...existing?.logo, valor: uploaded.url, key: uploaded.key }
-        : existing?.logo ?? { valor: "Permite subir el logo", editable_admin: true, tipo: "imagen" };
+        : existing?.logo ?? { valor: "", editable_admin: true, tipo: "imagen" };
 
       return {
-        id: `aliado_${id}`,
+        id,
         logo,
-        titulo: { valor: formData.get(`a_${id}_titulo`) as string },
-        descripcion: { valor: formData.get(`a_${id}_desc`) as string }
+        titulo: { valor: formData.get(`${id}_titulo`)?.toString() || "" },
+        descripcion: { valor: formData.get(`${id}_desc`)?.toString() || "" },
       };
     })
   );

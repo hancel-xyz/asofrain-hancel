@@ -10,6 +10,14 @@ export default async function NosotrosPage() {
   const data = await getEstructura();
   const pageData = data?.sitio.paginas.find((p: any) => p.id === "nosotros");
 
+  // The last aliado is always shown as a highlighted, wider card that fills
+  // whatever room is left in its row (so the grid never ends with a gap).
+  const totalAliados = pageData?.secciones.entidades_aliadas.aliados.length ?? 0;
+  const remMd = totalAliados > 0 ? 2 - ((totalAliados - 1) % 2) : 2; // 1 or 2
+  const remLg = totalAliados > 0 ? 3 - ((totalAliados - 1) % 3) : 3; // 1, 2 or 3
+  const ultimoAliadoMdSpan = remMd === 2 ? "md:col-span-2" : "md:col-span-1";
+  const ultimoAliadoLgSpan = remLg === 3 ? "lg:col-span-3" : remLg === 2 ? "lg:col-span-2" : "lg:col-span-1";
+
   return (
     <div className="bg-white font-sans">
       {/* HERO — full-bleed photo, matches the header treatment site-wide */}
@@ -210,7 +218,7 @@ export default async function NosotrosPage() {
               </div>
             ))}
             {pageData?.secciones.entidades_aliadas.aliados.length > 0 && (
-              <div className="relative isolate overflow-hidden rounded-[18px] min-h-[200px] md:col-span-2 lg:col-span-3">
+              <div className={`relative isolate overflow-hidden rounded-[18px] min-h-[200px] ${ultimoAliadoMdSpan} ${ultimoAliadoLgSpan}`}>
                 <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(/textura-asofrain.png)" }}></div>
                 <div className="absolute inset-0 bg-black/35"></div>
                 <div className="relative h-full text-white p-[30px] md:p-[36px_30px] flex flex-col justify-between">

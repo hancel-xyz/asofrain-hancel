@@ -3,10 +3,8 @@ import { updateNosotrosEntidadesAliadas } from "../actions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { AdminForm } from "@/components/AdminForm";
-import { PlusIcon, TrashIcon } from "lucide-react";
+import { AliadosEditor } from "./AliadosEditor";
 
 export default async function AdminNosotrosEntidadesAliadasPage() {
   const data = await getEstructura();
@@ -36,49 +34,25 @@ export default async function AdminNosotrosEntidadesAliadasPage() {
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div>
-              <CardTitle>Entidades</CardTitle>
-              <CardDescription>Edita los aliados actuales o agrega nuevos.</CardDescription>
-            </div>
-            <Button size="sm" className="gap-2">
-              <PlusIcon className="w-4 h-4" />
-              Agregar Entidad
-            </Button>
+          <CardHeader>
+            <CardTitle>Entidades</CardTitle>
+            <CardDescription>Edita los aliados actuales o agrega nuevos.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            
-            {section.aliados.map((a: any, i: number) => (
-              <div key={a.id} className="space-y-4 border p-4 rounded-lg relative">
-                <div className="absolute top-4 right-4 flex gap-2">
-                  <Button variant="ghost" size="icon" className="text-destructive h-8 w-8">
-                    <TrashIcon className="h-4 w-4" />
-                  </Button>
-                </div>
-                <h3 className="font-medium text-lg">Aliado {i + 1}</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-3 md:col-span-2">
-                    <Label htmlFor={`a_${a.id.replace("aliado_", "")}_logo`}>Logo Entidad</Label>
-                    <Input id={`a_${a.id.replace("aliado_", "")}_logo`} name={`a_${a.id.replace("aliado_", "")}_logo`} type="file" accept="image/*" />
-                    <p className="text-xs text-muted-foreground">Actual: {a.logo.valor}</p>
-                  </div>
-                  <div className="flex flex-col gap-3 md:col-span-2">
-                    <Label htmlFor={`a_${a.id.replace("aliado_", "")}_titulo`}>Título / Nombre <span className="font-normal text-muted-foreground text-xs">(Usa *asteriscos* para destacar una palabra)</span></Label>
-                    <Input id={`a_${a.id.replace("aliado_", "")}_titulo`} name={`a_${a.id.replace("aliado_", "")}_titulo`} defaultValue={a.titulo.valor} />
-                  </div>
-                  <div className="flex flex-col gap-3 md:col-span-2">
-                    <Label htmlFor={`a_${a.id.replace("aliado_", "")}_desc`}>Descripción</Label>
-                    <Textarea id={`a_${a.id.replace("aliado_", "")}_desc`} name={`a_${a.id.replace("aliado_", "")}_desc`} defaultValue={a.descripcion.valor} rows={2} />
-                  </div>
-                </div>
-              </div>
-            ))}
-
+          <CardContent>
+            <AliadosEditor
+              // Remounts whenever the persisted aliado ids/logo urls change (e.g.
+              // right after a save that uploaded something), discarding any
+              // in-memory File objects so they can't be resubmitted on the next save.
+              key={section.aliados.map((a: any) => `${a.id}:${a.logo.valor}`).join("|")}
+              initialAliados={section.aliados.map((a: any) => ({
+                id: a.id,
+                logoUrl: a.logo.valor,
+                titulo: a.titulo.valor,
+                descripcion: a.descripcion.valor,
+              }))}
+            />
           </CardContent>
         </Card>
-
-        
       </AdminForm>
     </div>
   );
