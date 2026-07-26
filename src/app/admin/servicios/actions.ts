@@ -118,7 +118,7 @@ export async function updateServiciosRutasLocalidadesHorarios(formData: FormData
       if (formData.has(`${id}_localidad`)) updatedItem.localidad = { ...updatedItem.localidad, valor: formData.get(`${id}_localidad`)?.toString() || "" };
       if (formData.has(`${id}_dias`)) updatedItem.dias = { ...updatedItem.dias, valor: formData.get(`${id}_dias`)?.toString() || "" };
       if (formData.has(`${id}_horario`)) updatedItem.horario = { ...updatedItem.horario, valor: formData.get(`${id}_horario`)?.toString() || "" };
-      if (formData.has(`${id}_estado`)) updatedItem.estado = { ...updatedItem.estado, valor: formData.get(`${id}_estado`)?.toString() || "" };
+      updatedItem.estado = { activa: formData.get(`${id}_activa`) === "on" };
       return updatedItem;
     });
     if (Array.isArray(data.tabla)) data.tabla = updatedtabla;

@@ -63,9 +63,15 @@ export default async function AdminServiciosRutasLocalidadesHorariosPage() {
               <Label htmlFor={`${item.id}_horario`}>Horario</Label>
               <Input id={`${item.id}_horario`} name={`${item.id}_horario`} defaultValue={item.horario.valor} />
             </div>
-            <div className="flex flex-col gap-3">
-              <Label htmlFor={`${item.id}_estado`}>Estado</Label>
-              <Input id={`${item.id}_estado`} name={`${item.id}_estado`} defaultValue={item.estado.valor} />
+            <div className="flex items-center gap-2 pt-2">
+              <input
+                id={`${item.id}_activa`}
+                name={`${item.id}_activa`}
+                type="checkbox"
+                defaultChecked={item.estado?.activa !== false}
+                className="h-4 w-4"
+              />
+              <Label htmlFor={`${item.id}_activa`}>Ruta activa</Label>
             </div>
               </div>
             ))}

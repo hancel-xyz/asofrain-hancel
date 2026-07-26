@@ -56,11 +56,11 @@ export default async function ServiciosPage() {
               <div className="mt-2 text-[15px] font-display font-medium">{s?.hero.descripcion_2.valor}</div>
             </div>
           </div>
-        </div>
 
-        <div className="absolute bottom-6 md:bottom-9 left-6 md:left-[100px] z-10 inline-flex items-center gap-3.5 px-[20px] md:px-[22px] py-[12px] md:py-[14px] bg-white shadow-sm rounded-full text-[#111111] text-[13px] font-semibold">
-          <span className="w-[34px] md:w-[38px] h-[34px] md:h-[38px] rounded-full bg-[#62AF9D] text-[#111111] flex items-center justify-center text-[16px] shrink-0">↗</span>
-          <Link href="#descripcion" className="text-[#111111] hover:text-[#62AF9D] transition-colors">Ver los 5 servicios</Link>
+          <Link href="#descripcion" className="mt-8 md:mt-10 inline-flex items-center gap-3.5 px-[20px] md:px-[22px] py-[12px] md:py-[14px] bg-white shadow-sm rounded-full text-[#111111] text-[13px] font-semibold self-start hover:bg-white/90 transition-colors">
+            <span className="w-[34px] md:w-[38px] h-[34px] md:h-[38px] rounded-full bg-[#62AF9D] text-[#111111] flex items-center justify-center text-[16px] shrink-0">↗</span>
+            Ver los 5 servicios
+          </Link>
         </div>
       </section>
 
@@ -138,7 +138,11 @@ export default async function ServiciosPage() {
                 <div className="text-[14px] md:text-[15px]"><span className="md:hidden text-[11px] text-[#62AF9D] block mb-1">DÍAS</span>{item.dias.valor}</div>
                 <div className="text-[14px] md:text-[15px]"><span className="md:hidden text-[11px] text-[#62AF9D] block mb-1">HORARIO</span>{item.horario.valor}</div>
                 <div className="col-span-2 md:col-span-1 md:text-right mt-2 md:mt-0">
-                  <span className="inline-block px-3.5 py-1.5 bg-[#62AF9D]/15 text-[#3d7a6d] rounded-full text-[12px] font-semibold">● {item.estado.valor}</span>
+                  {item.estado?.activa !== false ? (
+                    <span className="inline-block px-3.5 py-1.5 bg-[#62AF9D]/15 text-[#3d7a6d] rounded-full text-[12px] font-semibold">● Activa</span>
+                  ) : (
+                    <span className="inline-block px-3.5 py-1.5 bg-black/[0.05] text-[#111111]/40 rounded-full text-[12px] font-semibold">● No activa</span>
+                  )}
                 </div>
               </div>
             ))}
