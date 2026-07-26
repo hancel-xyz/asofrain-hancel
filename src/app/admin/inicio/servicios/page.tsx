@@ -19,18 +19,18 @@ export default async function AdminInicioServiciosPage() {
     <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Inicio - Servicios</h1>
-        <p className="text-muted-foreground">Administra el video institucional y la lista rápida de servicios.</p>
+        <p className="text-muted-foreground">Administra la imagen institucional y la lista rápida de servicios.</p>
       </div>
 
       <AdminForm action={updateInicioServicios} className="grid gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Contenido Multimedia (Video/Imagen)</CardTitle>
+            <CardTitle>Imagen institucional</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex flex-col gap-3">
-              <Label htmlFor="media_file">Subir Archivo (Pendiente integración API)</Label>
-              <Input id="media_file" name="media_file" type="file" accept="video/*,image/*" />
+              <Label htmlFor="media_file">Subir imagen</Label>
+              <Input id="media_file" name="media_file" type="file" accept="image/*" />
             </div>
             
             <div className="flex flex-col gap-3">

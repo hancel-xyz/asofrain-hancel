@@ -5,10 +5,6 @@ import { getEstructura } from "@/lib/data";
 import { HighlightText } from "@/components/HighlightText";
 import { cn } from "@/lib/utils";
 
-function isVideoUrl(url?: string) {
-  return !!url && /\.(mp4|webm|mov)(\?|$)/i.test(url);
-}
-
 const HERO_MARGIN = "px-6 md:px-12 lg:px-[100px]";
 
 const TEAL_HIGHLIGHT = "font-display font-medium not-italic text-[#111111]";
@@ -145,18 +141,11 @@ export default async function HomePage() {
 
           <div className="relative rounded-[24px] md:rounded-[28px] overflow-hidden min-h-[400px] md:min-h-[520px] bg-[#111111]">
             <div className="absolute inset-0">
-              {isVideoUrl(mediaUrl) ? (
-                <video src={mediaUrl} className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline />
-              ) : (
-                <ImageSlot src={mediaUrl} placeholder="Video institucional (.mp4)" className="bg-[#111111] text-white/40" />
-              )}
+              <ImageSlot src={mediaUrl} placeholder="Imagen institucional" className="bg-[#111111] text-white/40" />
             </div>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent from-40% to-black/70 pointer-events-none"></div>
             <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 text-white pointer-events-none">
-              <div className="inline-flex items-center justify-center w-[50px] h-[50px] md:w-[60px] md:h-[60px] rounded-full bg-white shadow-sm mb-4 md:mb-5 pointer-events-auto cursor-pointer hover:bg-[#62AF9D] transition-colors">
-                <div className="w-0 h-0 border-l-[11px] md:border-l-[13px] border-l-[#111111] border-y-[6px] md:border-y-[8px] border-y-transparent ml-1"></div>
-              </div>
-              <div className="text-[11px] tracking-widest text-[#62AF9D] font-semibold mb-2.5 uppercase">— VIDEO INSTITUCIONAL</div>
+              <div className="text-[11px] tracking-widest text-[#62AF9D] font-semibold mb-2.5 uppercase">— INSTITUCIONAL</div>
               <h3 className="font-display font-semibold text-[26px] md:text-[32px] leading-[1.05] m-0 tracking-[-0.01em]">
                 <HighlightText text={pageData?.secciones.servicios_vista_general.titulo_media.valor || ""} highlightClassName="font-display font-medium not-italic text-[#62AF9D]" />
               </h3>
