@@ -210,7 +210,10 @@ export default async function NosotrosPage() {
               </div>
             ))}
             {pageData?.secciones.entidades_aliadas.aliados.length > 0 && (
-              <div className="bg-[#62AF9D] text-[#111111] rounded-[18px] p-[30px] md:p-[36px_30px] min-h-[200px] flex flex-col justify-between md:col-span-2 lg:col-span-3">
+              <div
+                className="bg-[#62AF9D] text-[#111111] rounded-[18px] p-[30px] md:p-[36px_30px] min-h-[200px] flex flex-col justify-between md:col-span-2 lg:col-span-3 bg-cover bg-center"
+                style={{ backgroundImage: "url(/textura-asofrain.png)" }}
+              >
                 <div className="w-14 h-14 rounded-xl bg-white overflow-hidden flex items-center justify-center font-display font-semibold text-[22px] text-[#111111] mb-6 md:mb-0">
                   {(() => {
                     const ultimo = pageData.secciones.entidades_aliadas.aliados[pageData.secciones.entidades_aliadas.aliados.length - 1];
