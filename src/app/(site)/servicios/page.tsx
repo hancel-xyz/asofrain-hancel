@@ -78,7 +78,7 @@ export default async function ServiciosPage() {
             {s?.servicios.items.map((item: any, idx: number) => {
               const span = idx < 3 ? 2 : 3;
               return (
-                <div key={item.id} className={`bg-[#F2F9F7] rounded-[20px] p-8 md:p-[36px_32px] min-h-[240px] md:min-h-[280px] flex flex-col justify-between ${span === 2 ? 'md:col-span-1 lg:col-span-2' : 'md:col-span-2 lg:col-span-3'}`}>
+                <div key={item.id} className={`bg-white border border-black/[0.08] rounded-[20px] p-8 md:p-[36px_32px] min-h-[240px] md:min-h-[280px] flex flex-col justify-between ${span === 2 ? 'md:col-span-1 lg:col-span-2' : 'md:col-span-2 lg:col-span-3'}`}>
                   <div className="font-display font-semibold text-[32px] text-[#62AF9D] leading-none mb-6 md:mb-0">{String(idx + 1).padStart(2, '0')}</div>
                   <div>
                     <div className="text-[20px] md:text-[22px] font-semibold mb-2.5 text-[#111111]">{item.titulo.valor}</div>
@@ -129,7 +129,7 @@ export default async function ServiciosPage() {
           </div>
 
           <div className="border border-black/[0.08] rounded-[20px] overflow-hidden">
-            <div className="hidden md:grid grid-cols-[1fr_2fr_2fr_1fr] p-[20px_32px] bg-[#F2F9F7] text-[11px] tracking-[2px] text-[#62AF9D] font-semibold uppercase">
+            <div className="hidden md:grid grid-cols-[1fr_2fr_2fr_1fr] p-[20px_32px] bg-white text-[11px] tracking-[2px] text-[#62AF9D] font-semibold uppercase border-b border-black/[0.08]">
               <div>LOCALIDAD</div><div>DÍAS</div><div>HORARIO</div><div className="text-right">ESTADO</div>
             </div>
             {s?.rutas_localidades_horarios.tabla.filas.map((item: any, i: number) => (
@@ -157,7 +157,7 @@ export default async function ServiciosPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {s?.sectores_atendidos.sectores.map((sector: any) => (
-              <div key={sector.id} className="bg-[#F2F9F7] rounded-2xl p-6 md:p-[30px] flex items-center gap-4 md:gap-5">
+              <div key={sector.id} className="bg-white border border-black/[0.08] rounded-2xl p-6 md:p-[30px] flex items-center gap-4 md:gap-5">
                 <div className="w-[48px] h-[48px] md:w-[52px] md:h-[52px] rounded-xl overflow-hidden shrink-0">
                   <ImageSlot src={sector.imagen.valor} placeholder="" className="bg-[#62AF9D]/20 text-[#111111]/40" />
                 </div>
@@ -186,7 +186,7 @@ export default async function ServiciosPage() {
               </Link>
             </div>
 
-            <div className="bg-[#F2F9F7] rounded-[20px] p-8 md:p-10">
+            <div className="bg-white border border-black/[0.08] rounded-[20px] p-8 md:p-10">
               <div className="text-[11px] tracking-[2px] text-[#62AF9D] font-semibold mb-4 md:mb-5 uppercase">PRODUCTOS APROVECHADOS</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
                 {s?.tarifas_y_productos.productos_aprovechados.items.map((item: any, i: number, arr: any[]) => (

@@ -8,8 +8,8 @@ export default async function SensibilizacionPage() {
   const s = pageData?.secciones;
 
   const cardStyles = [
-    { wrapper: "bg-[#F2F9F7]", eyebrow: "text-[#62AF9D]", list: "text-[#4b5563]", title: "text-[#111111]", img: "bg-[#62AF9D]/20 text-[#111111]/40" },
-    { wrapper: "bg-[#F2F9F7]", eyebrow: "text-[#62AF9D]", list: "text-[#4b5563]", title: "text-[#111111]", img: "bg-[#62AF9D]/20 text-[#111111]/40" },
+    { wrapper: "bg-white border border-black/[0.08]", eyebrow: "text-[#62AF9D]", list: "text-[#4b5563]", title: "text-[#111111]", img: "bg-[#62AF9D]/20 text-[#111111]/40" },
+    { wrapper: "bg-white border border-black/[0.08]", eyebrow: "text-[#62AF9D]", list: "text-[#4b5563]", title: "text-[#111111]", img: "bg-[#62AF9D]/20 text-[#111111]/40" },
     { wrapper: "bg-[#62AF9D] text-[#111111]", eyebrow: "text-[#111111]/70", list: "text-[#111111]/80", title: "text-[#111111]", img: "bg-white/25 text-[#111111]/50" },
   ];
 
@@ -69,7 +69,7 @@ export default async function SensibilizacionPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[220px] gap-2 md:gap-3">
             {s?.galeria.imagenes.map((img: any, idx: number) => (
               <div key={img.id} className={`rounded-xl md:rounded-2xl overflow-hidden relative ${idx === 0 ? 'col-span-2 row-span-2' : ''}`}>
-                <ImageSlot src={img.url} placeholder={img.alt || `Foto 0${idx + 1}`} className="bg-[#F2F9F7] text-[#111111]/30" />
+                <ImageSlot src={img.url} placeholder={img.alt || `Foto 0${idx + 1}`} className="bg-white border border-black/[0.08] text-[#111111]/30" />
               </div>
             ))}
           </div>

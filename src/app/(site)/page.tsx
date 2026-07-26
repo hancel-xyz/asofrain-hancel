@@ -109,7 +109,7 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="bg-[#F2F9F7] rounded-[24px] md:rounded-[28px] p-8 min-h-[212px] flex flex-col justify-between">
+            <div className="bg-white border border-black/[0.08] rounded-[24px] md:rounded-[28px] p-8 min-h-[212px] flex flex-col justify-between">
               <div className="text-[11px] tracking-widest text-[#111111]/70 font-semibold mb-6 uppercase">{pageData?.secciones.metricas.items[1].titulo.valor}</div>
               <div>
                 <div className="font-display font-semibold text-[64px] md:text-[80px] leading-[0.85] tracking-[-0.02em] text-[#111111]">{pageData?.secciones.metricas.items[1].numero.valor}</div>
@@ -117,7 +117,7 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="bg-[#F2F9F7] rounded-[24px] md:rounded-[28px] p-8 min-h-[212px] flex flex-col justify-between">
+            <div className="bg-white border border-black/[0.08] rounded-[24px] md:rounded-[28px] p-8 min-h-[212px] flex flex-col justify-between">
               <div className="text-[11px] tracking-widest text-[#111111]/70 font-semibold mb-6 uppercase">{pageData?.secciones.metricas.items[2].titulo.valor}</div>
               <div>
                 <div className="font-display font-semibold text-[64px] md:text-[80px] leading-[0.85] tracking-[-0.02em] text-[#111111]">{pageData?.secciones.metricas.items[2].numero.valor}</div>
@@ -125,7 +125,7 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="bg-[#F2F9F7] rounded-[24px] md:rounded-[28px] p-7 md:col-span-2 flex flex-col md:flex-row md:items-center gap-4 md:gap-5">
+            <div className="bg-white border border-black/[0.08] rounded-[24px] md:rounded-[28px] p-7 md:col-span-2 flex flex-col md:flex-row md:items-center gap-4 md:gap-5">
               <div className="text-[11px] tracking-widest text-[#111111] font-semibold uppercase">{pageData?.secciones.metricas.items[3].titulo.valor}</div>
               <div className="flex flex-wrap gap-2">
                 {pageData?.secciones.metricas.items[3].descripcion.items.valor.map((eca: string) => (
@@ -170,7 +170,7 @@ export default async function HomePage() {
             </h3>
 
             {pageData?.secciones.servicios_vista_general.servicios.cards.slice(0, 4).map((srv: any) => (
-              <Link key={srv.numero.valor} href="/servicios#descripcion" className="flex items-center justify-between p-5 md:p-6 bg-[#F2F9F7] rounded-[20px] md:rounded-[22px] text-[#111111] hover:bg-[#62AF9D] transition-colors group">
+              <Link key={srv.numero.valor} href="/servicios#descripcion" className="flex items-center justify-between p-5 md:p-6 bg-white border border-black/[0.08] rounded-[20px] md:rounded-[22px] text-[#111111] hover:bg-[#62AF9D] transition-colors group">
                 <div>
                   <div className="text-[11px] tracking-widest text-[#62AF9D] group-hover:text-[#111111] font-semibold mb-1 transition-colors">{srv.numero.valor}</div>
                   <div className="text-[15px] md:text-[17px] font-semibold pr-4">{srv.titulo.valor}</div>

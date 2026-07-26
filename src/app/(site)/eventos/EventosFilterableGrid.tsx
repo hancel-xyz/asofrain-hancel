@@ -63,7 +63,7 @@ export function EventosFilterableGrid({
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {visibleCards.map((card) => (
-            <div key={card.id} className="bg-[#F2F9F7] rounded-[24px] overflow-hidden">
+            <div key={card.id} className="bg-white border border-black/[0.08] rounded-[24px] overflow-hidden">
               <div className="h-[180px] md:h-[200px] relative">
                 <ImageSlot src={card.fotoUrl} placeholder={card.fotoAlt || card.titulo} className="bg-[#62AF9D]/15 text-[#111111]/40" />
               </div>

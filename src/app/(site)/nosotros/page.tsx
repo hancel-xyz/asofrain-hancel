@@ -113,7 +113,7 @@ export default async function NosotrosPage() {
       <section id="mision-vision" className="px-4 md:px-[60px] py-[60px] md:py-[100px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-            <div className="bg-[#F2F9F7] rounded-[24px] px-8 md:px-12 py-10 md:py-[52px] min-h-[300px] md:min-h-[400px] flex flex-col justify-between">
+            <div className="bg-white border border-black/[0.08] rounded-[24px] px-8 md:px-12 py-10 md:py-[52px] min-h-[300px] md:min-h-[400px] flex flex-col justify-between">
               <div className="text-[11px] tracking-[2.5px] text-[#111111]/70 font-semibold uppercase">MISIÓN</div>
               <p className="font-display font-semibold text-[26px] md:text-[34px] leading-[1.2] mt-8 md:mt-6 mb-0 tracking-[-0.01em] whitespace-pre-wrap text-[#111111]">
                 {pageData?.secciones.mision.descripcion.valor}
@@ -195,7 +195,7 @@ export default async function NosotrosPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {pageData?.secciones.entidades_aliadas.aliados.slice(0, pageData.secciones.entidades_aliadas.aliados.length - 1).map((e: any) => (
-              <div key={e.id} className="bg-[#F2F9F7] rounded-[18px] p-[36px_30px] min-h-[200px] flex flex-col justify-between">
+              <div key={e.id} className="bg-white border border-black/[0.08] rounded-[18px] p-[36px_30px] min-h-[200px] flex flex-col justify-between">
                 <div className="w-14 h-14 rounded-xl bg-white overflow-hidden flex items-center justify-center font-display font-semibold text-[22px] text-[#111111]">
                   {isRealImageUrl(e.logo.valor) ? (
                     <ImageSlot src={e.logo.valor} placeholder={e.titulo.valor} />

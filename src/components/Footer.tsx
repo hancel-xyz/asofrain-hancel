@@ -1,11 +1,36 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getEstructura } from "@/lib/data";
+import { isRealImageUrl } from "@/components/ImageSlot";
 
-export function Footer() {
+export async function Footer() {
+  const data = await getEstructura();
+  const page = data?.sitio.paginas.find((p: any) => p.id === "footer");
+  const fondoUrl = page?.secciones?.fondo?.imagen_fondo?.valor;
+  const hasImage = isRealImageUrl(fondoUrl);
+
+  const text70 = hasImage ? "text-white/70 hover:text-white" : "text-[#111111]/70 hover:text-[#111111]";
+  const text60 = hasImage ? "text-white/60" : "text-[#111111]/60";
+  const text50 = hasImage ? "text-white/50" : "text-[#111111]/50";
+  const textBase = hasImage ? "text-white hover:text-[#62AF9D]" : "text-[#111111] hover:text-[#62AF9D]";
+  const iconBtn = hasImage
+    ? "bg-white/10 border-white/20 text-white hover:bg-[#62AF9D] hover:border-[#62AF9D]"
+    : "bg-white border-black/[0.08] text-[#111111] hover:bg-[#62AF9D] hover:border-[#62AF9D]";
+
   return (
     <footer className="px-4 pt-8 pb-4 bg-white font-sans">
-      <div className="max-w-[1560px] mx-auto bg-[#F2F9F7] text-[#111111] rounded-[32px] p-8 md:px-[60px] md:pt-[80px] md:pb-[40px]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-[60px] pb-[50px] border-b border-black/[0.08]">
+      <div
+        className={`relative max-w-[1560px] mx-auto rounded-[32px] p-8 md:px-[60px] md:pt-[80px] md:pb-[40px] overflow-hidden ${
+          hasImage ? "text-white" : "bg-white border border-black/[0.08] text-[#111111]"
+        }`}
+      >
+        {hasImage && (
+          <>
+            <Image src={fondoUrl} alt="" fill unoptimized className="object-cover object-center -z-20" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/60 to-black/40 pointer-events-none"></div>
+          </>
+        )}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-[60px] pb-[50px] border-b ${hasImage ? "border-white/20" : "border-black/[0.08]"}`}>
 
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
@@ -18,14 +43,14 @@ export function Footer() {
                 unoptimized
               />
             </div>
-            <p className="text-[14px] leading-relaxed text-[#111111]/60 max-w-[340px] mb-6">
+            <p className={`text-[14px] leading-relaxed max-w-[340px] mb-6 ${text60}`}>
               Prestadores del servicio público de aprovechamiento en Suba, Engativá y Usaquén. Dignificando el oficio del recuperador ambiental desde 2006.
             </p>
             <div className="flex gap-2.5">
-              <Link href="#" aria-label="Facebook" className="w-10 h-10 rounded-full bg-white border border-black/[0.08] flex items-center justify-center text-[#111111] font-semibold text-sm hover:bg-[#62AF9D] hover:border-[#62AF9D] transition-colors">
+              <Link href="#" aria-label="Facebook" className={`w-10 h-10 rounded-full border flex items-center justify-center font-semibold text-sm transition-colors ${iconBtn}`}>
                 f
               </Link>
-              <Link href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-white border border-black/[0.08] flex items-center justify-center text-[#111111] font-semibold text-sm hover:bg-[#62AF9D] hover:border-[#62AF9D] transition-colors">
+              <Link href="#" aria-label="Instagram" className={`w-10 h-10 rounded-full border flex items-center justify-center font-semibold text-sm transition-colors ${iconBtn}`}>
                 ig
               </Link>
             </div>
@@ -34,28 +59,28 @@ export function Footer() {
           <div>
             <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">NAVEGACIÓN</div>
             <div className="flex flex-col gap-3 text-[14px]">
-              <Link href="/" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Inicio</Link>
-              <Link href="/nosotros" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Nosotros</Link>
-              <Link href="/servicios" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Servicios</Link>
-              <Link href="/sensibilizacion" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Sensibilización</Link>
-              <Link href="/eventos" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Eventos</Link>
-              <Link href="/contacto" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Contacto</Link>
+              <Link href="/" className={`transition-colors ${text70}`}>Inicio</Link>
+              <Link href="/nosotros" className={`transition-colors ${text70}`}>Nosotros</Link>
+              <Link href="/servicios" className={`transition-colors ${text70}`}>Servicios</Link>
+              <Link href="/sensibilizacion" className={`transition-colors ${text70}`}>Sensibilización</Link>
+              <Link href="/eventos" className={`transition-colors ${text70}`}>Eventos</Link>
+              <Link href="/contacto" className={`transition-colors ${text70}`}>Contacto</Link>
             </div>
           </div>
 
           <div>
             <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">LEGAL</div>
             <div className="flex flex-col gap-3 text-[14px]">
-              <Link href="/normatividad" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Normatividad legal</Link>
-              <Link href="/normatividad#ccu" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Condiciones Uniformes</Link>
-              <Link href="/normatividad#tarifa" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Marco tarifario CRA 720</Link>
-              <Link href="#" className="text-[#111111]/70 hover:text-[#111111] transition-colors">Tratamiento de datos</Link>
+              <Link href="/normatividad" className={`transition-colors ${text70}`}>Normatividad legal</Link>
+              <Link href="/normatividad#ccu" className={`transition-colors ${text70}`}>Condiciones Uniformes</Link>
+              <Link href="/normatividad#tarifa" className={`transition-colors ${text70}`}>Marco tarifario CRA 720</Link>
+              <Link href="#" className={`transition-colors ${text70}`}>Tratamiento de datos</Link>
             </div>
           </div>
 
           <div>
             <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">ALIADOS</div>
-            <div className="flex flex-col gap-3 text-[13px] text-[#111111]/60">
+            <div className={`flex flex-col gap-3 text-[13px] ${text60}`}>
               <div>SSPD</div>
               <div>UAESP</div>
               <div>Alcaldías Locales</div>
@@ -67,19 +92,19 @@ export function Footer() {
 
           <div className="md:col-span-2 lg:col-span-1">
             <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">CONTACTO DIRECTO</div>
-            <a href="mailto:asofrain.admi@gmail.com" className="block font-semibold text-[18px] text-[#111111] mb-4 break-all hover:text-[#62AF9D] transition-colors">
+            <a href="mailto:asofrain.admi@gmail.com" className={`block font-semibold text-[18px] mb-4 break-all transition-colors ${textBase}`}>
               asofrain.admi<br/>@gmail.com
             </a>
-            <a href="tel:+573225105246" className="block font-semibold text-[18px] text-[#111111] hover:text-[#62AF9D] transition-colors">
+            <a href="tel:+573225105246" className={`block font-semibold text-[18px] transition-colors ${textBase}`}>
               +57 322 510 5246
             </a>
           </div>
         </div>
 
         <div className="flex justify-between items-center pt-6 flex-wrap gap-5 text-center md:text-left">
-          <div className="text-[12px] text-[#111111]/50 w-full md:w-auto">© 2026 ASOFRAIN E.S.P. · Todos los derechos reservados</div>
-          <div className="text-[12px] text-[#111111]/50 w-full md:w-auto">
-            Ingeniería digital por <a href="https://hansel.xyz" className="text-[#62AF9D] hover:text-[#111111] transition-colors">hansel.xyz</a>
+          <div className={`text-[12px] w-full md:w-auto ${text50}`}>© 2026 ASOFRAIN E.S.P. · Todos los derechos reservados</div>
+          <div className={`text-[12px] w-full md:w-auto ${text50}`}>
+            Ingeniería digital por <a href="https://hansel.xyz" className={`text-[#62AF9D] transition-colors ${hasImage ? "hover:text-white" : "hover:text-[#111111]"}`}>hansel.xyz</a>
           </div>
         </div>
       </div>

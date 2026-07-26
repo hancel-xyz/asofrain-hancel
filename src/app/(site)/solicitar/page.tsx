@@ -24,7 +24,7 @@ export default function SolicitarPage() {
         <div className="max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6 items-start">
 
           {/* Formulario */}
-          <div className="bg-[#F2F9F7] rounded-[24px] p-6 md:p-[52px]">
+          <div className="bg-white border border-black/[0.08] rounded-[24px] p-6 md:p-[52px]">
             <div className="mb-8">
               <label className="block text-[11px] tracking-[1.5px] text-[#62AF9D] font-semibold mb-3.5 uppercase">01 · TIPO DE CLIENTE</label>
               <div className="flex gap-2 flex-wrap">
@@ -109,7 +109,7 @@ export default function SolicitarPage() {
               </div>
             </div>
 
-            <div className="bg-[#F2F9F7] rounded-[24px] p-6 md:p-[32px_30px]">
+            <div className="bg-white border border-black/[0.08] rounded-[24px] p-6 md:p-[32px_30px]">
               <div className="text-[11px] tracking-[2px] text-[#62AF9D] font-semibold mb-3.5 uppercase">CONTACTO DIRECTO</div>
               <a href="tel:+573225105246" className="block font-display font-semibold text-[24px] mb-2.5 text-[#111111] tracking-[-0.01em] hover:text-[#62AF9D] transition-colors">+57 322 510 5246</a>
               <a href="mailto:asofrain.admi@gmail.com" className="block font-display font-semibold text-[18px] text-[#111111] tracking-[-0.01em] break-all hover:text-[#62AF9D] transition-colors">asofrain.admi@gmail.com</a>
