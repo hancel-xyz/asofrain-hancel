@@ -210,25 +210,26 @@ export default async function NosotrosPage() {
               </div>
             ))}
             {pageData?.secciones.entidades_aliadas.aliados.length > 0 && (
-              <div
-                className="bg-[#62AF9D] text-[#111111] rounded-[18px] p-[30px] md:p-[36px_30px] min-h-[200px] flex flex-col justify-between md:col-span-2 lg:col-span-3 bg-cover bg-center"
-                style={{ backgroundImage: "url(/textura-asofrain.png)" }}
-              >
-                <div className="w-14 h-14 rounded-xl bg-white overflow-hidden flex items-center justify-center font-display font-semibold text-[22px] text-[#111111] mb-6 md:mb-0">
-                  {(() => {
-                    const ultimo = pageData.secciones.entidades_aliadas.aliados[pageData.secciones.entidades_aliadas.aliados.length - 1];
-                    return isRealImageUrl(ultimo.logo.valor) ? (
-                      <ImageSlot src={ultimo.logo.valor} placeholder={ultimo.titulo.valor} />
-                    ) : (
-                      ultimo.titulo.valor.charAt(0)
-                    );
-                  })()}
-                </div>
-                <div className="flex justify-between items-start md:items-end gap-6 md:gap-10 flex-col md:flex-row">
-                  <div>
-                    <div className="text-[11px] tracking-[1.5px] font-semibold text-[#111111]/70">{pageData.secciones.entidades_aliadas.aliados[pageData.secciones.entidades_aliadas.aliados.length - 1].titulo.valor}</div>
+              <div className="relative isolate overflow-hidden rounded-[18px] min-h-[200px] md:col-span-2 lg:col-span-3">
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(/textura-asofrain.png)" }}></div>
+                <div className="absolute inset-0 bg-black/35"></div>
+                <div className="relative h-full text-white p-[30px] md:p-[36px_30px] flex flex-col justify-between">
+                  <div className="w-14 h-14 rounded-xl bg-white overflow-hidden flex items-center justify-center font-display font-semibold text-[22px] text-[#111111] mb-6 md:mb-0">
+                    {(() => {
+                      const ultimo = pageData.secciones.entidades_aliadas.aliados[pageData.secciones.entidades_aliadas.aliados.length - 1];
+                      return isRealImageUrl(ultimo.logo.valor) ? (
+                        <ImageSlot src={ultimo.logo.valor} placeholder={ultimo.titulo.valor} />
+                      ) : (
+                        ultimo.titulo.valor.charAt(0)
+                      );
+                    })()}
                   </div>
-                  <div className="text-[13.5px] text-[#111111]/70 max-w-[420px] whitespace-pre-wrap">{pageData.secciones.entidades_aliadas.aliados[pageData.secciones.entidades_aliadas.aliados.length - 1].descripcion.valor}</div>
+                  <div className="flex justify-between items-start md:items-end gap-6 md:gap-10 flex-col md:flex-row">
+                    <div>
+                      <div className="text-[11px] tracking-[1.5px] font-semibold text-white/80">{pageData.secciones.entidades_aliadas.aliados[pageData.secciones.entidades_aliadas.aliados.length - 1].titulo.valor}</div>
+                    </div>
+                    <div className="text-[13.5px] text-white/80 max-w-[420px] whitespace-pre-wrap">{pageData.secciones.entidades_aliadas.aliados[pageData.secciones.entidades_aliadas.aliados.length - 1].descripcion.valor}</div>
+                  </div>
                 </div>
               </div>
             )}
