@@ -20,7 +20,7 @@ export async function Footer() {
   return (
     <footer className="px-4 pt-8 pb-4 bg-white font-sans">
       <div
-        className={`relative max-w-[1560px] mx-auto rounded-[32px] p-8 md:px-[60px] md:pt-[80px] md:pb-[40px] overflow-hidden ${
+        className={`relative isolate max-w-[1560px] mx-auto rounded-[32px] p-8 md:px-[60px] md:pt-[80px] md:pb-[40px] overflow-hidden ${
           hasImage ? "text-white" : "bg-white border border-black/[0.08] text-[#111111]"
         }`}
       >
