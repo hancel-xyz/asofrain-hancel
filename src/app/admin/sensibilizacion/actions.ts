@@ -3,6 +3,19 @@ import { getEstructura, updateEstructuraPageSection } from "@/lib/data";
 import { uploadMediaFile } from "@/lib/media";
 import { revalidatePath } from "next/cache";
 
+// Uploads a single gallery image directly (bypassing the big form submit).
+// Bundling many photos into one giant Server Action payload alongside the
+// rest of the (potentially dozens of images long) gallery form is what was
+// causing "Ocurrio un error al guardar los cambios": either the request body
+// or the upload itself would fail for the whole batch, even though most of
+// those fields were unrelated, already-saved images.
+export async function uploadGaleriaImage(formData: FormData) {
+  return uploadMediaFile(formData.get("file"), {
+    pageSlug: "sensibilizacion",
+    sectionKey: "galeria",
+  });
+}
+
 export async function updateSensibilizacionEncabezado(formData: FormData) {
   const estructura = await getEstructura();
   const page = estructura?.sitio.paginas.find((p: any) => p.id === "sensibilizacion");
@@ -80,27 +93,22 @@ export async function updateSensibilizacionGaleria(formData: FormData) {
   );
   const imageIds = formData.getAll("imagenes_id").map((v) => v.toString()).filter(Boolean);
 
+  // Images are uploaded individually (via uploadGaleriaImage) as soon as
+  // they're picked, so by the time this action runs it only ever receives
+  // small string fields (ids, urls, keys, alt text) — never raw file bytes.
   const data: any = {
     permite_agregar: page.secciones.galeria.permite_agregar,
     titulo: { ...page.secciones.galeria.titulo, valor: formData.get("titulo")?.toString() || "" },
-    imagenes: await Promise.all(
-      imageIds.map(async (id) => {
-        const existing = existingById.get(id);
-        const updatedItem: any = existing ? { ...existing } : { id, url: "", alt: "", editable_admin: true };
+    imagenes: imageIds.map((id) => {
+      const existing = existingById.get(id);
+      const updatedItem: any = existing ? { ...existing } : { id, url: "", alt: "", editable_admin: true };
 
-        const uploaded = await uploadMediaFile(formData.get(`${id}_url`), {
-          pageSlug: "sensibilizacion",
-          sectionKey: "galeria",
-          alt: formData.get(`${id}_alt`)?.toString(),
-        });
-        if (uploaded) {
-          updatedItem.url = uploaded.url;
-          updatedItem.key = uploaded.key;
-        }
-        if (formData.has(`${id}_alt`)) updatedItem.alt = formData.get(`${id}_alt`)?.toString() || "";
-        return updatedItem;
-      })
-    ),
+      const url = formData.get(`${id}_url`)?.toString() || "";
+      if (url) updatedItem.url = url;
+      if (formData.has(`${id}_key`)) updatedItem.key = formData.get(`${id}_key`)?.toString() || updatedItem.key;
+      if (formData.has(`${id}_alt`)) updatedItem.alt = formData.get(`${id}_alt`)?.toString() || "";
+      return updatedItem;
+    }),
   };
 
   await updateEstructuraPageSection("sensibilizacion", "galeria", data);
