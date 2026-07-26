@@ -196,9 +196,10 @@ export default async function NosotrosPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {pageData?.secciones.entidades_aliadas.aliados.slice(0, pageData.secciones.entidades_aliadas.aliados.length - 1).map((e: any) => (
               <div key={e.id} className="bg-white border border-black/[0.08] rounded-[18px] p-[36px_30px] min-h-[200px] flex flex-col justify-between">
-                <div className="w-14 h-14 rounded-xl bg-white overflow-hidden flex items-center justify-center font-display font-semibold text-[22px] text-[#111111]">
+                <div className="h-12 md:h-14 min-w-12 md:min-w-14 px-3 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center font-display font-semibold text-[22px] text-[#111111]">
                   {isRealImageUrl(e.logo.valor) ? (
-                    <ImageSlot src={e.logo.valor} placeholder={e.titulo.valor} />
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={e.logo.valor} alt={e.titulo.valor} className="h-7 md:h-8 w-auto object-contain" />
                   ) : (
                     e.titulo.valor.charAt(0)
                   )}
@@ -214,11 +215,12 @@ export default async function NosotrosPage() {
                 <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(/textura-asofrain.png)" }}></div>
                 <div className="absolute inset-0 bg-black/35"></div>
                 <div className="relative h-full text-white p-[30px] md:p-[36px_30px] flex flex-col justify-between">
-                  <div className="w-14 h-14 rounded-xl bg-white overflow-hidden flex items-center justify-center font-display font-semibold text-[22px] text-[#111111] mb-6 md:mb-0">
+                  <div className="h-12 md:h-14 min-w-12 md:min-w-14 px-3 rounded-xl bg-white flex items-center justify-center font-display font-semibold text-[22px] text-[#111111] mb-6 md:mb-0">
                     {(() => {
                       const ultimo = pageData.secciones.entidades_aliadas.aliados[pageData.secciones.entidades_aliadas.aliados.length - 1];
                       return isRealImageUrl(ultimo.logo.valor) ? (
-                        <ImageSlot src={ultimo.logo.valor} placeholder={ultimo.titulo.valor} />
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={ultimo.logo.valor} alt={ultimo.titulo.valor} className="h-7 md:h-8 w-auto object-contain" />
                       ) : (
                         ultimo.titulo.valor.charAt(0)
                       );
