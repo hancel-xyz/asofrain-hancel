@@ -180,6 +180,20 @@ const data = {
         <PanelBottomIcon
         />
       ),
+      items: [
+        {
+          title: "Fondo",
+          url: "/admin/footer/fondo",
+        },
+        {
+          title: "General",
+          url: "/admin/footer/general",
+        },
+        {
+          title: "Contacto",
+          url: "/admin/footer/contacto",
+        },
+      ],
     },
     {
       title: "Settings",

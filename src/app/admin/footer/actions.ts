@@ -21,3 +21,43 @@ export async function updateFooterFondo(formData: FormData) {
   await updateEstructuraPageSection("footer", "fondo", data);
   revalidatePath("/", "layout");
 }
+
+export async function updateFooterGeneral(formData: FormData) {
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "footer");
+  if (!page) return;
+
+  const existingById = new Map<string, any>(
+    (page.secciones.general.redes ?? []).map((r: any) => [r.id, r])
+  );
+  const redIds = formData.getAll("redes_id").map((v) => v.toString()).filter(Boolean);
+
+  const data = {
+    descripcion: { ...page.secciones.general.descripcion, valor: formData.get("descripcion")?.toString() || "" },
+    redes: redIds.map((id) => {
+      const existing = existingById.get(id);
+      return {
+        id,
+        nombre: formData.get(`${id}_nombre`)?.toString() || existing?.nombre || "",
+        url: formData.get(`${id}_url`)?.toString() || existing?.url || "",
+      };
+    }),
+  };
+
+  await updateEstructuraPageSection("footer", "general", data);
+  revalidatePath("/", "layout");
+}
+
+export async function updateFooterContacto(formData: FormData) {
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "footer");
+  if (!page) return;
+
+  const data = {
+    email: { ...page.secciones.contacto.email, valor: formData.get("email")?.toString() || "" },
+    telefono: { ...page.secciones.contacto.telefono, valor: formData.get("telefono")?.toString() || "" },
+  };
+
+  await updateEstructuraPageSection("footer", "contacto", data);
+  revalidatePath("/", "layout");
+}

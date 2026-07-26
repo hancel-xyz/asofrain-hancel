@@ -9,6 +9,16 @@ export async function Footer() {
   const fondoUrl = page?.secciones?.fondo?.imagen_fondo?.valor;
   const hasImage = isRealImageUrl(fondoUrl);
 
+  const descripcion = page?.secciones?.general?.descripcion?.valor || "";
+  const redes: { id: string; nombre: string; url: string }[] = page?.secciones?.general?.redes ?? [];
+  const email = page?.secciones?.contacto?.email?.valor || "";
+  const telefono = page?.secciones?.contacto?.telefono?.valor || "";
+  const telefonoHref = telefono.replace(/[^\d+]/g, "");
+  const [emailUser, emailDomain] = email.split("@");
+
+  const nosotrosPage = data?.sitio.paginas.find((p: any) => p.id === "nosotros");
+  const aliados: { id: string; titulo: { valor: string } }[] = nosotrosPage?.secciones?.entidades_aliadas?.aliados ?? [];
+
   const text70 = hasImage ? "text-white/70 hover:text-white" : "text-[#111111]/70 hover:text-[#111111]";
   const text60 = hasImage ? "text-white/60" : "text-[#111111]/60";
   const text50 = hasImage ? "text-white/50" : "text-[#111111]/50";
@@ -43,17 +53,27 @@ export async function Footer() {
                 unoptimized
               />
             </div>
-            <p className={`text-[14px] leading-relaxed max-w-[340px] mb-6 ${text60}`}>
-              Prestadores del servicio público de aprovechamiento en Suba, Engativá y Usaquén. Dignificando el oficio del recuperador ambiental desde 2006.
-            </p>
-            <div className="flex gap-2.5">
-              <Link href="#" aria-label="Facebook" className={`w-10 h-10 rounded-full border flex items-center justify-center font-semibold text-sm transition-colors ${iconBtn}`}>
-                f
-              </Link>
-              <Link href="#" aria-label="Instagram" className={`w-10 h-10 rounded-full border flex items-center justify-center font-semibold text-sm transition-colors ${iconBtn}`}>
-                ig
-              </Link>
-            </div>
+            {descripcion && (
+              <p className={`text-[14px] leading-relaxed max-w-[340px] mb-6 ${text60}`}>
+                {descripcion}
+              </p>
+            )}
+            {redes.length > 0 && (
+              <div className="flex gap-2.5">
+                {redes.map((red) => (
+                  <Link
+                    key={red.id}
+                    href={red.url || "#"}
+                    target={red.url ? "_blank" : undefined}
+                    rel={red.url ? "noopener noreferrer" : undefined}
+                    aria-label={red.nombre}
+                    className={`w-10 h-10 rounded-full border flex items-center justify-center font-semibold text-sm transition-colors uppercase ${iconBtn}`}
+                  >
+                    {red.nombre.slice(0, 2)}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           <div>
@@ -64,7 +84,6 @@ export async function Footer() {
               <Link href="/servicios" className={`transition-colors ${text70}`}>Servicios</Link>
               <Link href="/sensibilizacion" className={`transition-colors ${text70}`}>Sensibilización</Link>
               <Link href="/eventos" className={`transition-colors ${text70}`}>Eventos</Link>
-              <Link href="/contacto" className={`transition-colors ${text70}`}>Contacto</Link>
             </div>
           </div>
 
@@ -81,30 +100,31 @@ export async function Footer() {
           <div>
             <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">ALIADOS</div>
             <div className={`flex flex-col gap-3 text-[13px] ${text60}`}>
-              <div>SSPD</div>
-              <div>UAESP</div>
-              <div>Alcaldías Locales</div>
-              <div>CRA</div>
-              <div>MinVivienda</div>
-              <div>SDA</div>
+              {aliados.map((aliado) => (
+                <div key={aliado.id}>{aliado.titulo.valor.replace(/\*/g, "")}</div>
+              ))}
             </div>
           </div>
 
           <div className="md:col-span-2 lg:col-span-1">
             <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">CONTACTO DIRECTO</div>
-            <a href="mailto:asofrain.admi@gmail.com" className={`block font-semibold text-[18px] mb-4 break-all transition-colors ${textBase}`}>
-              asofrain.admi<br/>@gmail.com
-            </a>
-            <a href="tel:+573225105246" className={`block font-semibold text-[18px] transition-colors ${textBase}`}>
-              +57 322 510 5246
-            </a>
+            {email && (
+              <a href={`mailto:${email}`} className={`block font-semibold text-[18px] mb-4 break-all transition-colors ${textBase}`}>
+                {emailDomain ? <>{emailUser}<br />@{emailDomain}</> : email}
+              </a>
+            )}
+            {telefono && (
+              <a href={`tel:${telefonoHref}`} className={`block font-semibold text-[18px] transition-colors ${textBase}`}>
+                {telefono}
+              </a>
+            )}
           </div>
         </div>
 
         <div className="flex justify-between items-center pt-6 flex-wrap gap-5 text-center md:text-left">
           <div className={`text-[12px] w-full md:w-auto ${text50}`}>© 2026 ASOFRAIN E.S.P. · Todos los derechos reservados</div>
           <div className={`text-[12px] w-full md:w-auto ${text50}`}>
-            Ingeniería digital por <a href="https://hansel.xyz" className={`text-[#62AF9D] transition-colors ${hasImage ? "hover:text-white" : "hover:text-[#111111]"}`}>hansel.xyz</a>
+            Desarrollado por <a href="https://hansel.xyz" className={`text-[#62AF9D] transition-colors ${hasImage ? "hover:text-white" : "hover:text-[#111111]"}`}>Hancel.xyz</a>
           </div>
         </div>
       </div>
