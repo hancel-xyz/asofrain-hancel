@@ -25,5 +25,5 @@ export async function signIn(formData: FormData) {
 export async function signOutAction() {
   const auth = createAuthActions({ cookies: await cookies() });
   await auth.signOut();
-  redirect("/login");
+  redirect("/admin");
 }

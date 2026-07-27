@@ -1,7 +1,7 @@
-import { redirect } from "next/navigation";
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { getCurrentAdminUser } from "@/lib/auth/server";
+import { LoginForm } from "@/components/login-form";
 
 // Admin pages read/write live content in InsForge, so they must always be
 // rendered per-request rather than cached as static HTML at build time.
@@ -13,7 +13,20 @@ export default async function AdminLayout({
   children: React.ReactNode
 }) {
   const user = await getCurrentAdminUser();
-  if (!user) redirect("/login");
+
+  // No redirect to a separate /login route: visiting any /admin/* URL while
+  // signed out shows the login form right there (URL stays on /admin), and
+  // signing in lands back on /admin — no page/children are rendered (and no
+  // admin data is fetched) until there's a session.
+  if (!user) {
+    return (
+      <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
+        <div className="w-full max-w-sm">
+          <LoginForm />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <SidebarProvider>

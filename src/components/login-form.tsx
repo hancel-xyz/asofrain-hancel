@@ -11,7 +11,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { signIn } from "@/app/login/actions"
+import { signIn } from "@/lib/auth/actions"
 
 export function LoginForm({
   className,

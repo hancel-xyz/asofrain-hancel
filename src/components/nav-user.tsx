@@ -21,7 +21,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { ChevronsUpDownIcon, LogOutIcon } from "lucide-react"
-import { signOutAction } from "@/app/login/actions"
+import { signOutAction } from "@/lib/auth/actions"
 
 export function NavUser({
   user,
