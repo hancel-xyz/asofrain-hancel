@@ -13,7 +13,7 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import Image from "next/image"
-import { HomeIcon, UsersIcon, Settings2Icon, LifeBuoyIcon, SendIcon, FrameIcon, PieChartIcon, MapIcon, TruckIcon, MegaphoneIcon, CalendarDaysIcon, PanelBottomIcon } from "lucide-react"
+import { HomeIcon, UsersIcon, Settings2Icon, LifeBuoyIcon, SendIcon, FrameIcon, PieChartIcon, MapIcon, TruckIcon, MegaphoneIcon, CalendarDaysIcon, PanelBottomIcon, FileTextIcon } from "lucide-react"
 
 const data = {
   user: {
@@ -172,6 +172,14 @@ const data = {
           url: "/admin/eventos/listado-eventos",
         },
       ],
+    },
+    {
+      title: "Documentos",
+      url: "/admin/documentos",
+      icon: (
+        <FileTextIcon
+        />
+      ),
     },
     {
       title: "Footer",

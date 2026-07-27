@@ -19,6 +19,11 @@ export async function Footer() {
   const nosotrosPage = data?.sitio.paginas.find((p: any) => p.id === "nosotros");
   const aliados: { id: string; titulo: { valor: string } }[] = nosotrosPage?.secciones?.entidades_aliadas?.aliados ?? [];
 
+  const documentosPage = data?.sitio.paginas.find((p: any) => p.id === "documentos");
+  const documentos: { id: string; titulo: string; url: string }[] = (documentosPage?.secciones?.lista?.documentos ?? []).filter(
+    (d: any) => d.titulo && d.url
+  );
+
   const text70 = hasImage ? "text-white/70 hover:text-white" : "text-[#111111]/70 hover:text-[#111111]";
   const text60 = hasImage ? "text-white/60" : "text-[#111111]/60";
   const text50 = hasImage ? "text-white/50" : "text-[#111111]/50";
@@ -87,15 +92,18 @@ export async function Footer() {
             </div>
           </div>
 
-          <div>
-            <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">LEGAL</div>
-            <div className="flex flex-col gap-3 text-[14px]">
-              <Link href="/normatividad" className={`transition-colors ${text70}`}>Normatividad legal</Link>
-              <Link href="/normatividad#ccu" className={`transition-colors ${text70}`}>Condiciones Uniformes</Link>
-              <Link href="/normatividad#tarifa" className={`transition-colors ${text70}`}>Marco tarifario CRA 720</Link>
-              <Link href="#" className={`transition-colors ${text70}`}>Tratamiento de datos</Link>
+          {documentos.length > 0 && (
+            <div>
+              <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">LEGAL</div>
+              <div className="flex flex-col gap-3 text-[14px]">
+                {documentos.map((doc) => (
+                  <a key={doc.id} href={doc.url} target="_blank" rel="noopener noreferrer" className={`transition-colors ${text70}`}>
+                    {doc.titulo}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div>
             <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">ALIADOS</div>
