@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ImageSlot } from "@/components/ImageSlot";
+import { ImageSlot, isRealImageUrl } from "@/components/ImageSlot";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
@@ -16,7 +16,14 @@ export type ActiveRoute = "inicio" | "nosotros" | "servicios" | "sensibilizacion
 // stays solid there since there's no hero to float over.
 const ROUTES_WITH_HERO = new Set<ActiveRoute>(["inicio", "nosotros", "servicios"]);
 
-export function Header() {
+interface MenuImages {
+  nosotros: { quienesSomos: string; historia: string; valores: string };
+  servicios: { descripcion: string; rutas: string; sectores: string; tarifa: string };
+  sensibilizacion: string;
+  eventos: string;
+}
+
+export function Header({ menuImages }: { menuImages?: MenuImages }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -86,25 +93,43 @@ export function Header() {
               <Link href="/nosotros" className={getLinkClasses("nosotros")}>
                 Nosotros
               </Link>
-              <div className="absolute top-[calc(100%+20px)] left-1/2 -translate-x-1/2 hidden group-hover:flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)] w-[720px]">
-                <Link href="/nosotros#quienes-somos" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#62AF9D] to-[#3d7a6d] relative">
-                    <ImageSlot placeholder="Foto equipo ASOFRAIN" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Quiénes somos</div>
-                </Link>
-                <Link href="/nosotros#historia" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#111111] to-[#3d7a6d] relative">
-                    <ImageSlot placeholder="Historia" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Historia</div>
-                </Link>
-                <Link href="/nosotros#valores" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#3d7a6d] to-[#111111] relative">
-                    <ImageSlot placeholder="Valores" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Valores y aliados</div>
-                </Link>
+              {/* top-full + pt-5 (instead of top-[calc(100%+20px)]) keeps the
+                  gap between trigger and dropdown inside this element's own
+                  hoverable box, instead of being dead space that drops
+                  group-hover before the pointer reaches the dropdown. */}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:block pt-5 w-[720px]">
+                <div className="flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)]">
+                  <Link href="/nosotros#quienes-somos" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#62AF9D] to-[#3d7a6d] relative">
+                      {isRealImageUrl(menuImages?.nosotros.quienesSomos) ? (
+                        <img src={menuImages!.nosotros.quienesSomos} alt="Quiénes somos" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Foto equipo ASOFRAIN" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Quiénes somos</div>
+                  </Link>
+                  <Link href="/nosotros#historia" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#111111] to-[#3d7a6d] relative">
+                      {isRealImageUrl(menuImages?.nosotros.historia) ? (
+                        <img src={menuImages!.nosotros.historia} alt="Historia" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Historia" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Historia</div>
+                  </Link>
+                  <Link href="/nosotros#valores" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#3d7a6d] to-[#111111] relative">
+                      {isRealImageUrl(menuImages?.nosotros.valores) ? (
+                        <img src={menuImages!.nosotros.valores} alt="Valores y aliados" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Valores" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Valores y aliados</div>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -112,31 +137,49 @@ export function Header() {
               <Link href="/servicios" className={getLinkClasses("servicios")}>
                 Servicios
               </Link>
-              <div className="absolute top-[calc(100%+20px)] left-1/2 -translate-x-1/2 hidden group-hover:flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)] w-[840px]">
-                <Link href="/servicios#descripcion" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#4d9686]">
-                    <ImageSlot placeholder="Descripción de servicios" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Descripción</div>
-                </Link>
-                <Link href="/servicios#rutas" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#111111] to-[#3d7a6d]">
-                    <ImageSlot placeholder="Rutas y horarios" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Rutas y horarios</div>
-                </Link>
-                <Link href="/servicios#sectores" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#4d9686] to-[#111111]">
-                    <ImageSlot placeholder="Sectores atendidos" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Sectores</div>
-                </Link>
-                <Link href="/servicios#tarifa" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#111111]">
-                    <ImageSlot placeholder="Tarifa" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Tarifa y productos</div>
-                </Link>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:block pt-5 w-[840px]">
+                <div className="flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)]">
+                  <Link href="/servicios#descripcion" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#4d9686]">
+                      {isRealImageUrl(menuImages?.servicios.descripcion) ? (
+                        <img src={menuImages!.servicios.descripcion} alt="Descripción de servicios" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Descripción de servicios" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Descripción</div>
+                  </Link>
+                  <Link href="/servicios#rutas" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#111111] to-[#3d7a6d]">
+                      {isRealImageUrl(menuImages?.servicios.rutas) ? (
+                        <img src={menuImages!.servicios.rutas} alt="Rutas y horarios" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Rutas y horarios" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Rutas y horarios</div>
+                  </Link>
+                  <Link href="/servicios#sectores" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#4d9686] to-[#111111]">
+                      {isRealImageUrl(menuImages?.servicios.sectores) ? (
+                        <img src={menuImages!.servicios.sectores} alt="Sectores atendidos" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Sectores atendidos" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Sectores</div>
+                  </Link>
+                  <Link href="/servicios#tarifa" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#111111]">
+                      {isRealImageUrl(menuImages?.servicios.tarifa) ? (
+                        <img src={menuImages!.servicios.tarifa} alt="Tarifa y productos" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Tarifa" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Tarifa y productos</div>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -144,19 +187,29 @@ export function Header() {
               <button type="button" className={getLinkClasses("")}>
                 Iniciativas
               </button>
-              <div className="absolute top-[calc(100%+20px)] left-1/2 -translate-x-1/2 hidden group-hover:flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)] w-[560px]">
-                <Link href="/sensibilizacion" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#111111]">
-                    <ImageSlot placeholder="Campañas" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Sensibilización</div>
-                </Link>
-                <Link href="/eventos" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                  <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#111111] to-[#4d9686]">
-                    <ImageSlot placeholder="Institucionales" className="absolute inset-0 bg-transparent text-white/70" />
-                  </div>
-                  <div className="mt-3 text-[14px] font-semibold">Eventos</div>
-                </Link>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:block pt-5 w-[560px]">
+                <div className="flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)]">
+                  <Link href="/sensibilizacion" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#111111]">
+                      {isRealImageUrl(menuImages?.sensibilizacion) ? (
+                        <img src={menuImages!.sensibilizacion} alt="Sensibilización" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Campañas" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Sensibilización</div>
+                  </Link>
+                  <Link href="/eventos" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#111111] to-[#4d9686]">
+                      {isRealImageUrl(menuImages?.eventos) ? (
+                        <img src={menuImages!.eventos} alt="Eventos" className="absolute inset-0 w-full h-full object-cover" />
+                      ) : (
+                        <ImageSlot placeholder="Institucionales" className="absolute inset-0 bg-transparent text-white/70" />
+                      )}
+                    </div>
+                    <div className="mt-3 text-[14px] font-semibold">Eventos</div>
+                  </Link>
+                </div>
               </div>
             </div>
 

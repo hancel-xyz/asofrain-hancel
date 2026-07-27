@@ -58,3 +58,21 @@ export async function updateEventosListadoEventos(formData: FormData) {
   revalidatePath("/", "layout");
 }
 
+
+export async function updateEventosMenuPreview(formData: FormData) {
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "eventos");
+  if (!page) return;
+
+  const section = page.secciones.menu_preview;
+  const uploaded = await uploadMediaFile(formData.get("imagen"), {
+    pageSlug: "eventos",
+    sectionKey: "menu_preview",
+  });
+  if (!uploaded) return;
+
+  await updateEstructuraPageSection("eventos", "menu_preview", {
+    imagen: { ...section.imagen, valor: uploaded.url, key: uploaded.key },
+  });
+  revalidatePath("/", "layout");
+}

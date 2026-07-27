@@ -214,3 +214,25 @@ export async function updateServiciosCtaFinal(formData: FormData) {
   revalidatePath("/", "layout");
 }
 
+
+export async function updateServiciosMenuPreview(formData: FormData) {
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "servicios");
+  if (!page) return;
+
+  const section = page.secciones.menu_preview;
+  const data: any = {};
+
+  for (const key of ["descripcion", "rutas", "sectores", "tarifa"] as const) {
+    const uploaded = await uploadMediaFile(formData.get(key), {
+      pageSlug: "servicios",
+      sectionKey: "menu_preview",
+    });
+    if (uploaded) {
+      data[key] = { ...section[key], valor: uploaded.url, key: uploaded.key };
+    }
+  }
+
+  await updateEstructuraPageSection("servicios", "menu_preview", data);
+  revalidatePath("/", "layout");
+}

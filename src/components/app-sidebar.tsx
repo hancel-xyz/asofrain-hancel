@@ -96,6 +96,10 @@ const data = {
           title: "Entidades aliadas",
           url: "/admin/nosotros/entidades-aliadas",
         },
+        {
+          title: "Menú de navegación",
+          url: "/admin/nosotros/menu-navegacion",
+        },
       ],
     },
     {
@@ -134,6 +138,10 @@ const data = {
           title: "CTA final",
           url: "/admin/servicios/cta-final",
         },
+        {
+          title: "Menú de navegación",
+          url: "/admin/servicios/menu-navegacion",
+        },
       ],
     },
     {
@@ -156,6 +164,10 @@ const data = {
           title: "Galería",
           url: "/admin/sensibilizacion/galeria",
         },
+        {
+          title: "Menú de navegación",
+          url: "/admin/sensibilizacion/menu-navegacion",
+        },
       ],
     },
     {
@@ -169,6 +181,10 @@ const data = {
         {
           title: "Listado de eventos",
           url: "/admin/eventos/listado-eventos",
+        },
+        {
+          title: "Menú de navegación",
+          url: "/admin/eventos/menu-navegacion",
         },
       ],
     },

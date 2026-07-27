@@ -115,3 +115,21 @@ export async function updateSensibilizacionGaleria(formData: FormData) {
   revalidatePath("/", "layout");
 }
 
+
+export async function updateSensibilizacionMenuPreview(formData: FormData) {
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "sensibilizacion");
+  if (!page) return;
+
+  const section = page.secciones.menu_preview;
+  const uploaded = await uploadMediaFile(formData.get("imagen"), {
+    pageSlug: "sensibilizacion",
+    sectionKey: "menu_preview",
+  });
+  if (!uploaded) return;
+
+  await updateEstructuraPageSection("sensibilizacion", "menu_preview", {
+    imagen: { ...section.imagen, valor: uploaded.url, key: uploaded.key },
+  });
+  revalidatePath("/", "layout");
+}

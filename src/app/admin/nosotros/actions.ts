@@ -161,3 +161,25 @@ export async function updateNosotrosEntidadesAliadas(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/admin/nosotros/entidades-aliadas");
 }
+
+export async function updateNosotrosMenuPreview(formData: FormData) {
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "nosotros");
+  if (!page) return;
+
+  const section = page.secciones.menu_preview;
+  const data: any = {};
+
+  for (const key of ["quienes_somos", "historia", "valores"] as const) {
+    const uploaded = await uploadMediaFile(formData.get(key), {
+      pageSlug: "nosotros",
+      sectionKey: "menu_preview",
+    });
+    if (uploaded) {
+      data[key] = { ...section[key], valor: uploaded.url, key: uploaded.key };
+    }
+  }
+
+  await updateEstructuraPageSection("nosotros", "menu_preview", data);
+  revalidatePath("/", "layout");
+}
