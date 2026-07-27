@@ -97,7 +97,13 @@ export async function Footer() {
               <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">LEGAL</div>
               <div className="flex flex-col gap-3 text-[14px]">
                 {documentos.map((doc) => (
-                  <a key={doc.id} href={doc.url} target="_blank" rel="noopener noreferrer" className={`transition-colors ${text70}`}>
+                  <a
+                    key={doc.id}
+                    href={`/api/documentos/view?url=${encodeURIComponent(doc.url)}&filename=${encodeURIComponent(doc.titulo)}.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`transition-colors ${text70}`}
+                  >
                     {doc.titulo}
                   </a>
                 ))}

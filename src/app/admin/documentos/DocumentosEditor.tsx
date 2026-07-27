@@ -163,7 +163,12 @@ export function DocumentosEditor({ initialDocumentos }: { initialDocumentos: Doc
                 <p className="text-xs text-destructive">Error al subir. Intenta de nuevo.</p>
               )}
               {doc.url && doc.status === "ready" && (
-                <a href={doc.url} target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground underline break-all">
+                <a
+                  href={`/api/documentos/view?url=${encodeURIComponent(doc.url)}&filename=${encodeURIComponent(doc.titulo || "documento")}.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-muted-foreground underline break-all"
+                >
                   Ver documento actual
                 </a>
               )}
