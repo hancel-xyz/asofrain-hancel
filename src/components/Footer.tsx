@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getEstructura } from "@/lib/data";
 import { isRealImageUrl } from "@/components/ImageSlot";
+import { PqrsDialog } from "@/components/PqrsDialog";
 
 export async function Footer() {
   const data = await getEstructura();
@@ -45,7 +46,7 @@ export async function Footer() {
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/60 to-black/40 pointer-events-none"></div>
           </>
         )}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-[60px] pb-[50px] border-b ${hasImage ? "border-white/20" : "border-black/[0.08]"}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 md:gap-[60px] pb-[50px] border-b ${hasImage ? "border-white/20" : "border-black/[0.08]"}`}>
 
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
@@ -132,6 +133,16 @@ export async function Footer() {
                 {telefono}
               </a>
             )}
+          </div>
+
+          <div>
+            <div className="text-[10px] tracking-widest text-[#62AF9D] font-semibold mb-5">PQRS</div>
+            <p className={`text-[13px] leading-relaxed mb-4 max-w-[220px] ${text60}`}>
+              Peticiones, quejas, reclamos o sugerencias sobre el servicio.
+            </p>
+            <PqrsDialog
+              triggerClassName={`inline-flex px-5 py-2.5 rounded-full text-[13px] font-semibold border transition-colors ${iconBtn}`}
+            />
           </div>
         </div>
 

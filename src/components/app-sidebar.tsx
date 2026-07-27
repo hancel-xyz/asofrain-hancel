@@ -11,7 +11,7 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import Image from "next/image"
-import { HomeIcon, UsersIcon, Settings2Icon, TruckIcon, MegaphoneIcon, CalendarDaysIcon, PanelBottomIcon, FileTextIcon, Building2Icon } from "lucide-react"
+import { HomeIcon, UsersIcon, Settings2Icon, TruckIcon, MegaphoneIcon, CalendarDaysIcon, PanelBottomIcon, FileTextIcon, Building2Icon, ClipboardListIcon, MessageSquareWarningIcon } from "lucide-react"
 import { isRealImageUrl } from "@/components/ImageSlot"
 
 const data = {
@@ -193,6 +193,22 @@ const data = {
       url: "/admin/documentos",
       icon: (
         <FileTextIcon
+        />
+      ),
+    },
+    {
+      title: "Solicitudes",
+      url: "/admin/solicitudes",
+      icon: (
+        <ClipboardListIcon
+        />
+      ),
+    },
+    {
+      title: "PQRS",
+      url: "/admin/pqrs",
+      icon: (
+        <MessageSquareWarningIcon
         />
       ),
     },
