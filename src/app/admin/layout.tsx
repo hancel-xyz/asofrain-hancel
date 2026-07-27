@@ -2,6 +2,7 @@ import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { getCurrentAdminUser } from "@/lib/auth/server";
 import { LoginForm } from "@/components/login-form";
+import { getEstructura } from "@/lib/data";
 
 // Admin pages read/write live content in InsForge, so they must always be
 // rendered per-request rather than cached as static HTML at build time.
@@ -28,9 +29,15 @@ export default async function AdminLayout({
     );
   }
 
+  const data = await getEstructura();
+  const settingsGeneral = data?.sitio.paginas.find((p: any) => p.id === "settings")?.secciones?.general;
+
   return (
     <SidebarProvider>
-      <AppSidebar user={{ name: user.profile?.name || user.email, email: user.email }} />
+      <AppSidebar
+        user={{ name: user.profile?.name || user.email, email: user.email }}
+        org={{ nombre: settingsGeneral?.nombre?.valor || "Organización", logoUrl: settingsGeneral?.logo?.valor || "" }}
+      />
       <SidebarInset>{children}</SidebarInset>
     </SidebarProvider>
   )

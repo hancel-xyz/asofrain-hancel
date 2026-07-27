@@ -34,7 +34,7 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>Plataforma</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -58,7 +58,7 @@ export function NavMain({
                 >
                   <ChevronRightIcon
                   />
-                  <span className="sr-only">Toggle</span>
+                  <span className="sr-only">Mostrar/ocultar</span>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>

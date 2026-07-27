@@ -3,8 +3,6 @@
 import * as React from "react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
@@ -13,7 +11,8 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import Image from "next/image"
-import { HomeIcon, UsersIcon, Settings2Icon, LifeBuoyIcon, SendIcon, FrameIcon, PieChartIcon, MapIcon, TruckIcon, MegaphoneIcon, CalendarDaysIcon, PanelBottomIcon, FileTextIcon } from "lucide-react"
+import { HomeIcon, UsersIcon, Settings2Icon, TruckIcon, MegaphoneIcon, CalendarDaysIcon, PanelBottomIcon, FileTextIcon, Building2Icon } from "lucide-react"
+import { isRealImageUrl } from "@/components/ImageSlot"
 
 const data = {
   user: {
@@ -204,8 +203,8 @@ const data = {
       ],
     },
     {
-      title: "Settings",
-      url: "#",
+      title: "Configuración",
+      url: "/admin/settings",
       icon: (
         <Settings2Icon
         />
@@ -213,83 +212,46 @@ const data = {
       items: [
         {
           title: "General",
-          url: "#",
+          url: "/admin/settings/general",
         },
         {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
+          title: "Administradores",
+          url: "/admin/settings/administradores",
         },
       ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: (
-        <LifeBuoyIcon
-        />
-      ),
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: (
-        <SendIcon
-        />
-      ),
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: (
-        <FrameIcon
-        />
-      ),
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: (
-        <PieChartIcon
-        />
-      ),
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: (
-        <MapIcon
-        />
-      ),
     },
   ],
 }
 export function AppSidebar({
   user,
+  org,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { user?: { name: string; email: string } }) {
+}: React.ComponentProps<typeof Sidebar> & {
+  user?: { name: string; email: string }
+  org?: { nombre: string; logoUrl: string }
+}) {
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <a href="#" className="flex items-center px-2 py-1.5">
           <Image src="/hancel-logo.svg" alt="Hancel" width={398} height={83} className="h-6 w-auto" />
         </a>
+        {org && (
+          <div className="flex items-center gap-2 rounded-lg border px-2 py-1.5 mx-2 bg-sidebar-accent/40">
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-md bg-muted">
+              {isRealImageUrl(org.logoUrl) ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={org.logoUrl} alt={org.nombre} className="h-full w-full object-cover" />
+              ) : (
+                <Building2Icon className="h-3.5 w-3.5 text-muted-foreground" />
+              )}
+            </div>
+            <span className="truncate text-sm font-medium">{org.nombre}</span>
+          </div>
+        )}
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user ?? data.user} />
