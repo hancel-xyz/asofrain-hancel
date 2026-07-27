@@ -9,7 +9,15 @@ export async function createInsForgeServerClient() {
 }
 
 export async function getCurrentAdminUser() {
-  const client = await createInsForgeServerClient();
-  const { data } = await client.auth.getCurrentUser();
-  return data?.user ?? null;
+  try {
+    const client = await createInsForgeServerClient();
+    const { data } = await client.auth.getCurrentUser();
+    return data?.user ?? null;
+  } catch (error) {
+    // Fail closed (show the login form) instead of crashing the whole
+    // /admin layout — e.g. if NEXT_PUBLIC_INSFORGE_URL/ANON_KEY are missing
+    // in this environment, createServerClient() throws synchronously.
+    console.error("getCurrentAdminUser failed:", error);
+    return null;
+  }
 }
