@@ -13,10 +13,16 @@ export async function updateServiciosHero(formData: FormData) {
     sectionKey: "hero",
   });
 
+  // `encuadre` is the object-position the hero photo is cropped around; it can
+  // be re-adjusted without re-uploading the image.
+  const encuadre = formData.get("imagen_fondo_encuadre")?.toString();
+
   const data = {
-    imagen_fondo: uploaded
-      ? { ...page.secciones.hero.imagen_fondo, valor: uploaded.url, key: uploaded.key }
-      : page.secciones.hero.imagen_fondo,
+    imagen_fondo: {
+      ...page.secciones.hero.imagen_fondo,
+      ...(uploaded ? { valor: uploaded.url, key: uploaded.key } : {}),
+      ...(encuadre ? { encuadre } : {}),
+    },
     titulo: { ...page.secciones.hero.titulo, valor: formData.get("titulo")?.toString() || "" },
     descripcion: { ...page.secciones.hero.descripcion, valor: formData.get("descripcion")?.toString() || "" },
     descripcion_2: { ...page.secciones.hero.descripcion_2, valor: formData.get("descripcion_2")?.toString() || "" },
@@ -36,24 +42,35 @@ export async function updateServiciosServicios(formData: FormData) {
 
   const data = {
     titulo: { ...page.secciones.servicios.titulo, valor: formData.get("titulo")?.toString() || "" },
-    items: [
-      // La lista completa requeriría re-parsear formData para arrays.
-      // Por ahora mantendremos el array original y solo actualizaremos los valores que lleguen
-    ],
+    items: [] as any[],
   };
 
   // Handle arrays explicitly if they exist
   const itemsArray = page.secciones.servicios.items;
   if (itemsArray) {
-    const updateditems = itemsArray.map((item: any) => {
-      const id = item.id;
-      const updatedItem = { ...item };
-      if (formData.has(`${id}_titulo`)) updatedItem.titulo = { ...updatedItem.titulo, valor: formData.get(`${id}_titulo`)?.toString() || "" };
-      if (formData.has(`${id}_descripcion`)) updatedItem.descripcion = { ...updatedItem.descripcion, valor: formData.get(`${id}_descripcion`)?.toString() || "" };
-      return updatedItem;
-    });
-    if (Array.isArray(data.items)) data.items = updateditems;
-    else data.items = updateditems;
+    const updateditems = await Promise.all(
+      itemsArray.map(async (item: any) => {
+        const id = item.id;
+        const updatedItem = { ...item };
+        if (formData.has(`${id}_titulo`)) updatedItem.titulo = { ...updatedItem.titulo, valor: formData.get(`${id}_titulo`)?.toString() || "" };
+        if (formData.has(`${id}_descripcion`)) updatedItem.descripcion = { ...updatedItem.descripcion, valor: formData.get(`${id}_descripcion`)?.toString() || "" };
+
+        // Each of the five processes now shows a photo on the public page.
+        const uploaded = await uploadMediaFile(formData.get(`${id}_imagen`), {
+          pageSlug: "servicios",
+          sectionKey: "servicios",
+          alt: updatedItem.titulo?.valor,
+        });
+        if (uploaded) {
+          updatedItem.imagen = { ...updatedItem.imagen, valor: uploaded.url, key: uploaded.key };
+        }
+        if (formData.has(`${id}_encuadre`)) {
+          updatedItem.imagen = { ...updatedItem.imagen, encuadre: formData.get(`${id}_encuadre`)?.toString() || "50% 50%" };
+        }
+        return updatedItem;
+      })
+    );
+    data.items = updateditems;
   }
 
   await updateEstructuraPageSection("servicios", "servicios", data);

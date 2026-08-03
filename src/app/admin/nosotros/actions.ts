@@ -25,8 +25,15 @@ export async function updateNosotrosHero(formData: FormData) {
     pageSlug: "nosotros",
     sectionKey: "hero",
   });
-  if (uploaded) {
-    data.imagen_fondo = { ...page?.secciones.hero.imagen_fondo, valor: uploaded.url, key: uploaded.key };
+  // `encuadre` is the object-position the hero photo is cropped around; it can
+  // be re-adjusted without re-uploading the image.
+  const encuadre = formData.get("imagen_fondo_encuadre")?.toString();
+  if (uploaded || encuadre) {
+    data.imagen_fondo = {
+      ...page?.secciones.hero.imagen_fondo,
+      ...(uploaded ? { valor: uploaded.url, key: uploaded.key } : {}),
+      ...(encuadre ? { encuadre } : {}),
+    };
   }
 
   await updateEstructuraPageSection("nosotros", "hero", data);

@@ -5,6 +5,8 @@ const MEDIA_BUCKET = "media";
 export interface UploadedMedia {
   url: string;
   key: string;
+  /** Mime type of the uploaded file, e.g. "image/png" or "video/mp4". */
+  mime: string;
 }
 
 /**
@@ -46,5 +48,5 @@ export async function uploadMediaFile(
     console.error("uploadMediaFile: media_assets insert failed", insertError);
   }
 
-  return { url: data.url, key: data.key };
+  return { url: data.url, key: data.key, mime: file.type };
 }

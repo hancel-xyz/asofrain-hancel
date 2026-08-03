@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AdminForm } from "@/components/AdminForm";
+import { ImagenConEncuadreField } from "@/components/ImagenConEncuadreField";
 
 export default async function AdminServiciosHeroPage() {
   const data = await getEstructura();
@@ -30,11 +31,14 @@ export default async function AdminServiciosHeroPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="imagen_fondo">Imagen Fondo</Label>
-              <Input id="imagen_fondo" name="imagen_fondo" type="file" accept="image/*,video/*" />
-              <p className="text-xs text-muted-foreground">Actual: {section.imagen_fondo.valor}</p>
-            </div>
+            <ImagenConEncuadreField
+              name="imagen_fondo"
+              label="Imagen de fondo"
+              help="La foto ocupa toda la pantalla, así que se recorta según el tamaño del dispositivo. Marca a la derecha el punto que siempre debe verse."
+              currentUrl={section.imagen_fondo?.valor}
+              currentFocal={section.imagen_fondo?.encuadre}
+              aspectClassName="aspect-[16/9]"
+            />
             <div className="flex flex-col gap-3">
               <Label htmlFor="titulo">Titulo</Label>
               <Input id="titulo" name="titulo" defaultValue={section.titulo.valor} />

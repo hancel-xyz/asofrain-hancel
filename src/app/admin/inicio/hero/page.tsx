@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { AdminForm } from "@/components/AdminForm";
+import { ImagenConEncuadreField } from "@/components/ImagenConEncuadreField";
 import { redirect } from "next/navigation";
 
 export default async function AdminInicioHeroPage() {
@@ -28,13 +29,19 @@ export default async function AdminInicioHeroPage() {
         <Card>
           <CardHeader>
             <CardTitle>Imagen de Fondo</CardTitle>
-            <CardDescription>Sube la imagen que se mostrará de fondo en la sección Hero.</CardDescription>
+            <CardDescription>
+              Sube la imagen que se mostrará de fondo en la sección Hero y elige qué zona debe quedar visible.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="imagen_fondo">Subir imagen (Pendiente de integrar API de subida)</Label>
-              <Input id="imagen_fondo" name="imagen_fondo" type="file" accept="image/*" />
-            </div>
+            <ImagenConEncuadreField
+              name="imagen_fondo"
+              label="Subir imagen"
+              help="La foto ocupa toda la pantalla, así que se recorta según el tamaño del dispositivo. Marca a la derecha el punto que siempre debe verse."
+              currentUrl={section.imagen_fondo?.valor}
+              currentFocal={section.imagen_fondo?.encuadre}
+              aspectClassName="aspect-[16/9]"
+            />
           </CardContent>
         </Card>
 

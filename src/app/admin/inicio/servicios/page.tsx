@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { AdminForm } from "@/components/AdminForm";
+import { MediaInstitucionalField } from "./MediaInstitucionalField";
 
 export default async function AdminInicioServiciosPage() {
   const data = await getEstructura();
@@ -25,14 +26,19 @@ export default async function AdminInicioServiciosPage() {
       <AdminForm action={updateInicioServicios} className="grid gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Imagen institucional</CardTitle>
+            <CardTitle>Media institucional</CardTitle>
+            <CardDescription>
+              La pieza grande que acompaña la lista de servicios en la página de inicio. Acepta una imagen o un
+              video.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="media_file">Subir imagen</Label>
-              <Input id="media_file" name="media_file" type="file" accept="image/*" />
-            </div>
-            
+            <MediaInstitucionalField
+              currentUrl={section.media?.url}
+              currentKey={section.media?.key}
+              currentMime={section.media?.mime}
+            />
+
             <div className="flex flex-col gap-3">
               <Label htmlFor="titulo_media">Título de la Media <span className="font-normal text-muted-foreground text-xs">(Usa *asteriscos* para destacar una palabra)</span></Label>
               <Input id="titulo_media" name="titulo_media" defaultValue={section.titulo_media.valor} />

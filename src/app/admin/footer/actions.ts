@@ -56,6 +56,11 @@ export async function updateFooterContacto(formData: FormData) {
   const data = {
     email: { ...page.secciones.contacto.email, valor: formData.get("email")?.toString() || "" },
     telefono: { ...page.secciones.contacto.telefono, valor: formData.get("telefono")?.toString() || "" },
+    // Added with the footer redesign; sections saved before this simply have
+    // no value for them yet and the footer hides whatever is empty.
+    direccion: { ...page.secciones.contacto.direccion, valor: formData.get("direccion")?.toString() || "" },
+    ciudad: { ...page.secciones.contacto.ciudad, valor: formData.get("ciudad")?.toString() || "" },
+    horario: { ...page.secciones.contacto.horario, valor: formData.get("horario")?.toString() || "" },
   };
 
   await updateEstructuraPageSection("footer", "contacto", data);

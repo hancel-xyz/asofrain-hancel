@@ -48,6 +48,23 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ---- ASOFRAIN brand palette -------------------------------------------
+     The site used to be a single teal on white. These are the tokens the
+     public pages paint with now: a teal core, a fresh lime and a slate blue
+     as counterweights, plus a warm sand canvas so "clean" areas still have
+     temperature instead of reading as flat #fff. */
+  --color-brand: #62af9d;
+  --color-brand-dark: #3d7a6d;
+  --color-brand-deep: #0d2b24;
+  --color-brand-lime: #7ec67e;
+  --color-brand-lime-dark: #4e9a55;
+  --color-brand-slate: #465f74;
+  --color-brand-slate-dark: #31465a;
+  --color-brand-ink: #111111;
+  --color-brand-muted: #4b5563;
+  --color-brand-sand: #faf8f3;
+  --color-brand-mist: #eef4f2;
 }
 
 :root {
@@ -128,5 +145,230 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* ==========================================================================
+   ASOFRAIN — decorative patterns, motion and text utilities
+   Everything below is used by the public site (the /admin panel keeps the
+   plain shadcn look). Patterns draw with `currentColor`, so a wrapper's text
+   colour controls the tint: `text-brand/15 pattern-dots`.
+   ========================================================================== */
+@layer utilities {
+  .pattern-dots {
+    background-image: radial-gradient(currentColor 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .pattern-dots-lg {
+    background-image: radial-gradient(currentColor 1.5px, transparent 1.5px);
+    background-size: 28px 28px;
+  }
+  .pattern-grid {
+    background-image:
+      linear-gradient(currentColor 1px, transparent 1px),
+      linear-gradient(90deg, currentColor 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+  .pattern-diag {
+    background-image: repeating-linear-gradient(
+      45deg,
+      currentColor 0 1px,
+      transparent 1px 11px
+    );
+  }
+  .pattern-rings {
+    background-image: repeating-radial-gradient(
+      circle at 50% 50%,
+      currentColor 0 1px,
+      transparent 1px 20px
+    );
+  }
+  .pattern-waves {
+    background-image: repeating-radial-gradient(
+      circle at 0 100%,
+      transparent 0 18px,
+      currentColor 18px 19px
+    );
+    background-size: 60px 60px;
+  }
+
+  /* Justified body copy. Spanish sets badly when justified without
+     hyphenation (rivers of white space), so `hyphens` rides along and the
+     document is already `lang="es"`. */
+  .text-just {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---- Scroll reveal -------------------------------------------------------
+   <Reveal> renders the element with `.reveal` and an IntersectionObserver
+   adds `.is-visible` once it enters the viewport. */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal[data-variant="left"] {
+  transform: translateX(-30px);
+}
+.reveal[data-variant="right"] {
+  transform: translateX(30px);
+}
+.reveal[data-variant="scale"] {
+  transform: scale(0.94);
+}
+.reveal[data-variant="fade"] {
+  transform: none;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Keyframes ---------------------------------------------------------- */
+@keyframes af-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+@keyframes af-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+@keyframes af-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes af-ping-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+@keyframes af-grow-bar {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes af-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes af-sheen {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+.animate-af-float {
+  animation: af-float 6s ease-in-out infinite;
+}
+.animate-af-bob {
+  animation: af-bob 2s ease-in-out infinite;
+}
+.animate-af-spin-slow {
+  animation: af-spin-slow 26s linear infinite;
+}
+.animate-af-ping-ring {
+  animation: af-ping-ring 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.animate-af-marquee {
+  animation: af-marquee 38s linear infinite;
+}
+
+/* Bars in the big metric tile grow from the baseline as they scroll in. */
+.metric-bar {
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.is-visible .metric-bar,
+.reveal.is-visible .metric-bar {
+  transform: scaleY(1);
+}
+
+/* ---- Button / card micro-interactions ----------------------------------- */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.55), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+  pointer-events: none;
+}
+.btn-sheen:hover::after {
+  animation: af-sheen 0.85s ease-out;
+}
+.btn-sheen-dark::after {
+  background: linear-gradient(90deg, transparent, rgb(0 0 0 / 0.18), transparent);
+}
+
+/* ---- Reduced motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .metric-bar {
+    transform: scaleY(1) !important;
+    transition: none !important;
+  }
+  .animate-af-float,
+  .animate-af-bob,
+  .animate-af-spin-slow,
+  .animate-af-ping-ring,
+  .animate-af-marquee {
+    animation: none !important;
+  }
+  .btn-sheen:hover::after {
+    animation: none !important;
   }
 }

@@ -55,7 +55,10 @@ export default async function AdminEventosListadoEventosPage() {
         <Card>
           <CardHeader>
             <CardTitle>Eventos</CardTitle>
-            <CardDescription>Agrega, edita o elimina los eventos que se muestran en /eventos.</CardDescription>
+            <CardDescription>
+              Agrega, edita o elimina los eventos que se muestran en /eventos. Cada evento tiene su propia
+              galería de fotos y puedes elegir qué zona de cada imagen se ve al recortarse.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <EventosCardsEditor
@@ -67,7 +70,16 @@ export default async function AdminEventosListadoEventosPage() {
                 id: item.id,
                 fecha: item.fecha.valor,
                 titulo: item.titulo.valor,
+                descripcion: item.descripcion?.valor ?? "",
                 fotoUrl: item.foto.url,
+                fotoEncuadre: item.foto.encuadre ?? "50% 50%",
+                galeria: (item.galeria ?? []).map((img: any) => ({
+                  id: img.id,
+                  url: img.url ?? "",
+                  alt: img.alt ?? "",
+                  encuadre: img.encuadre ?? "50% 50%",
+                  key: img.key,
+                })),
               }))}
             />
           </CardContent>

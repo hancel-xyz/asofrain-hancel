@@ -20,8 +20,15 @@ export async function updateInicioHero(formData: FormData) {
     pageSlug: "inicio",
     sectionKey: "hero",
   });
-  if (uploaded) {
-    data.imagen_fondo = { ...page?.secciones.hero.imagen_fondo, valor: uploaded.url, key: uploaded.key };
+  // `encuadre` is the object-position the hero photo is cropped around; it can
+  // be re-adjusted without re-uploading the image.
+  const encuadre = formData.get("imagen_fondo_encuadre")?.toString();
+  if (uploaded || encuadre) {
+    data.imagen_fondo = {
+      ...page?.secciones.hero.imagen_fondo,
+      ...(uploaded ? { valor: uploaded.url, key: uploaded.key } : {}),
+      ...(encuadre ? { encuadre } : {}),
+    };
   }
 
   await updateEstructuraPageSection("inicio", "hero", data);
@@ -86,6 +93,19 @@ export async function updateInicioMetricas(formData: FormData) {
   revalidatePath("/admin/inicio/metricas");
 }
 
+/**
+ * Uploads the home page's institutional image or video on its own, as soon as
+ * it's picked, instead of bundling it into the section's "Guardar Cambios"
+ * submit — a video would otherwise blow past the Server Action body limit and
+ * fail the whole save.
+ */
+export async function uploadInicioMedia(formData: FormData) {
+  return uploadMediaFile(formData.get("file"), {
+    pageSlug: "inicio",
+    sectionKey: "servicios_vista_general",
+  });
+}
+
 export async function updateInicioServicios(formData: FormData) {
   const estructura = await getEstructura();
   const page = estructura?.sitio.paginas.find((p: any) => p.id === "inicio");
@@ -104,12 +124,19 @@ export async function updateInicioServicios(formData: FormData) {
     }
   };
 
-  const uploaded = await uploadMediaFile(formData.get("media_file"), {
-    pageSlug: "inicio",
-    sectionKey: "servicios_vista_general",
-  });
-  if (uploaded) {
-    data.media = { ...page?.secciones.servicios_vista_general.media, url: uploaded.url, key: uploaded.key };
+  // The media file (which can now be a video, so potentially tens of MB) is
+  // uploaded on its own via `uploadInicioMedia` the moment it's picked; only
+  // its url/key/mime travel with this save.
+  const mediaUrl = formData.get("media_url")?.toString() || "";
+  const mediaKey = formData.get("media_key")?.toString();
+  const mediaMime = formData.get("media_mime")?.toString();
+  if (mediaUrl) {
+    data.media = {
+      ...page?.secciones.servicios_vista_general.media,
+      url: mediaUrl,
+      ...(mediaKey ? { key: mediaKey } : {}),
+      ...(mediaMime ? { mime: mediaMime } : {}),
+    };
   }
 
   await updateEstructuraPageSection("inicio", "servicios_vista_general", data);

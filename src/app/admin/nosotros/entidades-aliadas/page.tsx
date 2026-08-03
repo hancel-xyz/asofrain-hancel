@@ -17,7 +17,11 @@ export default async function AdminNosotrosEntidadesAliadasPage() {
     <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Nosotros - Entidades Aliadas</h1>
-        <p className="text-muted-foreground">Administra la sección de entidades aliadas (permite agregar más entidades).</p>
+        <p className="text-muted-foreground">
+          Administra la sección de entidades aliadas (permite agregar más entidades). Esta sección ya no se
+          muestra dentro de la página Nosotros: ahora aparece en el pie de página, sobre el footer, en todo el
+          sitio.
+        </p>
       </div>
 
       <AdminForm action={updateNosotrosEntidadesAliadas} className="grid gap-6">

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AdminForm } from "@/components/AdminForm";
+import { ImagenConEncuadreField } from "@/components/ImagenConEncuadreField";
 
 export default async function AdminServiciosServiciosPage() {
   const data = await getEstructura();
@@ -39,22 +40,40 @@ export default async function AdminServiciosServiciosPage() {
         
         <Card>
           <CardHeader>
-            <CardTitle>ITEMS</CardTitle>
+            <CardTitle>Procesos</CardTitle>
+            <CardDescription>
+              Cada proceso se muestra en la página con un ícono automático (según el título), su imagen y su
+              descripción.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             {section.items.map((item: any, i: number) => (
               <div key={item.id} className="p-4 border rounded-lg space-y-4">
-                <h4 className="font-medium">Item {i + 1}</h4>
+                <h4 className="font-medium flex items-center gap-2">
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-muted text-xs font-semibold">
+                    {i + 1}
+                  </span>
+                  Proceso
+                </h4>
                 <input type="hidden" name="items_id" value={item.id} />
-                
-            <div className="flex flex-col gap-3">
-              <Label htmlFor={`${item.id}_titulo`}>Titulo</Label>
-              <Input id={`${item.id}_titulo`} name={`${item.id}_titulo`} defaultValue={item.titulo.valor} />
-            </div>
-            <div className="flex flex-col gap-3">
-              <Label htmlFor={`${item.id}_descripcion`}>Descripcion</Label>
-              <Textarea id={`${item.id}_descripcion`} name={`${item.id}_descripcion`} defaultValue={item.descripcion.valor} rows={4} />
-            </div>
+
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor={`${item.id}_titulo`}>Titulo</Label>
+                  <Input id={`${item.id}_titulo`} name={`${item.id}_titulo`} defaultValue={item.titulo.valor} />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label htmlFor={`${item.id}_descripcion`}>Descripcion</Label>
+                  <Textarea id={`${item.id}_descripcion`} name={`${item.id}_descripcion`} defaultValue={item.descripcion.valor} rows={4} />
+                </div>
+
+                <ImagenConEncuadreField
+                  name={`${item.id}_imagen`}
+                  label="Imagen del proceso"
+                  help="Se muestra junto al proceso en la página pública. Formato horizontal recomendado."
+                  currentUrl={item.imagen?.valor}
+                  currentFocal={item.imagen?.encuadre}
+                  aspectClassName="aspect-[4/3]"
+                />
               </div>
             ))}
           </CardContent>
