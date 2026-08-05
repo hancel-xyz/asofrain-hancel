@@ -51,55 +51,63 @@ export interface Accent {
   hex: string;
 }
 
-export const ACCENTS: Record<"teal" | "slate" | "lime" | "deep" | "sand", Accent> = {
-  teal: {
-    soft: "bg-[#DBEEE8]",
-    ring: "border-[#62AF9D]/45",
-    chip: "bg-[#62AF9D]/25 text-[#2f6558]",
-    text: "text-[#2f6558]",
-    solid: "bg-[#62AF9D] text-[#111111]",
-    hex: "#62AF9D",
+/**
+ * The identity's greens, each worked up into the five surfaces a card needs.
+ * `soft` values are light tints of the same hue — the identity's own colours
+ * are too saturated to sit behind body copy.
+ */
+export const ACCENTS: Record<"pasto" | "esmeralda" | "lima" | "bosque" | "mint", Accent> = {
+  pasto: {
+    soft: "bg-[#DDF0DE]",
+    ring: "border-[#4CAF50]/45",
+    chip: "bg-[#4CAF50]/25 text-[#006B4D]",
+    text: "text-[#006B4D]",
+    solid: "bg-[#4CAF50] text-[#111111]",
+    hex: "#4CAF50",
   },
-  slate: {
-    soft: "bg-[#DDE6EE]",
-    ring: "border-[#465F74]/40",
-    chip: "bg-[#465F74]/20 text-[#3a4f61]",
-    text: "text-[#3a4f61]",
-    solid: "bg-[#465F74] text-white",
-    hex: "#465F74",
+  esmeralda: {
+    soft: "bg-[#D9EBE3]",
+    ring: "border-[#006B4D]/40",
+    chip: "bg-[#006B4D]/18 text-[#006B4D]",
+    text: "text-[#006B4D]",
+    solid: "bg-[#006B4D] text-white",
+    hex: "#006B4D",
   },
-  lime: {
-    soft: "bg-[#E1F2DC]",
-    ring: "border-[#7EC67E]/55",
-    chip: "bg-[#7EC67E]/32 text-[#40803f]",
-    text: "text-[#40803f]",
-    solid: "bg-[#7EC67E] text-[#111111]",
-    hex: "#7EC67E",
+  lima: {
+    soft: "bg-[#EEF6D7]",
+    ring: "border-[#A6CE39]/55",
+    chip: "bg-[#A6CE39]/32 text-[#5B7A12]",
+    text: "text-[#5B7A12]",
+    solid: "bg-[#A6CE39] text-[#111111]",
+    hex: "#A6CE39",
   },
-  deep: {
-    soft: "bg-[#D9E5E1]",
-    ring: "border-[#0d2b24]/30",
-    chip: "bg-[#0d2b24]/18 text-[#0d2b24]",
-    text: "text-[#0d2b24]",
-    solid: "bg-[#0d2b24] text-white",
-    hex: "#0D2B24",
+  bosque: {
+    soft: "bg-[#D6E5DE]",
+    ring: "border-[#004D33]/35",
+    chip: "bg-[#004D33]/18 text-[#004D33]",
+    text: "text-[#004D33]",
+    solid: "bg-[#004D33] text-white",
+    hex: "#004D33",
   },
-  sand: {
-    soft: "bg-[#FAF8F3]",
-    ring: "border-black/[0.08]",
-    chip: "bg-[#111111]/8 text-[#111111]",
-    text: "text-[#111111]/70",
-    solid: "bg-[#111111] text-white",
-    hex: "#FAF8F3",
+  mint: {
+    soft: "bg-[#EDF6E2]",
+    ring: "border-[#8FBF6F]/50",
+    chip: "bg-[#C8E6A0] text-[#004D33]",
+    text: "text-[#4A5A52]",
+    solid: "bg-[#8FBF6F] text-[#111111]",
+    hex: "#8FBF6F",
   },
 };
 
-/** Rotation used wherever a list of equal-weight cards needs colour. */
+/**
+ * Rotation used wherever a list of equal-weight cards needs colour. The order
+ * alternates light and dark so neighbouring cards never blur together.
+ */
 export const ACCENT_CYCLE: Accent[] = [
-  ACCENTS.teal,
-  ACCENTS.slate,
-  ACCENTS.lime,
-  ACCENTS.deep,
+  ACCENTS.pasto,
+  ACCENTS.esmeralda,
+  ACCENTS.lima,
+  ACCENTS.bosque,
 ];
 
 export const accentAt = (index: number) => ACCENT_CYCLE[index % ACCENT_CYCLE.length];

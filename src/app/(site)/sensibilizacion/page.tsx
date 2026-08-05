@@ -27,7 +27,7 @@ const CARD_THEMES = [
     imgFallback: "bg-white/15 text-white/60",
   },
   {
-    wrapper: "bg-gradient-to-br from-brand-slate to-brand-slate-dark text-white",
+    wrapper: "bg-gradient-to-br from-brand-forest to-brand-forest-dark text-white",
     pattern: "text-white/12 pattern-grid",
     chip: "bg-white/20 ring-1 ring-white/30 text-white",
     eyebrow: "text-white/85",
@@ -39,13 +39,15 @@ const CARD_THEMES = [
     imgFallback: "bg-white/12 text-white/60",
   },
   {
-    wrapper: "bg-gradient-to-br from-brand-lime to-[#4e9a55] text-brand-ink",
+    // Verde Lima is light enough that body copy needs near-full ink to hold
+    // its contrast against it.
+    wrapper: "bg-gradient-to-br from-brand-lime to-[#5B7A12] text-brand-ink",
     pattern: "text-white/25 pattern-waves",
     chip: "bg-brand-ink/12 ring-1 ring-brand-ink/20 text-brand-ink",
-    eyebrow: "text-brand-ink/70",
+    eyebrow: "text-brand-ink/75",
     title: "text-brand-ink",
-    body: "text-brand-ink/75",
-    bullet: "bg-brand-ink/60",
+    body: "text-brand-ink/90",
+    bullet: "bg-brand-ink/70",
     rule: "bg-brand-ink/35",
     frame: "ring-brand-ink/15",
     imgFallback: "bg-brand-ink/10 text-brand-ink/50",
@@ -66,7 +68,7 @@ export default async function SensibilizacionPage() {
         <div className="absolute inset-x-0 top-0 h-[420px] text-brand/[0.13] pattern-dots-lg [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none"></div>
         <div className="absolute -top-24 right-[-60px] w-[380px] h-[380px] rounded-full bg-brand-lime/25 blur-[110px] pointer-events-none animate-af-float"></div>
         <div
-          className="absolute top-[120px] left-[-90px] w-[320px] h-[320px] rounded-full bg-brand-slate/20 blur-[110px] pointer-events-none animate-af-float"
+          className="absolute top-[120px] left-[-90px] w-[320px] h-[320px] rounded-full bg-brand-forest/20 blur-[110px] pointer-events-none animate-af-float"
           style={{ animationDelay: "-3s" }}
         ></div>
 
@@ -166,7 +168,7 @@ export default async function SensibilizacionPage() {
 
       {/* ================= GALERÍA ================= */}
       <section className="relative px-4 md:px-[60px] py-[50px] md:py-[80px]">
-        <div className="absolute inset-0 text-brand-slate/[0.07] pattern-diag [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)] pointer-events-none"></div>
+        <div className="absolute inset-0 text-brand-forest/[0.07] pattern-diag [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)] pointer-events-none"></div>
 
         <div className="relative max-w-[1360px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-[40px] md:mb-[50px]">
@@ -235,7 +237,7 @@ export default async function SensibilizacionPage() {
               </div>
               <Link
                 href="/solicitar"
-                className="btn-sheen btn-sheen-dark relative group inline-flex items-center justify-center gap-2.5 rounded-full bg-brand-lime px-7 py-4 text-[14.5px] font-bold text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-16px_rgba(126,198,126,0.8)]"
+                className="btn-sheen btn-sheen-dark relative group inline-flex items-center justify-center gap-2.5 rounded-full bg-brand-lime px-7 py-4 text-[14.5px] font-bold text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-16px_rgba(166,206,57,0.8)]"
               >
                 Solicitar jornada
                 <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />

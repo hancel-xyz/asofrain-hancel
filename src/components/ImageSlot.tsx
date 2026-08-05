@@ -16,7 +16,15 @@ interface ImageSlotProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function isRealImageUrl(src?: string): src is string {
-  return !!src && (/^(https?:)?\/\//.test(src) || src.startsWith("blob:") || src.startsWith("data:"));
+  if (!src) return false;
+  // Absolute (uploaded media), object/data urls (admin previews), or a path
+  // rooted at /public (the photos bundled with the app).
+  return (
+    /^(https?:)?\/\//.test(src) ||
+    src.startsWith("blob:") ||
+    src.startsWith("data:") ||
+    src.startsWith("/")
+  );
 }
 
 /** Normalizes a stored focal point into a usable `object-position` string. */

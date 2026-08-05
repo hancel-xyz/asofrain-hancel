@@ -16,6 +16,7 @@ import { HighlightText } from "@/components/HighlightText";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { accentAt, valueIcon } from "@/lib/brandVisuals";
+import { fotoAt } from "@/lib/fotos";
 import { cn } from "@/lib/utils";
 
 const HERO_MARGIN = "px-6 md:px-12 lg:px-[100px]";
@@ -52,7 +53,7 @@ export default async function NosotrosPage() {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 md:from-black/55 via-transparent to-transparent pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-brand/40 via-transparent to-brand-slate/45 mix-blend-color pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-brand/40 via-transparent to-brand-forest/45 mix-blend-color pointer-events-none"></div>
         <div className="absolute -top-24 -right-24 w-[440px] h-[440px] rounded-full bg-brand-lime/20 blur-[120px] pointer-events-none animate-af-float"></div>
         <div className="absolute inset-0 text-white/[0.09] pattern-dots-lg [mask-image:linear-gradient(to_left,black,transparent_60%)] pointer-events-none"></div>
         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.045] mix-blend-overlay" aria-hidden>
@@ -132,6 +133,16 @@ export default async function NosotrosPage() {
                 <div className="text-[16px] md:text-[17px] leading-[1.75] text-brand-muted whitespace-pre-wrap text-just mt-4">
                   {s?.quienes_somos.descripcion.valor}
                 </div>
+
+                {/* Faces of the organisation, in the photo-strip style of the
+                    brand's printed pieces. */}
+                <div className="mt-7 grid grid-cols-3 gap-2.5">
+                  {[0, 1, 2].map((i) => (
+                    <div key={i} className="h-[96px] md:h-[130px] rounded-[14px] overflow-hidden ring-1 ring-black/[0.06]">
+                      <ImageSlot src={fotoAt(i, 17)} placeholder="" className="bg-brand/10" />
+                    </div>
+                  ))}
+                </div>
               </div>
             </Reveal>
           </div>
@@ -146,7 +157,7 @@ export default async function NosotrosPage() {
 
             <div className="relative flex flex-col">
               {/* Timeline spine */}
-              <div className="absolute left-0 sm:left-[52px] top-3 bottom-3 w-px bg-gradient-to-b from-brand via-brand-lime to-brand-slate/40 hidden sm:block"></div>
+              <div className="absolute left-0 sm:left-[52px] top-3 bottom-3 w-px bg-gradient-to-b from-brand via-brand-lime to-brand-forest/40 hidden sm:block"></div>
 
               {s?.historia.filas.map((item: any, idx: number) => {
                 const isLast = idx === s.historia.filas.length - 1;
@@ -203,7 +214,7 @@ export default async function NosotrosPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             {/* MISIÓN — slate, "el presente" */}
             <Reveal variant="left">
-              <div className="group relative h-full overflow-hidden rounded-[26px] bg-brand-slate text-white px-8 md:px-12 py-10 md:py-[52px] min-h-[320px] md:min-h-[430px] flex flex-col justify-between shadow-[0_26px_60px_-38px_rgba(70,95,116,0.95)]">
+              <div className="group relative h-full overflow-hidden rounded-[26px] bg-brand-forest text-white px-8 md:px-12 py-10 md:py-[52px] min-h-[320px] md:min-h-[430px] flex flex-col justify-between shadow-[0_26px_60px_-38px_rgba(0,77,51,0.95)]">
                 <div className="absolute inset-0 text-white/10 pattern-grid pointer-events-none"></div>
                 <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none"></div>
 
@@ -227,7 +238,7 @@ export default async function NosotrosPage() {
 
             {/* VISIÓN — verde, "el futuro" */}
             <Reveal variant="right" delay={120}>
-              <div className="group relative h-full overflow-hidden rounded-[26px] bg-gradient-to-br from-brand-lime via-brand to-brand-dark text-brand-ink px-8 md:px-12 py-10 md:py-[52px] min-h-[320px] md:min-h-[430px] flex flex-col justify-between shadow-[0_26px_60px_-38px_rgba(78,154,85,0.95)]">
+              <div className="group relative h-full overflow-hidden rounded-[26px] bg-gradient-to-br from-brand-lime via-brand to-brand-dark text-brand-ink px-8 md:px-12 py-10 md:py-[52px] min-h-[320px] md:min-h-[430px] flex flex-col justify-between shadow-[0_26px_60px_-38px_rgba(91,122,18,0.95)]">
                 <div className="absolute inset-0 text-white/25 pattern-rings pointer-events-none"></div>
                 <div className="absolute -left-16 -bottom-20 w-64 h-64 rounded-full bg-white/25 blur-3xl pointer-events-none animate-af-float"></div>
 
@@ -254,7 +265,7 @@ export default async function NosotrosPage() {
 
       {/* ================= VALORES ================= */}
       <section id="valores" className="relative px-4 md:px-[60px] py-[50px] md:py-[90px] scroll-mt-[100px]">
-        <div className="absolute inset-0 text-brand-slate/[0.07] pattern-diag [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)] pointer-events-none"></div>
+        <div className="absolute inset-0 text-brand-forest/[0.07] pattern-diag [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)] pointer-events-none"></div>
 
         <div className="relative max-w-[1360px] mx-auto">
           <SectionHeading
@@ -331,24 +342,24 @@ export default async function NosotrosPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             {/* OBJETO SOCIAL */}
             <Reveal variant="left">
-              <article className="group relative h-full overflow-hidden rounded-[26px] bg-[#EDF1F5] border border-[#465F74]/25 p-8 md:p-11 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_-30px_rgba(70,95,116,0.6)]">
-                <div className="absolute inset-0 text-brand-slate/[0.09] pattern-dots pointer-events-none"></div>
-                <div className="absolute right-6 top-6 text-brand-slate/10 pointer-events-none">
+              <article className="group relative h-full overflow-hidden rounded-[26px] bg-[#D9E7E0] border border-[#004D33]/25 p-8 md:p-11 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_-30px_rgba(0,77,51,0.6)]">
+                <div className="absolute inset-0 text-brand-forest/[0.09] pattern-dots pointer-events-none"></div>
+                <div className="absolute right-6 top-6 text-brand-forest/10 pointer-events-none">
                   <UsersIcon className="h-28 w-28" aria-hidden />
                 </div>
 
                 <div className="relative">
-                  <span className="inline-flex h-13 w-13 items-center justify-center rounded-2xl bg-brand-slate text-white p-3.5 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
+                  <span className="inline-flex h-13 w-13 items-center justify-center rounded-2xl bg-brand-forest text-white p-3.5 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
                     <UsersIcon className="h-6 w-6" aria-hidden />
                   </span>
                   <div className="flex items-center gap-2.5 mt-6 mb-3">
-                    <span className="h-[2px] w-7 rounded-full bg-brand-slate" />
-                    <span className="text-[11px] tracking-[2.5px] font-bold uppercase text-brand-slate">Objeto social</span>
+                    <span className="h-[2px] w-7 rounded-full bg-brand-forest" />
+                    <span className="text-[11px] tracking-[2.5px] font-bold uppercase text-brand-forest">Objeto social</span>
                   </div>
                   <h4 className="font-display font-semibold text-[28px] md:text-[34px] leading-[1.12] m-0 mb-4 tracking-[-0.01em] text-brand-ink">
                     <HighlightText
                       text={s?.objeto_social.titulo.valor || ""}
-                      highlightClassName="font-display font-medium not-italic text-brand-slate"
+                      highlightClassName="font-display font-medium not-italic text-brand-forest"
                     />
                   </h4>
                   <p className="text-[15.5px] md:text-[16px] leading-[1.7] text-brand-muted m-0 whitespace-pre-wrap text-just">
@@ -360,7 +371,7 @@ export default async function NosotrosPage() {
 
             {/* OBJETO AMBIENTAL */}
             <Reveal variant="right" delay={120}>
-              <article className="group relative h-full overflow-hidden rounded-[26px] bg-[#EFF8EC] border border-[#7EC67E]/40 p-8 md:p-11 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_-30px_rgba(78,154,85,0.6)]">
+              <article className="group relative h-full overflow-hidden rounded-[26px] bg-[#EEF6D7] border border-[#A6CE39]/40 p-8 md:p-11 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_-30px_rgba(91,122,18,0.6)]">
                 <div className="absolute inset-0 text-brand-lime/25 pattern-waves pointer-events-none"></div>
                 <div className="absolute right-6 top-6 text-brand-lime/20 pointer-events-none">
                   <LeafIcon className="h-28 w-28" aria-hidden />

@@ -163,7 +163,7 @@ function FilterPill({
       className={cn(
         "snap-start px-5 py-2.5 rounded-full text-[13px] font-semibold cursor-pointer whitespace-nowrap transition-all duration-300",
         active
-          ? "bg-brand text-brand-ink border border-brand shadow-[0_10px_24px_-14px_rgba(61,122,109,0.9)]"
+          ? "bg-brand text-brand-ink border border-brand shadow-[0_10px_24px_-14px_rgba(0,107,77,0.9)]"
           : "bg-white border border-black/10 text-brand-ink/70 hover:border-brand/50 hover:text-brand-ink hover:-translate-y-0.5"
       )}
     >

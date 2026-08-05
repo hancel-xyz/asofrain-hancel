@@ -17,6 +17,7 @@ import { HighlightText } from "@/components/HighlightText";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { accentAt, sectorIcon, serviceIcon } from "@/lib/brandVisuals";
+import { fotoAt } from "@/lib/fotos";
 import { cn } from "@/lib/utils";
 
 const HERO_MARGIN = "px-6 md:px-12 lg:px-[100px]";
@@ -54,7 +55,7 @@ export default async function ServiciosPage() {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 md:from-black/55 via-transparent to-transparent pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-brand/40 via-transparent to-brand-slate/45 mix-blend-color pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-brand/40 via-transparent to-brand-forest/45 mix-blend-color pointer-events-none"></div>
         <div className="absolute -bottom-32 -left-24 w-[460px] h-[460px] rounded-full bg-brand/25 blur-[120px] pointer-events-none animate-af-float"></div>
         <div className="absolute inset-0 text-white/[0.09] pattern-diag [mask-image:linear-gradient(to_top,black,transparent_70%)] pointer-events-none"></div>
         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.045] mix-blend-overlay" aria-hidden>
@@ -154,7 +155,9 @@ export default async function ServiciosPage() {
                       <div className={cn("relative min-h-[220px] lg:min-h-[330px] overflow-hidden", reversed && "lg:order-2")}>
                         <div className="absolute inset-0 transition-transform duration-[900ms] group-hover:scale-[1.06]">
                           <ImageSlot
-                            src={item.imagen?.valor}
+                            // Falls back to a campaign photo so the row never
+                            // shows an empty panel; an upload replaces it.
+                            src={item.imagen?.valor || fotoAt(idx, 3)}
                             focal={focalToPosition(item.imagen?.encuadre)}
                             placeholder={`Foto del proceso ${step}`}
                             className={cn("h-full w-full", accent.chip)}
@@ -218,7 +221,7 @@ export default async function ServiciosPage() {
 
           {/* Compactación plus */}
           <Reveal variant="scale">
-            <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-brand-deep via-brand-deep to-brand-slate text-white p-8 md:p-10 lg:p-[64px]">
+            <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-brand-deep via-brand-deep to-brand-forest text-white p-8 md:p-10 lg:p-[64px]">
               <div className="absolute inset-0 text-white/10 pattern-rings pointer-events-none"></div>
               <div className="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-brand-lime/25 blur-[100px] pointer-events-none animate-af-float"></div>
 
@@ -285,7 +288,7 @@ export default async function ServiciosPage() {
 
           <Reveal variant="fade">
             <div className="overflow-hidden rounded-[22px] border border-black/[0.07] bg-white shadow-[0_20px_50px_-42px_rgba(17,17,17,0.5)]">
-              <div className="hidden md:grid grid-cols-[1fr_2fr_2fr_1fr] p-[18px_32px] bg-brand-slate text-white text-[11px] tracking-[2px] font-bold uppercase">
+              <div className="hidden md:grid grid-cols-[1fr_2fr_2fr_1fr] p-[18px_32px] bg-brand-forest text-white text-[11px] tracking-[2px] font-bold uppercase">
                 <div>Localidad</div>
                 <div>Días</div>
                 <div>Horario</div>
@@ -426,7 +429,7 @@ export default async function ServiciosPage() {
                 </p>
                 <Link
                   href={s?.tarifas_y_productos.cta.url || "/normatividad"}
-                  className="btn-sheen group inline-flex items-center gap-2.5 px-[26px] py-[14px] bg-brand-ink text-white rounded-full text-[14px] font-semibold hover:bg-brand-dark transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto justify-center"
+                  className="btn-sheen group inline-flex items-center gap-2.5 px-[26px] py-[14px] bg-brand-dark text-white rounded-full text-[14px] font-semibold hover:bg-brand-forest transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto justify-center"
                 >
                   {s?.tarifas_y_productos.cta.texto}
                   <ArrowRightIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
@@ -488,7 +491,7 @@ export default async function ServiciosPage() {
               </div>
               <Link
                 href={s?.cta_final.boton.url || "/solicitar"}
-                className="btn-sheen relative group px-[26px] md:px-[30px] py-[14px] md:py-[17px] bg-brand-ink text-white rounded-full text-[14px] font-semibold flex items-center justify-center gap-2.5 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-18px_rgba(17,17,17,0.85)] transition-all duration-300 mt-2 md:mt-0 w-full sm:w-auto"
+                className="btn-sheen relative group px-[26px] md:px-[30px] py-[14px] md:py-[17px] bg-brand-dark text-white rounded-full text-[14px] font-semibold flex items-center justify-center gap-2.5 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-18px_rgba(0,77,51,0.9)] transition-all duration-300 mt-2 md:mt-0 w-full sm:w-auto"
               >
                 {s?.cta_final.boton.texto}
                 <ArrowRightIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />

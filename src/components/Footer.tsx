@@ -24,6 +24,29 @@ interface Aliado {
   descripcion?: { valor?: string };
 }
 
+/**
+ * Heading for a footer column. These read as real section titles — Montserrat
+ * caps with a rule under them — rather than as the fine print they used to be.
+ */
+function ColumnHeading({ title, sub, onPhoto }: { title: string; sub?: string; onPhoto: boolean }) {
+  return (
+    <div className="mb-5">
+      <div
+        className={cn(
+          "font-display text-[17px] md:text-[19px] tracking-[0.02em] font-bold uppercase leading-none",
+          onPhoto ? "text-brand-lime" : "text-brand-dark"
+        )}
+      >
+        {title}
+      </div>
+      <span className={cn("mt-2.5 block h-[3px] w-9 rounded-full", onPhoto ? "bg-brand-lime" : "bg-brand")} />
+      {sub && (
+        <div className={cn("mt-2.5 text-[12.5px]", onPhoto ? "text-white/50" : "text-brand-ink/50")}>{sub}</div>
+      )}
+    </div>
+  );
+}
+
 export async function Footer() {
   const data = await getEstructura();
   const page = data?.sitio.paginas.find((p: any) => p.id === "footer");
@@ -64,8 +87,6 @@ export async function Footer() {
     ? "bg-white/10 border-white/20 text-white hover:bg-brand-lime hover:border-brand-lime hover:text-brand-ink"
     : "bg-white border-black/[0.08] text-brand-ink hover:bg-brand-lime hover:border-brand-lime";
 
-  const heading = "text-[10px] tracking-[2.5px] font-bold uppercase";
-  const headingColor = hasImage ? "text-brand-lime" : "text-brand-dark";
 
   return (
     <footer className="bg-brand-sand font-sans">
@@ -76,11 +97,11 @@ export async function Footer() {
             <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-9 md:mb-11">
               <div>
                 <div className="flex items-center gap-2.5 mb-4">
-                  <span className="h-[2px] w-7 rounded-full bg-brand-slate" />
-                  <span className="text-[11px] tracking-[2.5px] font-bold uppercase text-brand-slate">
+                  <span className="h-[2px] w-7 rounded-full bg-brand-forest" />
+                  <span className="text-[11px] tracking-[2.5px] font-bold uppercase text-brand-forest">
                     Entidades aliadas
                   </span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-brand-slate" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-forest" />
                 </div>
                 <h2 className="font-display font-semibold text-[28px] md:text-[38px] leading-[1.08] tracking-[-0.02em] m-0 text-brand-ink max-w-[620px]">
                   {aliadosSection?.titulo?.valor || "Operamos de la mano del ecosistema institucional."}
@@ -91,18 +112,21 @@ export async function Footer() {
               </p>
             </Reveal>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
+            {/* Compact cards: more of them fit per row and each takes less
+                room, while the type inside keeps its size so the entity names
+                stay just as readable. */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 md:gap-3">
               {aliados.map((aliado, idx) => {
                 const nombre = aliado.titulo.valor.replace(/\*/g, "");
                 return (
-                  <Reveal key={aliado.id} delay={(idx % 5) * 70} variant="scale">
-                    <div className="group h-full rounded-[18px] bg-white border border-black/[0.07] p-5 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_18px_40px_-26px_rgba(17,17,17,0.45)]">
-                      <div className="h-14 w-14 rounded-xl overflow-hidden bg-white flex items-center justify-center font-display font-semibold text-[20px] text-brand-ink ring-1 ring-black/[0.05]">
+                  <Reveal key={aliado.id} delay={(idx % 6) * 60} variant="scale">
+                    <div className="group h-full rounded-[14px] bg-white border border-black/[0.07] p-3.5 flex flex-col gap-2.5 transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-[0_14px_32px_-24px_rgba(17,17,17,0.45)]">
+                      <div className="h-11 w-11 rounded-lg overflow-hidden bg-white flex items-center justify-center font-display font-semibold text-[17px] text-brand-ink ring-1 ring-black/[0.05]">
                         {isRealImageUrl(aliado.logo?.valor) ? (
                           <ImageSlot
                             src={aliado.logo.valor}
                             placeholder={nombre}
-                            imgClassName="object-contain p-1.5 transition-transform duration-500 group-hover:scale-110"
+                            imgClassName="object-contain p-1 transition-transform duration-500 group-hover:scale-110"
                           />
                         ) : (
                           nombre.charAt(0)
@@ -111,7 +135,7 @@ export async function Footer() {
                       <div className="mt-auto">
                         <div className="text-[11px] tracking-[1.5px] font-bold uppercase text-brand-dark">{nombre}</div>
                         {aliado.descripcion?.valor && (
-                          <div className="mt-1.5 text-[13px] leading-[1.5] font-medium text-brand-ink/75">
+                          <div className="mt-1 text-[13px] leading-[1.45] font-medium text-brand-ink/75">
                             {aliado.descripcion.valor}
                           </div>
                         )}
@@ -137,7 +161,7 @@ export async function Footer() {
             <>
               <Image src={fondoUrl} alt="" fill unoptimized className="object-cover object-center -z-20" />
               <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/88 via-black/65 to-black/45 pointer-events-none"></div>
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-deep/50 via-transparent to-brand-slate/40 pointer-events-none"></div>
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-deep/50 via-transparent to-brand-forest/40 pointer-events-none"></div>
             </>
           )}
           <div
@@ -166,7 +190,7 @@ export async function Footer() {
               )}
               {redes.length > 0 && (
                 <>
-                  <div className={cn(heading, headingColor, "mb-3")}>Síguenos</div>
+                  <ColumnHeading title="Síguenos" onPhoto={hasImage} />
                   <div className="flex gap-2.5">
                     {redes.map((red) => (
                       <Link
@@ -191,8 +215,7 @@ export async function Footer() {
 
             {/* Navegación */}
             <div className="lg:col-span-2">
-              <div className={cn(heading, headingColor, "mb-2")}>Navegación</div>
-              <div className={cn("text-[12px] mb-5", text50)}>Recorre el sitio</div>
+              <ColumnHeading title="Navegación" sub="Recorre el sitio" onPhoto={hasImage} />
               <nav className="flex flex-col gap-3 text-[14px]">
                 {[
                   { href: "/", label: "Inicio" },
@@ -216,8 +239,7 @@ export async function Footer() {
             {/* Legal */}
             {documentos.length > 0 && (
               <div className="lg:col-span-2">
-                <div className={cn(heading, headingColor, "mb-2")}>Legal</div>
-                <div className={cn("text-[12px] mb-5", text50)}>Documentos públicos</div>
+                <ColumnHeading title="Legal" sub="Documentos públicos" onPhoto={hasImage} />
                 <div className="flex flex-col gap-3 text-[14px]">
                   {documentos.map((doc) => (
                     <a
@@ -237,8 +259,7 @@ export async function Footer() {
 
             {/* Contacto */}
             <div className="md:col-span-2 lg:col-span-4">
-              <div className={cn(heading, headingColor, "mb-2")}>Contacto</div>
-              <div className={cn("text-[12px] mb-5", text50)}>Escríbenos o visítanos</div>
+              <ColumnHeading title="Contacto" sub="Escríbenos o visítanos" onPhoto={hasImage} />
 
               <ul className="flex flex-col gap-4">
                 {email && (
@@ -333,9 +354,12 @@ export async function Footer() {
             />
           </div>
 
-          <div className="flex justify-between items-center pt-6 flex-wrap gap-5 text-center md:text-left">
+          <div className="flex justify-between items-center pt-6 flex-wrap gap-x-5 gap-y-2 text-center md:text-left">
             <div className={cn("text-[12px] w-full md:w-auto", text50)}>
               © 2026 ASOFRAIN E.S.P. · Todos los derechos reservados
+            </div>
+            <div className={cn("text-[12px] w-full md:w-auto md:order-last", text50)}>
+              Todos los datos publicados en este sitio web son propiedad de ASOFRAIN E.S.P.
             </div>
             <div className={cn("text-[12px] w-full md:w-auto", text50)}>
               Desarrollado por{" "}

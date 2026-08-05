@@ -18,6 +18,7 @@ import { CountUp } from "@/components/CountUp";
 import { SectionHeading } from "@/components/SectionHeading";
 import { VideoInstitucional } from "@/components/VideoInstitucional";
 import { accentAt, metricIcon, serviceIcon } from "@/lib/brandVisuals";
+import { fotoAt } from "@/lib/fotos";
 import { isVideoMedia } from "@/lib/mediaType";
 import { cn } from "@/lib/utils";
 
@@ -65,7 +66,7 @@ export default async function HomePage() {
             so the hero shares the palette the rest of the page now uses. */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 md:from-black/55 via-transparent to-transparent pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-brand/40 via-transparent to-brand-slate/45 mix-blend-color pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-brand/40 via-transparent to-brand-forest/45 mix-blend-color pointer-events-none"></div>
 
         {/* Ambient light blooms */}
         <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-brand/25 blur-[110px] pointer-events-none animate-af-float"></div>
@@ -185,29 +186,34 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] gap-4">
-            {/* Hero metric */}
+            {/* Hero metric — the infographic treatment: a circular badge, the
+                label beside it, and the figure sitting in a lime block. */}
             {metricItems[0] && (
               <Reveal className="lg:row-span-2">
-                <div className="group relative h-full overflow-hidden rounded-[26px] md:rounded-[30px] bg-gradient-to-br from-brand to-brand-dark text-white p-8 md:p-10 min-h-[440px] flex flex-col justify-between shadow-[0_24px_60px_-30px_rgba(61,122,109,0.85)]">
-                  <div className="absolute inset-0 text-white/12 pattern-rings pointer-events-none"></div>
-                  <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+                <div className="group relative h-full overflow-hidden rounded-[26px] md:rounded-[30px] bg-gradient-to-br from-brand-forest to-brand-deep text-white p-8 md:p-10 min-h-[440px] flex flex-col justify-between shadow-[0_24px_60px_-30px_rgba(0,77,51,0.85)]">
+                  <div className="absolute inset-0 text-white/10 pattern-rings pointer-events-none"></div>
+                  <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-brand-lime/20 blur-3xl pointer-events-none"></div>
 
                   <div className="relative">
-                    <div className="flex items-center justify-between gap-4 mb-6">
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm ring-1 ring-white/30 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                    <div className="flex items-center gap-4 mb-7">
+                      <span className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-mint ring-4 ring-brand-lime/25 transition-transform duration-500 group-hover:scale-110">
                         {(() => {
                           const Icon = metricIcon(metricItems[0].titulo.valor, 0);
-                          return <Icon className="h-6 w-6 text-white" aria-hidden />;
+                          return <Icon className="h-8 w-8 text-brand-forest" aria-hidden />;
                         })()}
                       </span>
-                      <span className="text-[11px] tracking-[2px] font-bold uppercase text-white/75">
+                      <span className="font-display text-[19px] md:text-[22px] font-bold uppercase leading-[1.15] tracking-[0.01em] text-white">
                         {metricItems[0].titulo.valor}
                       </span>
                     </div>
-                    <div className="font-display font-semibold text-[clamp(56px,8vw,116px)] leading-[0.9] tracking-[-0.03em]">
-                      <CountUp value={metricItems[0].numero.valor} />
+
+                    <div className="inline-flex rounded-[20px] bg-brand-lime px-6 py-3 md:px-8 md:py-4">
+                      <span className="font-display font-bold text-[clamp(48px,7vw,92px)] leading-[0.95] tracking-[-0.03em] text-brand-forest-dark">
+                        <CountUp value={metricItems[0].numero.valor} />
+                      </span>
                     </div>
-                    <div className="mt-4 text-[15px] leading-[1.6] text-white/80 max-w-[340px] text-just">
+
+                    <div className="mt-5 text-[15px] leading-[1.6] text-white/80 max-w-[340px] text-just">
                       {metricItems[0].descripcion.texto.valor}
                     </div>
                   </div>
@@ -244,21 +250,21 @@ export default async function HomePage() {
                       accent.ring
                     )}
                   >
-                    <div className="flex items-start justify-between gap-3 mb-6">
+                    <div className="flex items-center gap-3.5 mb-6">
                       <span
                         className={cn(
-                          "inline-flex h-11 w-11 items-center justify-center rounded-2xl shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6",
+                          "inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full ring-4 ring-white/60 shadow-sm transition-transform duration-500 group-hover:scale-110",
                           accent.solid
                         )}
                       >
-                        <Icon className="h-5 w-5" aria-hidden />
+                        <Icon className="h-6 w-6" aria-hidden />
                       </span>
-                      <span className={cn("text-[11px] tracking-[2px] font-bold uppercase text-right", accent.text)}>
+                      <span className={cn("font-display text-[15px] md:text-[16px] font-bold uppercase leading-[1.15] tracking-[0.01em]", accent.text)}>
                         {item.titulo.valor}
                       </span>
                     </div>
                     <div>
-                      <div className={cn("font-display font-semibold text-[64px] md:text-[80px] leading-[0.85] tracking-[-0.02em]", accent.text)}>
+                      <div className={cn("font-display font-bold text-[64px] md:text-[80px] leading-[0.85] tracking-[-0.02em]", accent.text)}>
                         <CountUp value={item.numero.valor} />
                       </div>
                       <div className="mt-2.5 text-[14px] leading-[1.6] text-brand-muted">{item.descripcion.texto.valor}</div>
@@ -273,15 +279,15 @@ export default async function HomePage() {
               <Reveal delay={220} className="md:col-span-2">
                 <div className="relative h-full overflow-hidden rounded-[26px] md:rounded-[30px] bg-brand-deep text-white p-7 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
                   <div className="absolute inset-0 text-white/10 pattern-diag pointer-events-none"></div>
-                  <div className="relative flex items-center gap-3 shrink-0">
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-lime/25 ring-1 ring-brand-lime/40">
-                      <WarehouseIcon className="h-5 w-5 text-brand-lime" aria-hidden />
+                  <div className="relative flex items-center gap-3.5 shrink-0">
+                    <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-mint ring-4 ring-brand-lime/25">
+                      <WarehouseIcon className="h-6 w-6 text-brand-forest" aria-hidden />
                     </span>
-                    <span className="text-[11px] tracking-[2px] font-bold uppercase text-white/80">
+                    <span className="font-display text-[15px] md:text-[16px] font-bold uppercase leading-[1.15] tracking-[0.01em] text-white">
                       {metricItems[3].titulo.valor}
                     </span>
                   </div>
-                  <div className="relative flex flex-wrap gap-2">
+                  <div className="relative flex flex-wrap gap-2 flex-1">
                     {metricItems[3].descripcion.items.valor.map((eca: string) => (
                       <span
                         key={eca}
@@ -289,6 +295,19 @@ export default async function HomePage() {
                       >
                         {eca}
                       </span>
+                    ))}
+                  </div>
+
+                  {/* Photo strip, as on the brand's printed impact pieces:
+                      the figure never travels alone. */}
+                  <div className="relative hidden lg:flex gap-2 shrink-0">
+                    {[0, 1, 2].map((i) => (
+                      <div
+                        key={i}
+                        className="h-[72px] w-[72px] rounded-2xl overflow-hidden ring-2 ring-white/20"
+                      >
+                        <ImageSlot src={fotoAt(i, 11)} placeholder="" className="bg-white/10" />
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -382,7 +401,7 @@ export default async function HomePage() {
               <Reveal delay={340} variant="right">
                 <Link
                   href="/servicios#descripcion"
-                  className="btn-sheen btn-sheen-dark relative overflow-hidden flex items-center gap-4 p-5 md:p-[22px] rounded-[20px] md:rounded-[22px] bg-gradient-to-r from-brand-lime to-brand text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-22px_rgba(78,154,85,0.8)] group"
+                  className="btn-sheen btn-sheen-dark relative overflow-hidden flex items-center gap-4 p-5 md:p-[22px] rounded-[20px] md:rounded-[22px] bg-gradient-to-r from-brand-lime to-brand text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-22px_rgba(91,122,18,0.8)] group"
                 >
                   <span className="absolute inset-0 text-brand-ink/10 pattern-diag pointer-events-none"></span>
                   <span className="relative inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-ink/15 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
@@ -424,7 +443,7 @@ export default async function HomePage() {
               </p>
               <Link
                 href="/solicitar"
-                className="btn-sheen mt-9 inline-flex items-center gap-2.5 rounded-full bg-brand-ink px-7 py-4 text-[14.5px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-18px_rgba(17,17,17,0.8)] group"
+                className="btn-sheen mt-9 inline-flex items-center gap-2.5 rounded-full bg-brand-dark px-7 py-4 text-[14.5px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-forest hover:shadow-[0_18px_40px_-18px_rgba(0,77,51,0.85)] group"
               >
                 Solicitar el servicio
                 <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />

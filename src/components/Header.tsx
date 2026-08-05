@@ -100,7 +100,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
               <div className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:block pt-5 w-[720px]">
                 <div className="flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)]">
                   <Link href="/nosotros#quienes-somos" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#62AF9D] to-[#3d7a6d] relative">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#4CAF50] to-[#006B4D] relative">
                       {isRealImageUrl(menuImages?.nosotros.quienesSomos) ? (
                         <img src={menuImages!.nosotros.quienesSomos} alt="Quiénes somos" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -110,7 +110,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
                     <div className="mt-3 text-[14px] font-semibold">Quiénes somos</div>
                   </Link>
                   <Link href="/nosotros#historia" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#111111] to-[#3d7a6d] relative">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#111111] to-[#006B4D] relative">
                       {isRealImageUrl(menuImages?.nosotros.historia) ? (
                         <img src={menuImages!.nosotros.historia} alt="Historia" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -120,7 +120,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
                     <div className="mt-3 text-[14px] font-semibold">Historia</div>
                   </Link>
                   <Link href="/nosotros#valores" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#3d7a6d] to-[#111111] relative">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden bg-gradient-to-br from-[#006B4D] to-[#111111] relative">
                       {isRealImageUrl(menuImages?.nosotros.valores) ? (
                         <img src={menuImages!.nosotros.valores} alt="Valores y aliados" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -140,7 +140,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
               <div className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:block pt-5 w-[840px]">
                 <div className="flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)]">
                   <Link href="/servicios#descripcion" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#4d9686]">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#4CAF50] to-[#006B4D]">
                       {isRealImageUrl(menuImages?.servicios.descripcion) ? (
                         <img src={menuImages!.servicios.descripcion} alt="Descripción de servicios" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -150,7 +150,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
                     <div className="mt-3 text-[14px] font-semibold">Descripción</div>
                   </Link>
                   <Link href="/servicios#rutas" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#111111] to-[#3d7a6d]">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#111111] to-[#006B4D]">
                       {isRealImageUrl(menuImages?.servicios.rutas) ? (
                         <img src={menuImages!.servicios.rutas} alt="Rutas y horarios" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -160,7 +160,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
                     <div className="mt-3 text-[14px] font-semibold">Rutas y horarios</div>
                   </Link>
                   <Link href="/servicios#sectores" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#4d9686] to-[#111111]">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#006B4D] to-[#111111]">
                       {isRealImageUrl(menuImages?.servicios.sectores) ? (
                         <img src={menuImages!.servicios.sectores} alt="Sectores atendidos" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -170,7 +170,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
                     <div className="mt-3 text-[14px] font-semibold">Sectores</div>
                   </Link>
                   <Link href="/servicios#tarifa" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#111111]">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#4CAF50] to-[#111111]">
                       {isRealImageUrl(menuImages?.servicios.tarifa) ? (
                         <img src={menuImages!.servicios.tarifa} alt="Tarifa y productos" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -190,7 +190,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
               <div className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:block pt-5 w-[560px]">
                 <div className="flex flex-row gap-3.5 bg-white rounded-[22px] p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)]">
                   <Link href="/sensibilizacion" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#62AF9D] to-[#111111]">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#4CAF50] to-[#111111]">
                       {isRealImageUrl(menuImages?.sensibilizacion) ? (
                         <img src={menuImages!.sensibilizacion} alt="Sensibilización" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -200,7 +200,7 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
                     <div className="mt-3 text-[14px] font-semibold">Sensibilización</div>
                   </Link>
                   <Link href="/eventos" className="flex-1 text-left text-[#111111] hover:opacity-80 transition-opacity">
-                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#111111] to-[#4d9686]">
+                    <div className="w-full aspect-square rounded-[14px] overflow-hidden relative bg-gradient-to-br from-[#111111] to-[#006B4D]">
                       {isRealImageUrl(menuImages?.eventos) ? (
                         <img src={menuImages!.eventos} alt="Eventos" className="absolute inset-0 w-full h-full object-cover" />
                       ) : (
@@ -218,8 +218,8 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
             <Link
               href="/solicitar"
               className={cn(
-                "inline-flex px-[22px] py-[10px] text-[13.5px] font-semibold rounded-full transition-colors hover:bg-[#62AF9D] hover:text-[#111111]",
-                onDark ? "bg-white text-[#111111]" : "bg-[#111111] text-white"
+                "inline-flex px-[22px] py-[10px] text-[13.5px] font-semibold rounded-full transition-colors hover:bg-[#4CAF50] hover:text-[#111111]",
+                onDark ? "bg-white text-[#111111]" : "bg-[#006B4D] text-white"
               )}
             >
               Solicitar servicio
@@ -230,8 +230,8 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
             <Link
               href="/solicitar"
               className={cn(
-                "inline-flex px-4 py-2 text-[13px] font-semibold rounded-full transition-colors hover:bg-[#62AF9D] hover:text-[#111111]",
-                onDark ? "bg-white text-[#111111]" : "bg-[#111111] text-white"
+                "inline-flex px-4 py-2 text-[13px] font-semibold rounded-full transition-colors hover:bg-[#4CAF50] hover:text-[#111111]",
+                onDark ? "bg-white text-[#111111]" : "bg-[#006B4D] text-white"
               )}
             >
               Solicitar servicio
@@ -253,42 +253,42 @@ export function Header({ menuImages }: { menuImages?: MenuImages }) {
           <nav className="flex flex-col gap-4 text-lg">
             <Link
               href="/"
-              className={cn("p-4 rounded-xl", isActive("inicio") ? "bg-[#62AF9D]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
+              className={cn("p-4 rounded-xl", isActive("inicio") ? "bg-[#4CAF50]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Inicio
             </Link>
             <Link
               href="/nosotros"
-              className={cn("p-4 rounded-xl", isActive("nosotros") ? "bg-[#62AF9D]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
+              className={cn("p-4 rounded-xl", isActive("nosotros") ? "bg-[#4CAF50]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Nosotros
             </Link>
             <Link
               href="/servicios"
-              className={cn("p-4 rounded-xl", isActive("servicios") ? "bg-[#62AF9D]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
+              className={cn("p-4 rounded-xl", isActive("servicios") ? "bg-[#4CAF50]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Servicios
             </Link>
             <Link
               href="/sensibilizacion"
-              className={cn("p-4 rounded-xl", isActive("sensibilizacion") ? "bg-[#62AF9D]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
+              className={cn("p-4 rounded-xl", isActive("sensibilizacion") ? "bg-[#4CAF50]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Sensibilización
             </Link>
             <Link
               href="/eventos"
-              className={cn("p-4 rounded-xl", isActive("eventos") ? "bg-[#62AF9D]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
+              className={cn("p-4 rounded-xl", isActive("eventos") ? "bg-[#4CAF50]/12 font-bold text-[#111111]" : "font-medium text-[#111111]/75")}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Eventos
             </Link>
             <Link
               href="/solicitar"
-              className="mt-4 px-6 py-4 text-center font-semibold bg-[#111111] text-white rounded-full hover:bg-[#62AF9D] hover:text-[#111111] transition-colors"
+              className="mt-4 px-6 py-4 text-center font-semibold bg-[#006B4D] text-white rounded-full hover:bg-[#4CAF50] hover:text-[#111111] transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Solicitar servicio

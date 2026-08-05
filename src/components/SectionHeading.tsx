@@ -7,7 +7,7 @@ export type Tone = "brand" | "lime" | "slate" | "ink" | "white";
 const TONE: Record<Tone, { text: string; rule: string; dot: string }> = {
   brand: { text: "text-brand-dark", rule: "bg-brand", dot: "bg-brand" },
   lime: { text: "text-brand-lime-dark", rule: "bg-brand-lime", dot: "bg-brand-lime" },
-  slate: { text: "text-brand-slate", rule: "bg-brand-slate", dot: "bg-brand-slate" },
+  slate: { text: "text-brand-forest", rule: "bg-brand-forest", dot: "bg-brand-forest" },
   ink: { text: "text-brand-ink/70", rule: "bg-brand-ink/30", dot: "bg-brand-ink" },
   white: { text: "text-white/80", rule: "bg-white/40", dot: "bg-white" },
 };

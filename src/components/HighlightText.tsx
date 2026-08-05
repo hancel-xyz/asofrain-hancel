@@ -9,7 +9,7 @@ interface HighlightTextProps {
 
 export function HighlightText({
   text,
-  highlightClassName = "font-display font-semibold not-italic text-[#62AF9D]",
+  highlightClassName = "font-display font-semibold not-italic text-[#4CAF50]",
   className
 }: HighlightTextProps) {
   if (!text) return null;
