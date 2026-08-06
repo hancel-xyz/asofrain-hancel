@@ -18,7 +18,7 @@ import { CountUp } from "@/components/CountUp";
 import { SectionHeading } from "@/components/SectionHeading";
 import { VideoInstitucional } from "@/components/VideoInstitucional";
 import { accentAt, metricIcon, serviceIcon } from "@/lib/brandVisuals";
-import { fotoAt } from "@/lib/fotos";
+import { fotosAlAzar } from "@/lib/fotos";
 import { isVideoMedia } from "@/lib/mediaType";
 import { cn } from "@/lib/utils";
 
@@ -41,6 +41,8 @@ export default async function HomePage() {
   const tituloMedia: string | undefined = pageData?.secciones.servicios_vista_general.titulo_media.valor;
   const metricas = pageData?.secciones.metricas;
   const metricItems: any[] = metricas?.items ?? [];
+  // One draw for the whole page so the same photo never shows up twice.
+  const fotos = fotosAlAzar(8);
 
   return (
     <div className="bg-brand-sand font-sans overflow-hidden">
@@ -245,7 +247,7 @@ export default async function HomePage() {
                 <Reveal key={item.id} delay={120 + i * 100}>
                   <div
                     className={cn(
-                      "group h-full rounded-[26px] md:rounded-[30px] border p-8 min-h-[212px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-26px_rgba(17,17,17,0.4)]",
+                      "group h-full rounded-[26px] md:rounded-[30px] border p-8 min-h-[212px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-26px_rgba(0,46,31,0.4)]",
                       accent.soft,
                       accent.ring
                     )}
@@ -263,11 +265,16 @@ export default async function HomePage() {
                         {item.titulo.valor}
                       </span>
                     </div>
-                    <div>
-                      <div className={cn("font-display font-bold text-[64px] md:text-[80px] leading-[0.85] tracking-[-0.02em]", accent.text)}>
-                        <CountUp value={item.numero.valor} />
+                    <div className="flex items-end justify-between gap-4">
+                      <div>
+                        <div className={cn("font-display font-bold text-[64px] md:text-[80px] leading-[0.85] tracking-[-0.02em]", accent.text)}>
+                          <CountUp value={item.numero.valor} />
+                        </div>
+                        <div className="mt-2.5 text-[14px] leading-[1.6] text-brand-muted">{item.descripcion.texto.valor}</div>
                       </div>
-                      <div className="mt-2.5 text-[14px] leading-[1.6] text-brand-muted">{item.descripcion.texto.valor}</div>
+                      <div className="hidden sm:block h-[84px] w-[84px] shrink-0 rounded-2xl overflow-hidden ring-2 ring-white/70 shadow-sm">
+                        <ImageSlot src={fotos[i + 3]} placeholder="" className="bg-brand/10" />
+                      </div>
                     </div>
                   </div>
                 </Reveal>
@@ -306,7 +313,7 @@ export default async function HomePage() {
                         key={i}
                         className="h-[72px] w-[72px] rounded-2xl overflow-hidden ring-2 ring-white/20"
                       >
-                        <ImageSlot src={fotoAt(i, 11)} placeholder="" className="bg-white/10" />
+                        <ImageSlot src={fotos[i]} placeholder="" className="bg-white/10" />
                       </div>
                     ))}
                   </div>
@@ -368,7 +375,7 @@ export default async function HomePage() {
                     <Link
                       href="/servicios#descripcion"
                       className={cn(
-                        "flex items-center gap-4 p-5 md:p-[22px] bg-white border rounded-[20px] md:rounded-[22px] text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-24px_rgba(17,17,17,0.45)] group",
+                        "flex items-center gap-4 p-5 md:p-[22px] bg-white border rounded-[20px] md:rounded-[22px] text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-24px_rgba(0,46,31,0.45)] group",
                         accent.ring
                       )}
                     >
@@ -401,7 +408,7 @@ export default async function HomePage() {
               <Reveal delay={340} variant="right">
                 <Link
                   href="/servicios#descripcion"
-                  className="btn-sheen btn-sheen-dark relative overflow-hidden flex items-center gap-4 p-5 md:p-[22px] rounded-[20px] md:rounded-[22px] bg-gradient-to-r from-brand-lime to-brand text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-22px_rgba(91,122,18,0.8)] group"
+                  className="btn-sheen btn-sheen-dark relative overflow-hidden flex items-center gap-4 p-5 md:p-[22px] rounded-[20px] md:rounded-[22px] bg-gradient-to-r from-brand-lime to-brand text-brand-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-22px_rgba(0,77,51,0.8)] group"
                 >
                   <span className="absolute inset-0 text-brand-ink/10 pattern-diag pointer-events-none"></span>
                   <span className="relative inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-ink/15 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">

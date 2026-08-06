@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRightIcon, CameraIcon, MegaphoneIcon, SparklesIcon } from "lucide-react";
+import { ArrowRightIcon, CameraIcon, CheckIcon, MegaphoneIcon, SparklesIcon } from "lucide-react";
 import { ImageSlot } from "@/components/ImageSlot";
 import { getEstructura } from "@/lib/data";
 import { HighlightText } from "@/components/HighlightText";
@@ -22,6 +22,7 @@ const CARD_THEMES = [
     title: "text-white",
     body: "text-white/80",
     bullet: "bg-white/70",
+    bulletChip: "bg-white/25 text-white",
     rule: "bg-white/40",
     frame: "ring-white/30",
     imgFallback: "bg-white/15 text-white/60",
@@ -34,6 +35,7 @@ const CARD_THEMES = [
     title: "text-white",
     body: "text-white/80",
     bullet: "bg-brand-lime",
+    bulletChip: "bg-brand-lime/30 text-brand-lime",
     rule: "bg-brand-lime/70",
     frame: "ring-white/25",
     imgFallback: "bg-white/12 text-white/60",
@@ -41,13 +43,16 @@ const CARD_THEMES = [
   {
     // Verde Lima is light enough that body copy needs near-full ink to hold
     // its contrast against it.
-    wrapper: "bg-gradient-to-br from-brand-lime to-[#5B7A12] text-brand-ink",
+    // Both ends stay light (Verde Lima into Verde Oliva) so the dark type on
+    // this card holds its contrast all the way down.
+    wrapper: "bg-gradient-to-br from-brand-lime to-brand-olive text-brand-ink",
     pattern: "text-white/25 pattern-waves",
     chip: "bg-brand-ink/12 ring-1 ring-brand-ink/20 text-brand-ink",
     eyebrow: "text-brand-ink/75",
     title: "text-brand-ink",
     body: "text-brand-ink/90",
     bullet: "bg-brand-ink/70",
+    bulletChip: "bg-brand-ink/15 text-brand-ink",
     rule: "bg-brand-ink/35",
     frame: "ring-brand-ink/15",
     imgFallback: "bg-brand-ink/10 text-brand-ink/50",
@@ -91,7 +96,7 @@ export default async function SensibilizacionPage() {
               </Reveal>
             </div>
             <Reveal delay={200} variant="right" className="max-w-[420px]">
-              <div className="relative rounded-[20px] bg-white border border-black/[0.06] p-6 shadow-[0_20px_50px_-40px_rgba(17,17,17,0.6)]">
+              <div className="relative rounded-[20px] bg-white border border-black/[0.06] p-6 shadow-[0_20px_50px_-40px_rgba(0,46,31,0.6)]">
                 <span className="absolute -top-3.5 left-6 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-lime text-brand-ink shadow-md">
                   <SparklesIcon className="h-4 w-4" aria-hidden />
                 </span>
@@ -115,7 +120,7 @@ export default async function SensibilizacionPage() {
                 <Reveal key={tipo.id} delay={idx * 120}>
                   <article
                     className={cn(
-                      "group relative h-full overflow-hidden rounded-[26px] p-6 md:p-[34px_30px] md:min-h-[560px] flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-34px_rgba(17,17,17,0.6)]",
+                      "group relative h-full overflow-hidden rounded-[26px] p-6 md:p-[34px_30px] md:min-h-[560px] flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-34px_rgba(0,46,31,0.6)]",
                       theme.wrapper
                     )}
                   >
@@ -151,7 +156,9 @@ export default async function SensibilizacionPage() {
                     <ul className="relative m-0 p-0 list-none flex flex-col gap-2.5">
                       {tipo.vinetas.items.map((vineta: any) => (
                         <li key={vineta.id} className={cn("flex items-start gap-2.5 text-[13.5px] md:text-[14px] leading-[1.6]", theme.body)}>
-                          <span className={cn("mt-[7px] h-1.5 w-1.5 rounded-full shrink-0", theme.bullet)}></span>
+                          <span className={cn("mt-0.5 inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full", theme.bulletChip)}>
+                            <CheckIcon className="h-3 w-3" aria-hidden />
+                          </span>
                           <span>{vineta.valor}</span>
                         </li>
                       ))}

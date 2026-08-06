@@ -100,7 +100,7 @@ export function PqrsDialog({ triggerClassName }: { triggerClassName?: string }) 
               <button
                 type="submit"
                 disabled={isPending}
-                className="mt-1 px-5 py-2.5 bg-[#006B4D] text-white rounded-full text-sm font-semibold hover:bg-[#4CAF50] hover:text-[#111111] transition-colors disabled:opacity-60"
+                className="mt-1 px-5 py-2.5 bg-[#006B4D] text-white rounded-full text-sm font-semibold hover:bg-[#4CAF50] hover:text-[#002E1F] transition-colors disabled:opacity-60"
               >
                 {isPending ? "Enviando..." : "Enviar"}
               </button>

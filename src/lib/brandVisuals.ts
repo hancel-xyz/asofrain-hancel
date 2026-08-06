@@ -52,21 +52,23 @@ export interface Accent {
 }
 
 /**
- * The identity's greens, each worked up into the five surfaces a card needs.
- * `soft` values are light tints of the same hue — the identity's own colours
- * are too saturated to sit behind body copy.
+ * The identity's greens, each worked up into the surfaces a card needs.
+ *
+ * `soft` is the accent's own colour at low opacity rather than a new tint, so
+ * no hex outside the eight identity colours is ever introduced — the card
+ * surface is literally Verde Pasto (or Lima, or Bosque) let through.
  */
 export const ACCENTS: Record<"pasto" | "esmeralda" | "lima" | "bosque" | "mint", Accent> = {
   pasto: {
-    soft: "bg-[#DDF0DE]",
+    soft: "bg-[#4CAF50]/14",
     ring: "border-[#4CAF50]/45",
     chip: "bg-[#4CAF50]/25 text-[#006B4D]",
     text: "text-[#006B4D]",
-    solid: "bg-[#4CAF50] text-[#111111]",
+    solid: "bg-[#4CAF50] text-[#002E1F]",
     hex: "#4CAF50",
   },
   esmeralda: {
-    soft: "bg-[#D9EBE3]",
+    soft: "bg-[#006B4D]/10",
     ring: "border-[#006B4D]/40",
     chip: "bg-[#006B4D]/18 text-[#006B4D]",
     text: "text-[#006B4D]",
@@ -74,15 +76,15 @@ export const ACCENTS: Record<"pasto" | "esmeralda" | "lima" | "bosque" | "mint",
     hex: "#006B4D",
   },
   lima: {
-    soft: "bg-[#EEF6D7]",
+    soft: "bg-[#A6CE39]/22",
     ring: "border-[#A6CE39]/55",
-    chip: "bg-[#A6CE39]/32 text-[#5B7A12]",
-    text: "text-[#5B7A12]",
-    solid: "bg-[#A6CE39] text-[#111111]",
+    chip: "bg-[#A6CE39]/32 text-[#004D33]",
+    text: "text-[#004D33]",
+    solid: "bg-[#A6CE39] text-[#002E1F]",
     hex: "#A6CE39",
   },
   bosque: {
-    soft: "bg-[#D6E5DE]",
+    soft: "bg-[#004D33]/10",
     ring: "border-[#004D33]/35",
     chip: "bg-[#004D33]/18 text-[#004D33]",
     text: "text-[#004D33]",
@@ -90,11 +92,11 @@ export const ACCENTS: Record<"pasto" | "esmeralda" | "lima" | "bosque" | "mint",
     hex: "#004D33",
   },
   mint: {
-    soft: "bg-[#EDF6E2]",
+    soft: "bg-[#C8E6A0]/45",
     ring: "border-[#8FBF6F]/50",
     chip: "bg-[#C8E6A0] text-[#004D33]",
-    text: "text-[#4A5A52]",
-    solid: "bg-[#8FBF6F] text-[#111111]",
+    text: "text-[#002E1F]",
+    solid: "bg-[#8FBF6F] text-[#002E1F]",
     hex: "#8FBF6F",
   },
 };

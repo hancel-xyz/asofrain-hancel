@@ -1,8 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
+  CalendarDaysIcon,
   ClockIcon,
   FileTextIcon,
+  HouseIcon,
+  MegaphoneIcon,
+  RecycleIcon,
+  UsersIcon,
   MailIcon,
   MapPinIcon,
   MessageSquareShareIcon,
@@ -120,7 +125,7 @@ export async function Footer() {
                 const nombre = aliado.titulo.valor.replace(/\*/g, "");
                 return (
                   <Reveal key={aliado.id} delay={(idx % 6) * 60} variant="scale">
-                    <div className="group h-full rounded-[14px] bg-white border border-black/[0.07] p-3.5 flex flex-col gap-2.5 transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-[0_14px_32px_-24px_rgba(17,17,17,0.45)]">
+                    <div className="group h-full rounded-[14px] bg-white border border-black/[0.07] p-3.5 flex flex-col gap-2.5 transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-[0_14px_32px_-24px_rgba(0,46,31,0.45)]">
                       <div className="h-11 w-11 rounded-lg overflow-hidden bg-white flex items-center justify-center font-display font-semibold text-[17px] text-brand-ink ring-1 ring-black/[0.05]">
                         {isRealImageUrl(aliado.logo?.valor) ? (
                           <ImageSlot
@@ -218,19 +223,19 @@ export async function Footer() {
               <ColumnHeading title="Navegación" sub="Recorre el sitio" onPhoto={hasImage} />
               <nav className="flex flex-col gap-3 text-[14px]">
                 {[
-                  { href: "/", label: "Inicio" },
-                  { href: "/nosotros", label: "Nosotros" },
-                  { href: "/servicios", label: "Servicios" },
-                  { href: "/sensibilizacion", label: "Sensibilización" },
-                  { href: "/eventos", label: "Eventos" },
-                ].map((link) => (
+                  { href: "/", label: "Inicio", Icon: HouseIcon },
+                  { href: "/nosotros", label: "Nosotros", Icon: UsersIcon },
+                  { href: "/servicios", label: "Servicios", Icon: RecycleIcon },
+                  { href: "/sensibilizacion", label: "Sensibilización", Icon: MegaphoneIcon },
+                  { href: "/eventos", label: "Eventos", Icon: CalendarDaysIcon },
+                ].map(({ href, label, Icon }) => (
                   <Link
-                    key={link.href}
-                    href={link.href}
-                    className={cn("group inline-flex items-center gap-2 transition-colors w-fit", text70)}
+                    key={href}
+                    href={href}
+                    className={cn("group inline-flex items-center gap-2.5 transition-colors w-fit", text70)}
                   >
-                    <span className="h-px w-0 bg-current transition-all duration-300 group-hover:w-3.5" />
-                    {link.label}
+                    <Icon className="h-4 w-4 shrink-0 opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5" aria-hidden />
+                    {label}
                   </Link>
                 ))}
               </nav>

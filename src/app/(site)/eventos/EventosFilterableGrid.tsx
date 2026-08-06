@@ -85,7 +85,7 @@ export function EventosFilterableGrid({
                     "group relative w-full h-full text-left overflow-hidden rounded-[24px] border transition-all duration-300",
                     accent.soft,
                     accent.ring,
-                    abrible && "cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_26px_54px_-30px_rgba(17,17,17,0.5)]"
+                    abrible && "cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_26px_54px_-30px_rgba(0,46,31,0.5)]"
                   )}
                 >
                   <div className="relative h-[190px] md:h-[210px] overflow-hidden">

@@ -9,6 +9,7 @@ import {
   ClockIcon,
   MapPinIcon,
   PackageSearchIcon,
+  RecycleIcon,
   SparklesIcon,
 } from "lucide-react";
 import { ImageSlot, isRealImageUrl, focalToPosition } from "@/components/ImageSlot";
@@ -17,7 +18,7 @@ import { HighlightText } from "@/components/HighlightText";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { accentAt, sectorIcon, serviceIcon } from "@/lib/brandVisuals";
-import { fotoAt } from "@/lib/fotos";
+import { fotosAlAzar } from "@/lib/fotos";
 import { cn } from "@/lib/utils";
 
 const HERO_MARGIN = "px-6 md:px-12 lg:px-[100px]";
@@ -30,6 +31,8 @@ export default async function ServiciosPage() {
   const s = pageData?.secciones;
   const heroFocal = focalToPosition(s?.hero.imagen_fondo?.encuadre);
   const procesos: any[] = s?.servicios.items ?? [];
+  // One draw for the whole page so no photo repeats between sections.
+  const fotos = fotosAlAzar(12);
 
   return (
     <div className="bg-brand-sand font-sans">
@@ -139,7 +142,7 @@ export default async function ServiciosPage() {
                 <Reveal as="li" key={item.id} delay={40} className="relative">
                   <article
                     className={cn(
-                      "group relative overflow-hidden rounded-[26px] border transition-all duration-300 hover:shadow-[0_28px_60px_-38px_rgba(17,17,17,0.5)]",
+                      "group relative overflow-hidden rounded-[26px] border transition-all duration-300 hover:shadow-[0_28px_60px_-38px_rgba(0,46,31,0.5)]",
                       accent.soft,
                       accent.ring
                     )}
@@ -157,7 +160,7 @@ export default async function ServiciosPage() {
                           <ImageSlot
                             // Falls back to a campaign photo so the row never
                             // shows an empty panel; an upload replaces it.
-                            src={item.imagen?.valor || fotoAt(idx, 3)}
+                            src={item.imagen?.valor || fotos[idx]}
                             focal={focalToPosition(item.imagen?.encuadre)}
                             placeholder={`Foto del proceso ${step}`}
                             className={cn("h-full w-full", accent.chip)}
@@ -287,7 +290,7 @@ export default async function ServiciosPage() {
           </div>
 
           <Reveal variant="fade">
-            <div className="overflow-hidden rounded-[22px] border border-black/[0.07] bg-white shadow-[0_20px_50px_-42px_rgba(17,17,17,0.5)]">
+            <div className="overflow-hidden rounded-[22px] border border-black/[0.07] bg-white shadow-[0_20px_50px_-42px_rgba(0,46,31,0.5)]">
               <div className="hidden md:grid grid-cols-[1fr_2fr_2fr_1fr] p-[18px_32px] bg-brand-forest text-white text-[11px] tracking-[2px] font-bold uppercase">
                 <div>Localidad</div>
                 <div>Días</div>
@@ -370,7 +373,7 @@ export default async function ServiciosPage() {
                 <Reveal key={sector.id} delay={(idx % 3) * 90}>
                   <div
                     className={cn(
-                      "group h-full rounded-2xl border bg-white p-6 md:p-7 flex items-center gap-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-28px_rgba(17,17,17,0.45)]",
+                      "group h-full rounded-2xl border bg-white p-6 md:p-7 flex items-center gap-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-28px_rgba(0,46,31,0.45)]",
                       accent.ring
                     )}
                   >
@@ -449,6 +452,13 @@ export default async function ServiciosPage() {
                       Productos aprovechados
                     </span>
                   </div>
+                  <div className="grid grid-cols-3 gap-2 mb-6">
+                    {[5, 6, 7].map((i) => (
+                      <div key={i} className="h-[76px] rounded-xl overflow-hidden ring-1 ring-brand-forest/10">
+                        <ImageSlot src={fotos[i]} placeholder="" className="bg-brand/10" />
+                      </div>
+                    ))}
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1">
                     {s?.tarifas_y_productos.productos_aprovechados.items.map((item: any, i: number, arr: any[]) => (
                       <div
@@ -458,7 +468,7 @@ export default async function ServiciosPage() {
                           i < arr.length - (arr.length % 2 === 0 ? 2 : 1) && "border-b border-black/[0.07]"
                         )}
                       >
-                        <span className="h-1.5 w-1.5 rounded-full bg-brand-lime shrink-0"></span>
+                        <RecycleIcon className="h-4 w-4 shrink-0 text-brand-dark" aria-hidden />
                         {item.nombre.valor}
                       </div>
                     ))}

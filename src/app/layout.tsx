@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="es"
       className={cn("h-full", "antialiased", openSans.variable, montserrat.variable, "font-sans")}
     >
-      <body className="min-h-full flex flex-col bg-white text-[#111111]">
+      <body className="min-h-full flex flex-col bg-white text-[#002E1F]">
         <TooltipProvider>{children}</TooltipProvider>
         <Toaster position="top-center" richColors />
       </body>

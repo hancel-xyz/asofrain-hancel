@@ -16,7 +16,7 @@ import { HighlightText } from "@/components/HighlightText";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { accentAt, valueIcon } from "@/lib/brandVisuals";
-import { fotoAt } from "@/lib/fotos";
+import { fotosAlAzar } from "@/lib/fotos";
 import { cn } from "@/lib/utils";
 
 const HERO_MARGIN = "px-6 md:px-12 lg:px-[100px]";
@@ -28,6 +28,8 @@ export default async function NosotrosPage() {
   const pageData = data?.sitio.paginas.find((p: any) => p.id === "nosotros");
   const s = pageData?.secciones;
   const heroFocal = focalToPosition(s?.hero.imagen_fondo?.encuadre);
+  // One draw for the whole page so no photo repeats between sections.
+  const fotos = fotosAlAzar(10);
 
   return (
     <div className="bg-brand-sand font-sans">
@@ -126,7 +128,7 @@ export default async function NosotrosPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 md:gap-[80px] items-start">
             <SectionHeading eyebrow="Quiénes somos" title={s?.quienes_somos.titulo.valor} size="xl" />
             <Reveal delay={120} variant="right">
-              <div className="relative rounded-[24px] bg-white border border-black/[0.06] p-7 md:p-10 shadow-[0_20px_50px_-40px_rgba(17,17,17,0.5)]">
+              <div className="relative rounded-[24px] bg-white border border-black/[0.06] p-7 md:p-10 shadow-[0_20px_50px_-40px_rgba(0,46,31,0.5)]">
                 <span className="absolute -top-3 left-8 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand text-white shadow-lg">
                   <UsersIcon className="h-5 w-5" aria-hidden />
                 </span>
@@ -139,7 +141,7 @@ export default async function NosotrosPage() {
                 <div className="mt-7 grid grid-cols-3 gap-2.5">
                   {[0, 1, 2].map((i) => (
                     <div key={i} className="h-[96px] md:h-[130px] rounded-[14px] overflow-hidden ring-1 ring-black/[0.06]">
-                      <ImageSlot src={fotoAt(i, 17)} placeholder="" className="bg-brand/10" />
+                      <ImageSlot src={fotos[i]} placeholder="" className="bg-brand/10" />
                     </div>
                   ))}
                 </div>
@@ -157,7 +159,7 @@ export default async function NosotrosPage() {
 
             <div className="relative flex flex-col">
               {/* Timeline spine */}
-              <div className="absolute left-0 sm:left-[52px] top-3 bottom-3 w-px bg-gradient-to-b from-brand via-brand-lime to-brand-forest/40 hidden sm:block"></div>
+              <div className="absolute left-[145px] top-3 bottom-3 w-px bg-gradient-to-b from-brand via-brand-lime to-brand-forest/40 hidden sm:block"></div>
 
               {s?.historia.filas.map((item: any, idx: number) => {
                 const isLast = idx === s.historia.filas.length - 1;
@@ -175,7 +177,7 @@ export default async function NosotrosPage() {
                     <div className="flex items-center gap-3 sm:block">
                       <span
                         className={cn(
-                          "hidden sm:block absolute left-[46px] top-[38px] h-3.5 w-3.5 rounded-full ring-4 ring-brand-sand",
+                          "hidden sm:block absolute left-[138px] top-[36px] h-3.5 w-3.5 rounded-full ring-4 ring-brand-sand",
                           accent.solid
                         )}
                       ></span>
@@ -183,12 +185,17 @@ export default async function NosotrosPage() {
                         {item.ano.valor}
                       </div>
                     </div>
-                    <div>
-                      <div className="text-[17px] md:text-[18.5px] font-semibold mb-1.5 text-brand-ink">
-                        {item.titulo.valor}
+                    <div className="flex items-start gap-5">
+                      <div className="min-w-0 flex-1">
+                        <div className="text-[17px] md:text-[18.5px] font-semibold mb-1.5 text-brand-ink">
+                          {item.titulo.valor}
+                        </div>
+                        <div className="text-[14px] md:text-[14.5px] text-brand-muted leading-[1.65] text-just">
+                          {item.descripcion.valor}
+                        </div>
                       </div>
-                      <div className="text-[14px] md:text-[14.5px] text-brand-muted leading-[1.65] text-just">
-                        {item.descripcion.valor}
+                      <div className="hidden md:block h-[92px] w-[124px] shrink-0 rounded-[14px] overflow-hidden ring-1 ring-brand-forest/10">
+                        <ImageSlot src={fotos[idx + 3]} placeholder="" className="bg-brand/10" />
                       </div>
                     </div>
                   </Reveal>
@@ -238,7 +245,7 @@ export default async function NosotrosPage() {
 
             {/* VISIÓN — verde, "el futuro" */}
             <Reveal variant="right" delay={120}>
-              <div className="group relative h-full overflow-hidden rounded-[26px] bg-gradient-to-br from-brand-lime via-brand to-brand-dark text-brand-ink px-8 md:px-12 py-10 md:py-[52px] min-h-[320px] md:min-h-[430px] flex flex-col justify-between shadow-[0_26px_60px_-38px_rgba(91,122,18,0.95)]">
+              <div className="group relative h-full overflow-hidden rounded-[26px] bg-gradient-to-br from-brand-lime via-brand to-brand-dark text-brand-ink px-8 md:px-12 py-10 md:py-[52px] min-h-[320px] md:min-h-[430px] flex flex-col justify-between shadow-[0_26px_60px_-38px_rgba(0,77,51,0.95)]">
                 <div className="absolute inset-0 text-white/25 pattern-rings pointer-events-none"></div>
                 <div className="absolute -left-16 -bottom-20 w-64 h-64 rounded-full bg-white/25 blur-3xl pointer-events-none animate-af-float"></div>
 
@@ -285,7 +292,7 @@ export default async function NosotrosPage() {
                 <Reveal key={v.numero.valor} delay={(idx % 4) * 80}>
                   <div
                     className={cn(
-                      "group relative h-full overflow-hidden rounded-[22px] border p-6 md:p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_48px_-26px_rgba(17,17,17,0.45)]",
+                      "group relative h-full overflow-hidden rounded-[22px] border p-6 md:p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_48px_-26px_rgba(0,46,31,0.45)]",
                       accent.soft,
                       accent.ring
                     )}
@@ -342,7 +349,7 @@ export default async function NosotrosPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             {/* OBJETO SOCIAL */}
             <Reveal variant="left">
-              <article className="group relative h-full overflow-hidden rounded-[26px] bg-[#D9E7E0] border border-[#004D33]/25 p-8 md:p-11 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_-30px_rgba(0,77,51,0.6)]">
+              <article className="group relative h-full overflow-hidden rounded-[26px] bg-[#004D33]/10 border border-[#004D33]/30 p-8 md:p-11 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_-30px_rgba(0,77,51,0.6)]">
                 <div className="absolute inset-0 text-brand-forest/[0.09] pattern-dots pointer-events-none"></div>
                 <div className="absolute right-6 top-6 text-brand-forest/10 pointer-events-none">
                   <UsersIcon className="h-28 w-28" aria-hidden />
@@ -371,7 +378,7 @@ export default async function NosotrosPage() {
 
             {/* OBJETO AMBIENTAL */}
             <Reveal variant="right" delay={120}>
-              <article className="group relative h-full overflow-hidden rounded-[26px] bg-[#EEF6D7] border border-[#A6CE39]/40 p-8 md:p-11 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_-30px_rgba(91,122,18,0.6)]">
+              <article className="group relative h-full overflow-hidden rounded-[26px] bg-[#A6CE39]/22 border border-[#A6CE39]/55 p-8 md:p-11 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_-30px_rgba(0,77,51,0.6)]">
                 <div className="absolute inset-0 text-brand-lime/25 pattern-waves pointer-events-none"></div>
                 <div className="absolute right-6 top-6 text-brand-lime/20 pointer-events-none">
                   <LeafIcon className="h-28 w-28" aria-hidden />

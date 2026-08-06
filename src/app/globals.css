@@ -61,23 +61,29 @@
        Verde Oliva      #8FBF6F → brand-olive      (mid-light surfaces)
        Verde Oliva Claro#E3F2D6 → brand-mist       (lightest surfaces)
 
-     `brand-lime-dark` is a darkened Verde Lima: the identity lime is far too
-     light to read as text on a light background, so accents that appear as
-     type use this shade of it instead. Tints (`*-soft` in lib/brandVisuals)
-     are likewise derived from these eight. */
+     No colour outside those eight is introduced. Where the interface needs a
+     value the manual doesn't name — page canvas, body copy — it is mixed from
+     one of them with white rather than picked freehand, so every pixel on the
+     site traces back to the palette. Even "black" text is Verde Profundo.
+
+     `brand-lime-dark` is Verde Bosque: the identity lime is far too light to
+     read as type on a light background, so lime-accented *text* uses it. */
   --color-brand: #4caf50;
   --color-brand-dark: #006b4d;
   --color-brand-forest: #004d33;
   --color-brand-forest-dark: #002e1f;
   --color-brand-deep: #002e1f;
   --color-brand-lime: #a6ce39;
-  --color-brand-lime-dark: #5b7a12;
+  --color-brand-lime-dark: #004d33;
   --color-brand-mint: #c8e6a0;
   --color-brand-olive: #8fbf6f;
-  --color-brand-ink: #111111;
-  --color-brand-muted: #4a5a52;
-  --color-brand-sand: #f6faf0;
   --color-brand-mist: #e3f2d6;
+
+  /* Verde Profundo, full strength for headlines and softened for body copy. */
+  --color-brand-ink: #002e1f;
+  --color-brand-muted: color-mix(in srgb, #002e1f 72%, white);
+  /* A whisper of Verde Oliva Claro, so "white" areas still read as the brand's. */
+  --color-brand-sand: color-mix(in srgb, #e3f2d6 38%, white);
 }
 
 :root {
