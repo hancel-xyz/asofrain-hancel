@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AdminForm } from "@/components/AdminForm";
+import { ImagenConEncuadreField } from "@/components/ImagenConEncuadreField";
 
 export default async function AdminFooterFondoPage() {
   const data = await getEstructura();
@@ -30,11 +31,15 @@ export default async function AdminFooterFondoPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="imagen_fondo">Subir imagen</Label>
-              <Input id="imagen_fondo" name="imagen_fondo" type="file" accept="image/*" />
-              <p className="text-xs text-muted-foreground">Actual: {section.imagen_fondo.valor || "(sin imagen, footer en blanco)"}</p>
-            </div>
+            <ImagenConEncuadreField
+              name="imagen_fondo"
+              label="Subir imagen"
+              help="Si no subes nada, el footer se muestra en blanco."
+              currentUrl={section.imagen_fondo?.valor}
+              currentFocal={section.imagen_fondo?.encuadre}
+              currentOscuridad={section.imagen_fondo?.oscuridad ?? 55}
+              aspectClassName="aspect-[16/9]"
+            />
           </CardContent>
         </Card>
       </AdminForm>

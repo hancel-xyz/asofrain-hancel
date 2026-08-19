@@ -8,7 +8,6 @@ import {
   MapPinIcon,
   QuoteIcon,
   SparklesIcon,
-  WarehouseIcon,
 } from "lucide-react";
 import { ImageSlot, isRealImageUrl, focalToPosition } from "@/components/ImageSlot";
 import { getEstructura } from "@/lib/data";
@@ -17,9 +16,11 @@ import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { SectionHeading } from "@/components/SectionHeading";
 import { VideoInstitucional } from "@/components/VideoInstitucional";
+import { MediaFondo } from "@/components/MediaFondo";
 import { accentAt, metricIcon, serviceIcon } from "@/lib/brandVisuals";
 import { fotosAlAzar } from "@/lib/fotos";
 import { isVideoMedia } from "@/lib/mediaType";
+import { leerFondo } from "@/lib/fondo";
 import { cn } from "@/lib/utils";
 
 const HERO_MARGIN = "px-6 md:px-12 lg:px-[100px]";
@@ -33,6 +34,8 @@ export default async function HomePage() {
   const pageData = data?.sitio.paginas.find((p: any) => p.id === "inicio");
   const heroData = pageData?.secciones.hero;
   const heroFocal = focalToPosition(heroData?.imagen_fondo?.encuadre);
+  // Extra scrim over the hero photo, dialled in from the admin.
+  const heroOscuridad: number = heroData?.imagen_fondo?.oscuridad ?? 0;
   // The institutional slot takes either a photo or a video; `videoUrl` is set
   // only in the second case, so the card renders the right one.
   const media = pageData?.secciones.servicios_vista_general.media;
@@ -41,6 +44,7 @@ export default async function HomePage() {
   const tituloMedia: string | undefined = pageData?.secciones.servicios_vista_general.titulo_media.valor;
   const metricas = pageData?.secciones.metricas;
   const metricItems: any[] = metricas?.items ?? [];
+  const fraseFondo = leerFondo(pageData?.secciones.frase?.fondo);
   // One draw for the whole page so the same photo never shows up twice.
   const fotos = fotosAlAzar(8);
 
@@ -66,6 +70,12 @@ export default async function HomePage() {
 
         {/* Cinematic grade: dark base for legibility, then a teal→slate duotone
             so the hero shares the palette the rest of the page now uses. */}
+        {heroOscuridad > 0 && (
+          <div
+            className="absolute inset-0 bg-brand-deep pointer-events-none"
+            style={{ opacity: heroOscuridad / 100 }}
+          ></div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 md:from-black/55 via-transparent to-transparent pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-brand/40 via-transparent to-brand-forest/45 mix-blend-color pointer-events-none"></div>
@@ -187,67 +197,106 @@ export default async function HomePage() {
             </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] gap-4">
-            {/* Hero metric — the infographic treatment: a circular badge, the
-                label beside it, and the figure sitting in a lime block. */}
-            {metricItems[0] && (
-              <Reveal className="lg:row-span-2">
-                <div className="group relative h-full overflow-hidden rounded-[26px] md:rounded-[30px] bg-gradient-to-br from-brand-forest to-brand-deep text-white p-8 md:p-10 min-h-[440px] flex flex-col justify-between shadow-[0_24px_60px_-30px_rgba(0,77,51,0.85)]">
-                  <div className="absolute inset-0 text-white/10 pattern-rings pointer-events-none"></div>
-                  <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-brand-lime/20 blur-3xl pointer-events-none"></div>
+          {/* The figures are whatever the admin listed: the first one gets the
+              full infographic treatment, list-type figures span the row as a
+              chip bar, and the rest are cards. */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {metricItems.map((item: any, idx: number) => {
+              const esLista = item.descripcion?.tipo_activo === "items";
+              const lista: string[] = item.descripcion?.items?.valor ?? [];
+              const Icon = metricIcon(item.titulo?.valor ?? "", idx);
+              const accent = accentAt(idx);
 
-                  <div className="relative">
-                    <div className="flex items-center gap-4 mb-7">
-                      <span className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-mint ring-4 ring-brand-lime/25 transition-transform duration-500 group-hover:scale-110">
-                        {(() => {
-                          const Icon = metricIcon(metricItems[0].titulo.valor, 0);
-                          return <Icon className="h-8 w-8 text-brand-forest" aria-hidden />;
-                        })()}
-                      </span>
-                      <span className="font-display text-[19px] md:text-[22px] font-bold uppercase leading-[1.15] tracking-[0.01em] text-white">
-                        {metricItems[0].titulo.valor}
-                      </span>
+              if (esLista) {
+                return (
+                  <Reveal key={item.id} delay={120} className="md:col-span-2 lg:col-span-3">
+                    <div className="relative h-full overflow-hidden rounded-[26px] md:rounded-[30px] bg-brand-deep text-white p-7 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
+                      <div className="absolute inset-0 text-white/10 pattern-diag pointer-events-none"></div>
+                      <div className="relative flex items-center gap-3.5 shrink-0">
+                        <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-mint ring-4 ring-brand-lime/25">
+                          <Icon className="h-6 w-6 text-brand-forest" aria-hidden />
+                        </span>
+                        <span className="font-display text-[16px] md:text-[17px] font-bold uppercase leading-[1.15] tracking-[0.01em] text-white">
+                          {item.titulo?.valor}
+                        </span>
+                      </div>
+                      <div className="relative flex flex-wrap gap-2 flex-1">
+                        {lista.map((valor: string) => (
+                          <span
+                            key={valor}
+                            className="px-3.5 py-2 bg-white/10 border border-white/20 rounded-full text-[13px] font-medium text-white hover:bg-brand-lime hover:text-brand-ink hover:border-brand-lime transition-colors cursor-default"
+                          >
+                            {valor}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="relative hidden lg:flex gap-2 shrink-0">
+                        {[0, 1, 2].map((i) => (
+                          <div key={i} className="h-[72px] w-[72px] rounded-2xl overflow-hidden ring-2 ring-white/20">
+                            <ImageSlot src={fotos[i]} placeholder="" className="bg-white/10" />
+                          </div>
+                        ))}
+                      </div>
                     </div>
+                  </Reveal>
+                );
+              }
 
-                    <div className="inline-flex rounded-[20px] bg-brand-lime px-6 py-3 md:px-8 md:py-4">
-                      <span className="font-display font-bold text-[clamp(48px,7vw,92px)] leading-[0.95] tracking-[-0.03em] text-brand-forest-dark">
-                        <CountUp value={metricItems[0].numero.valor} />
-                      </span>
+              if (idx === 0) {
+                return (
+                  <Reveal key={item.id} className="md:col-span-2 lg:col-span-1 lg:row-span-2">
+                    <div className="group relative h-full overflow-hidden rounded-[26px] md:rounded-[30px] bg-gradient-to-br from-brand-forest to-brand-deep text-white p-8 md:p-10 min-h-[440px] flex flex-col justify-between shadow-[0_24px_60px_-30px_rgba(0,77,51,0.85)]">
+                      <div className="absolute inset-0 text-white/10 pattern-rings pointer-events-none"></div>
+                      <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-brand-lime/20 blur-3xl pointer-events-none"></div>
+
+                      <div className="relative">
+                        <div className="flex items-center gap-4 mb-7">
+                          <span className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-mint ring-4 ring-brand-lime/25 transition-transform duration-500 group-hover:scale-110">
+                            <Icon className="h-8 w-8 text-brand-forest" aria-hidden />
+                          </span>
+                          <span className="font-display text-[19px] md:text-[22px] font-bold uppercase leading-[1.15] tracking-[0.01em] text-white">
+                            {item.titulo?.valor}
+                          </span>
+                        </div>
+
+                        {item.numero?.valor && (
+                          <div className="inline-flex rounded-[20px] bg-brand-lime px-6 py-3 md:px-8 md:py-4">
+                            <span className="font-display font-bold text-[clamp(44px,6.5vw,88px)] leading-[0.95] tracking-[-0.03em] text-brand-forest-dark">
+                              <CountUp value={item.numero.valor} />
+                            </span>
+                          </div>
+                        )}
+
+                        <div className="mt-5 text-[14.5px] leading-[1.6] text-white/75 max-w-[340px] text-just">
+                          {item.descripcion?.texto?.valor}
+                        </div>
+                      </div>
+
+                      {/* Sparkline-style ramp: the bars grow from the baseline as
+                          the tile scrolls in, brightening toward the present year. */}
+                      <div className="relative flex items-end gap-1.5 md:gap-2 h-[90px] mt-8">
+                        {[24, 38, 52, 66, 78, 88, 100].map((height, i, arr) => (
+                          <div
+                            key={height}
+                            className="metric-bar flex-1 rounded-md bg-white"
+                            style={{
+                              height: `${height}%`,
+                              opacity: 0.28 + (i / (arr.length - 1)) * 0.62,
+                              transitionDelay: `${i * 90}ms`,
+                            }}
+                          ></div>
+                        ))}
+                      </div>
                     </div>
+                  </Reveal>
+                );
+              }
 
-                    <div className="mt-5 text-[15px] leading-[1.6] text-white/80 max-w-[340px] text-just">
-                      {metricItems[0].descripcion.texto.valor}
-                    </div>
-                  </div>
-
-                  {/* Sparkline-style ramp: the bars grow from the baseline as
-                      the tile scrolls in, brightening toward the present year. */}
-                  <div className="relative flex items-end gap-1.5 md:gap-2 h-[90px] mt-8">
-                    {[24, 38, 52, 66, 78, 88, 100].map((height, i, arr) => (
-                      <div
-                        key={height}
-                        className="metric-bar flex-1 rounded-md bg-white"
-                        style={{
-                          height: `${height}%`,
-                          opacity: 0.28 + (i / (arr.length - 1)) * 0.62,
-                          transitionDelay: `${i * 90}ms`,
-                        }}
-                      ></div>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            )}
-
-            {/* Secondary metrics */}
-            {metricItems.slice(1, 3).map((item: any, i: number) => {
-              const accent = i === 0 ? accentAt(1) : accentAt(2);
-              const Icon = metricIcon(item.titulo.valor, i + 1);
               return (
-                <Reveal key={item.id} delay={120 + i * 100}>
+                <Reveal key={item.id} delay={(idx % 3) * 90}>
                   <div
                     className={cn(
-                      "group h-full rounded-[26px] md:rounded-[30px] border p-8 min-h-[212px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-26px_rgba(0,46,31,0.4)]",
+                      "group h-full rounded-[26px] md:rounded-[30px] border p-7 md:p-8 min-h-[212px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-26px_rgba(0,46,31,0.4)]",
                       accent.soft,
                       accent.ring
                     )}
@@ -261,65 +310,29 @@ export default async function HomePage() {
                       >
                         <Icon className="h-6 w-6" aria-hidden />
                       </span>
-                      <span className={cn("font-display text-[15px] md:text-[16px] font-bold uppercase leading-[1.15] tracking-[0.01em]", accent.text)}>
-                        {item.titulo.valor}
+                      <span className={cn("font-display text-[16px] md:text-[17px] font-bold uppercase leading-[1.15] tracking-[0.01em]", accent.text)}>
+                        {item.titulo?.valor}
                       </span>
                     </div>
                     <div className="flex items-end justify-between gap-4">
                       <div>
-                        <div className={cn("font-display font-bold text-[64px] md:text-[80px] leading-[0.85] tracking-[-0.02em]", accent.text)}>
-                          <CountUp value={item.numero.valor} />
+                        {item.numero?.valor && (
+                          <div className={cn("font-display font-bold text-[52px] md:text-[64px] leading-[0.85] tracking-[-0.02em]", accent.text)}>
+                            <CountUp value={item.numero.valor} />
+                          </div>
+                        )}
+                        <div className="mt-2.5 text-[13.5px] leading-[1.6] text-brand-muted">
+                          {item.descripcion?.texto?.valor}
                         </div>
-                        <div className="mt-2.5 text-[14px] leading-[1.6] text-brand-muted">{item.descripcion.texto.valor}</div>
                       </div>
                       <div className="hidden sm:block h-[84px] w-[84px] shrink-0 rounded-2xl overflow-hidden ring-2 ring-white/70 shadow-sm">
-                        <ImageSlot src={fotos[i + 3]} placeholder="" className="bg-brand/10" />
+                        <ImageSlot src={fotos[(idx + 2) % fotos.length]} placeholder="" className="bg-brand/10" />
                       </div>
                     </div>
                   </div>
                 </Reveal>
               );
             })}
-
-            {/* ECA list */}
-            {metricItems[3] && (
-              <Reveal delay={220} className="md:col-span-2">
-                <div className="relative h-full overflow-hidden rounded-[26px] md:rounded-[30px] bg-brand-deep text-white p-7 md:p-8 flex flex-col md:flex-row md:items-center gap-5">
-                  <div className="absolute inset-0 text-white/10 pattern-diag pointer-events-none"></div>
-                  <div className="relative flex items-center gap-3.5 shrink-0">
-                    <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-mint ring-4 ring-brand-lime/25">
-                      <WarehouseIcon className="h-6 w-6 text-brand-forest" aria-hidden />
-                    </span>
-                    <span className="font-display text-[15px] md:text-[16px] font-bold uppercase leading-[1.15] tracking-[0.01em] text-white">
-                      {metricItems[3].titulo.valor}
-                    </span>
-                  </div>
-                  <div className="relative flex flex-wrap gap-2 flex-1">
-                    {metricItems[3].descripcion.items.valor.map((eca: string) => (
-                      <span
-                        key={eca}
-                        className="px-3.5 py-2 bg-white/10 border border-white/20 rounded-full text-[13px] font-medium text-white hover:bg-brand-lime hover:text-brand-ink hover:border-brand-lime transition-colors cursor-default"
-                      >
-                        {eca}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Photo strip, as on the brand's printed impact pieces:
-                      the figure never travels alone. */}
-                  <div className="relative hidden lg:flex gap-2 shrink-0">
-                    {[0, 1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="h-[72px] w-[72px] rounded-2xl overflow-hidden ring-2 ring-white/20"
-                      >
-                        <ImageSlot src={fotos[i]} placeholder="" className="bg-white/10" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            )}
           </div>
         </div>
       </section>
@@ -431,30 +444,70 @@ export default async function HomePage() {
       {/* ================= FRASE DE CIERRE ================= */}
       <section className="px-4 md:px-6 py-[60px] md:py-[100px]">
         <Reveal variant="scale" className="max-w-[1400px] mx-auto">
-          <div className="relative overflow-hidden px-6 md:px-[60px] py-[56px] md:py-[86px] bg-gradient-to-br from-brand via-brand to-brand-lime rounded-[26px] md:rounded-[36px] text-center">
-            <div className="absolute inset-0 text-white/25 pattern-rings pointer-events-none"></div>
-            <div className="absolute -left-20 -bottom-24 w-72 h-72 rounded-full bg-white/20 blur-3xl pointer-events-none animate-af-float"></div>
+          {/* The copy sits in a column down one side so the photo or video
+              behind it stays visible instead of being covered edge to edge. */}
+          <div
+            className={cn(
+              "relative isolate overflow-hidden rounded-[26px] md:rounded-[36px] min-h-[460px] md:min-h-[540px] flex items-center",
+              !fraseFondo && "bg-gradient-to-br from-brand via-brand to-brand-lime"
+            )}
+          >
+            <MediaFondo fondo={fraseFondo} className="-z-10" />
+            <div
+              className={cn(
+                "absolute inset-0 -z-10 pointer-events-none",
+                fraseFondo ? "text-white/10" : "text-white/25",
+                "pattern-rings"
+              )}
+            ></div>
+            {fraseFondo && (
+              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-deep/85 via-brand-deep/45 to-transparent pointer-events-none"></div>
+            )}
 
-            <div className="relative">
-              <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white/25 backdrop-blur-sm ring-1 ring-white/40 mb-7">
-                <QuoteIcon className="h-6 w-6 text-white" aria-hidden />
-              </span>
-              <div className="text-[11px] tracking-[3px] text-brand-ink/70 font-bold mb-6 uppercase">
-                {pageData?.secciones.frase.titulo_pequeno.valor}
+            <div className="relative w-full px-6 md:px-[60px] lg:px-[76px] py-[56px] md:py-[80px]">
+              <div className="max-w-[720px]">
+                <span
+                  className={cn(
+                    "inline-flex h-14 w-14 items-center justify-center rounded-full backdrop-blur-sm ring-1 mb-7",
+                    fraseFondo ? "bg-brand-lime/25 ring-brand-lime/50" : "bg-white/25 ring-white/40"
+                  )}
+                >
+                  <QuoteIcon className={cn("h-6 w-6", fraseFondo ? "text-brand-lime" : "text-white")} aria-hidden />
+                </span>
+
+                {/* Quote first and largest; the label under it is the subtitle. */}
+                <p
+                  className={cn(
+                    "font-display font-bold text-[clamp(30px,4.6vw,58px)] leading-[1.1] tracking-[-0.015em] m-0 text-balance",
+                    fraseFondo ? "text-white" : "text-brand-ink"
+                  )}
+                >
+                  <HighlightText
+                    text={pageData?.secciones.frase.texto.valor || ""}
+                    highlightClassName={cn(
+                      "font-display font-bold not-italic",
+                      fraseFondo ? "text-brand-lime" : "text-white"
+                    )}
+                  />
+                </p>
+
+                <div
+                  className={cn(
+                    "mt-6 text-[15px] md:text-[17px] tracking-[2.5px] font-bold uppercase",
+                    fraseFondo ? "text-brand-lime" : "text-brand-ink/70"
+                  )}
+                >
+                  {pageData?.secciones.frase.titulo_pequeno.valor}
+                </div>
+
+                <Link
+                  href="/solicitar"
+                  className="btn-sheen mt-9 inline-flex items-center gap-2.5 rounded-full bg-brand-dark px-7 py-4 text-[14.5px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-forest hover:shadow-[0_18px_40px_-18px_rgba(0,77,51,0.85)] group"
+                >
+                  Solicitar el servicio
+                  <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
+                </Link>
               </div>
-              <p className="font-display font-semibold text-[clamp(28px,5vw,54px)] leading-[1.14] tracking-[-0.01em] mx-auto max-w-[1000px] text-balance text-brand-ink">
-                <HighlightText
-                  text={pageData?.secciones.frase.texto.valor || ""}
-                  highlightClassName="font-display font-medium not-italic text-white"
-                />
-              </p>
-              <Link
-                href="/solicitar"
-                className="btn-sheen mt-9 inline-flex items-center gap-2.5 rounded-full bg-brand-dark px-7 py-4 text-[14.5px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-forest hover:shadow-[0_18px_40px_-18px_rgba(0,77,51,0.85)] group"
-              >
-                Solicitar el servicio
-                <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
-              </Link>
             </div>
           </div>
         </Reveal>

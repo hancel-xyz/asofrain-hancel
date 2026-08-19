@@ -16,12 +16,16 @@ export async function updateServiciosHero(formData: FormData) {
   // `encuadre` is the object-position the hero photo is cropped around; it can
   // be re-adjusted without re-uploading the image.
   const encuadre = formData.get("imagen_fondo_encuadre")?.toString();
+  // How dark the layer over the photo is, so the hero copy stays readable.
+  const oscuridadRaw = formData.get("imagen_fondo_oscuridad")?.toString();
+  const oscuridad = oscuridadRaw !== undefined ? Number(oscuridadRaw) : undefined;
 
   const data = {
     imagen_fondo: {
       ...page.secciones.hero.imagen_fondo,
       ...(uploaded ? { valor: uploaded.url, key: uploaded.key } : {}),
       ...(encuadre ? { encuadre } : {}),
+      ...(Number.isFinite(oscuridad) ? { oscuridad: Math.min(100, Math.max(0, oscuridad as number)) } : {}),
     },
     titulo: { ...page.secciones.hero.titulo, valor: formData.get("titulo")?.toString() || "" },
     descripcion: { ...page.secciones.hero.descripcion, valor: formData.get("descripcion")?.toString() || "" },
@@ -86,10 +90,21 @@ export async function updateServiciosServicioDestacadoPlus(formData: FormData) {
     subtitulo_pequeno: { ...page.secciones.servicio_destacado_plus.subtitulo_pequeno, valor: formData.get("subtitulo_pequeno")?.toString() || "" },
     titulo: { ...page.secciones.servicio_destacado_plus.titulo, valor: formData.get("titulo")?.toString() || "" },
     descripcion: { ...page.secciones.servicio_destacado_plus.descripcion, valor: formData.get("descripcion")?.toString() || "" },
-    items: [
-      // La lista completa requeriría re-parsear formData para arrays.
-      // Por ahora mantendremos el array original y solo actualizaremos los valores que lleguen
-    ],
+    imagen: page.secciones.servicio_destacado_plus.imagen ?? {},
+    items: [] as any[],
+  };
+
+  // The block now shows a photo of the service beside the copy.
+  const uploadedPlus = await uploadMediaFile(formData.get("imagen"), {
+    pageSlug: "servicios",
+    sectionKey: "servicio_destacado_plus",
+    alt: data.titulo.valor,
+  });
+  const encuadrePlus = formData.get("imagen_encuadre")?.toString();
+  data.imagen = {
+    ...data.imagen,
+    ...(uploadedPlus ? { valor: uploadedPlus.url, key: uploadedPlus.key } : {}),
+    ...(encuadrePlus ? { encuadre: encuadrePlus } : {}),
   };
 
   // Handle arrays explicitly if they exist
@@ -102,47 +117,10 @@ export async function updateServiciosServicioDestacadoPlus(formData: FormData) {
       if (formData.has(`${id}_descripcion`)) updatedItem.descripcion = { ...updatedItem.descripcion, valor: formData.get(`${id}_descripcion`)?.toString() || "" };
       return updatedItem;
     });
-    if (Array.isArray(data.items)) data.items = updateditems;
-    else data.items = updateditems;
+    data.items = updateditems;
   }
 
   await updateEstructuraPageSection("servicios", "servicio_destacado_plus", data);
-  revalidatePath("/", "layout");
-}
-
-export async function updateServiciosRutasLocalidadesHorarios(formData: FormData) {
-  const estructura = await getEstructura();
-  const page = estructura?.sitio.paginas.find((p: any) => p.id === "servicios");
-  if (!page) return;
-
-  const data = {
-    nota: page.secciones.rutas_localidades_horarios.nota,
-    permite_agregar: page.secciones.rutas_localidades_horarios.permite_agregar,
-    titulo: { ...page.secciones.rutas_localidades_horarios.titulo, valor: formData.get("titulo")?.toString() || "" },
-    descripcion: { ...page.secciones.rutas_localidades_horarios.descripcion, valor: formData.get("descripcion")?.toString() || "" },
-    tabla: {
-      ...page.secciones.rutas_localidades_horarios.tabla,
-      // mapping filas...
-    },
-  };
-
-  // Handle arrays explicitly if they exist
-  const tablaArray = page.secciones.rutas_localidades_horarios.tabla.filas;
-  if (tablaArray) {
-    const updatedtabla = tablaArray.map((item: any) => {
-      const id = item.id;
-      const updatedItem = { ...item };
-      if (formData.has(`${id}_localidad`)) updatedItem.localidad = { ...updatedItem.localidad, valor: formData.get(`${id}_localidad`)?.toString() || "" };
-      if (formData.has(`${id}_dias`)) updatedItem.dias = { ...updatedItem.dias, valor: formData.get(`${id}_dias`)?.toString() || "" };
-      if (formData.has(`${id}_horario`)) updatedItem.horario = { ...updatedItem.horario, valor: formData.get(`${id}_horario`)?.toString() || "" };
-      updatedItem.estado = { activa: formData.get(`${id}_activa`) === "on" };
-      return updatedItem;
-    });
-    if (Array.isArray(data.tabla)) data.tabla = updatedtabla;
-    else data.tabla.filas = updatedtabla;
-  }
-
-  await updateEstructuraPageSection("servicios", "rutas_localidades_horarios", data);
   revalidatePath("/", "layout");
 }
 

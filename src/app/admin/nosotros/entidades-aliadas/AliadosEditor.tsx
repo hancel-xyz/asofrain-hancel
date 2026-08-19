@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { PlusIcon, TrashIcon } from "lucide-react";
 
@@ -75,16 +74,12 @@ export function AliadosEditor({ initialAliados }: { initialAliados: AliadoData[]
               <Label htmlFor={`${a.id}_titulo`}>Título / Nombre <span className="font-normal text-muted-foreground text-xs">(Usa *asteriscos* para destacar una palabra)</span></Label>
               <Input id={`${a.id}_titulo`} name={`${a.id}_titulo`} defaultValue={a.titulo} />
             </div>
-            <div className="flex flex-col gap-3 md:col-span-2">
-              <Label htmlFor={`${a.id}_desc`}>Descripción</Label>
-              <Textarea id={`${a.id}_desc`} name={`${a.id}_desc`} defaultValue={a.descripcion} rows={2} />
-            </div>
           </div>
         </div>
       ))}
 
       <p className="text-xs text-muted-foreground text-center">
-        La última entidad de la lista siempre se muestra destacada en /nosotros, ocupando el espacio restante de su fila.
+        En el sitio se muestran el logo y el nombre de cada entidad, en el pie de página.
       </p>
     </div>
   );

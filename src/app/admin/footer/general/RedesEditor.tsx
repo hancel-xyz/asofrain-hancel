@@ -39,6 +39,12 @@ export function RedesEditor({ initialRedes }: { initialRedes: RedData[] }) {
         </Button>
       </div>
 
+      <p className="text-xs text-muted-foreground">
+        Puedes poner cualquier enlace. El icono se elige solo a partir del nombre: escribe Facebook, Instagram,
+        LinkedIn, YouTube, TikTok, X o WhatsApp y aparece su logo; con cualquier otro nombre se muestra un globo.
+        Las redes sin enlace no se publican en el sitio.
+      </p>
+
       {redes.length === 0 && (
         <p className="text-sm text-muted-foreground border border-dashed rounded-lg p-6 text-center">
           Todavía no hay redes sociales. Agrega la primera con el botón de arriba.

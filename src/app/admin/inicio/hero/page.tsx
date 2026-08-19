@@ -40,6 +40,7 @@ export default async function AdminInicioHeroPage() {
               help="La foto ocupa toda la pantalla, así que se recorta según el tamaño del dispositivo. Marca a la derecha el punto que siempre debe verse."
               currentUrl={section.imagen_fondo?.valor}
               currentFocal={section.imagen_fondo?.encuadre}
+              currentOscuridad={section.imagen_fondo?.oscuridad ?? 0}
               aspectClassName="aspect-[16/9]"
             />
           </CardContent>

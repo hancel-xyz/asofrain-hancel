@@ -19,6 +19,7 @@ export function ImagenConEncuadreField({
   help,
   currentUrl,
   currentFocal,
+  currentOscuridad,
   aspectClassName = "aspect-[16/10]",
 }: {
   /** Field name of the file input; the framing is submitted as `${name}_encuadre`. */
@@ -27,9 +28,12 @@ export function ImagenConEncuadreField({
   help?: string;
   currentUrl?: string;
   currentFocal?: string;
+  /** When given, a slider for the dark layer over the photo is shown too. */
+  currentOscuridad?: number;
   aspectClassName?: string;
 }) {
   const [objectUrl, setObjectUrl] = useState<string | null>(null);
+  const [oscuridad, setOscuridad] = useState(currentOscuridad ?? 0);
 
   useEffect(() => {
     return () => {
@@ -55,6 +59,29 @@ export function ImagenConEncuadreField({
           }}
         />
         {help && <p className="text-xs text-muted-foreground">{help}</p>}
+
+        {currentOscuridad !== undefined && (
+          <div className="flex flex-col gap-2 pt-2">
+            <input type="hidden" name={`${name}_oscuridad`} value={oscuridad} readOnly />
+            <Label htmlFor={`${name}_oscuridad_range`} className="flex items-center justify-between">
+              <span>Capa oscura sobre la imagen</span>
+              <span className="font-normal text-muted-foreground tabular-nums">{oscuridad}%</span>
+            </Label>
+            <input
+              id={`${name}_oscuridad_range`}
+              type="range"
+              min={0}
+              max={100}
+              step={5}
+              value={oscuridad}
+              onChange={(e) => setOscuridad(Number(e.target.value))}
+              className="w-full accent-primary"
+            />
+            <p className="text-xs text-muted-foreground">
+              Sube el porcentaje si el texto encima no se lee bien; bájalo para que la foto se aprecie más.
+            </p>
+          </div>
+        )}
       </div>
 
       <FocalPointPicker

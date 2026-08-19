@@ -2,6 +2,7 @@
 
 import { getEstructura, updateEstructuraPageSection } from "@/lib/data";
 import { uploadMediaFile } from "@/lib/media";
+import { leerFondoDeFormData } from "@/lib/fondo";
 import { revalidatePath } from "next/cache";
 
 export async function updateInicioHero(formData: FormData) {
@@ -23,11 +24,16 @@ export async function updateInicioHero(formData: FormData) {
   // `encuadre` is the object-position the hero photo is cropped around; it can
   // be re-adjusted without re-uploading the image.
   const encuadre = formData.get("imagen_fondo_encuadre")?.toString();
-  if (uploaded || encuadre) {
+  // How dark the layer over the photo is, so the hero copy stays readable
+  // whatever image is uploaded.
+  const oscuridadRaw = formData.get("imagen_fondo_oscuridad")?.toString();
+  const oscuridad = oscuridadRaw !== undefined ? Number(oscuridadRaw) : undefined;
+  if (uploaded || encuadre || oscuridad !== undefined) {
     data.imagen_fondo = {
       ...page?.secciones.hero.imagen_fondo,
       ...(uploaded ? { valor: uploaded.url, key: uploaded.key } : {}),
       ...(encuadre ? { encuadre } : {}),
+      ...(Number.isFinite(oscuridad) ? { oscuridad: Math.min(100, Math.max(0, oscuridad as number)) } : {}),
     };
   }
 
@@ -37,55 +43,39 @@ export async function updateInicioHero(formData: FormData) {
 }
 
 export async function updateInicioMetricas(formData: FormData) {
-  // eca_lista comes as comma-separated string
-  const ecaLista = (formData.get("m3_eca_lista") as string || "").split(",").map(s => s.trim()).filter(Boolean);
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "inicio");
+
+  // The set of figures is whatever the editor submitted, in its order — they
+  // used to be four fixed slots, so adding one meant changing this file.
+  const previas = new Map<string, any>(
+    (page?.secciones.metricas.items ?? []).map((m: any) => [m.id, m])
+  );
+  const ids = formData.getAll("metricas_id").map((v) => v.toString()).filter(Boolean);
 
   const data = {
     dato_breve: { valor: formData.get("dato_breve") as string },
     titulo_principal: { valor: formData.get("titulo_principal") as string },
     descripcion: { valor: formData.get("descripcion") as string },
-    items: [
-      {
-        id: "metrica_1",
-        titulo: { valor: "Toneladas aprovechadas", fijo: true },
-        numero: { valor: formData.get("m1_numero") as string },
+    items: ids.map((id) => {
+      const tipo = formData.get(`${id}_tipo`)?.toString() === "items" ? "items" : "texto";
+      const lista = (formData.get(`${id}_items`)?.toString() || "")
+        .split(",")
+        .map((x) => x.trim())
+        .filter(Boolean);
+
+      return {
+        ...(previas.get(id) ?? {}),
+        id,
+        titulo: { valor: formData.get(`${id}_titulo`)?.toString() || "" },
+        numero: { valor: formData.get(`${id}_numero`)?.toString() || "" },
         descripcion: {
-          tipo_activo: "texto",
-          texto: { valor: formData.get("m1_desc") as string },
-          items: { valor: [] }
-        }
-      },
-      {
-        id: "metrica_2",
-        titulo: { valor: "Localidades", fijo: true },
-        numero: { valor: formData.get("m2_numero") as string },
-        descripcion: {
-          tipo_activo: "texto",
-          texto: { valor: formData.get("m2_desc") as string },
-          items: { valor: [] }
-        }
-      },
-      {
-        id: "metrica_3",
-        titulo: { valor: "ECAs ACTIVAS", fijo: true },
-        numero: { valor: formData.get("m3_numero") as string },
-        descripcion: {
-          tipo_activo: "texto",
-          texto: { valor: formData.get("m3_desc") as string },
-          items: { valor: [] }
-        }
-      },
-      {
-        id: "metrica_4",
-        titulo: { valor: "ECAs:", fijo: true },
-        numero: { valor: "" },
-        descripcion: {
-          tipo_activo: "items",
-          texto: { valor: "" },
-          items: { valor: ecaLista }
-        }
-      }
-    ]
+          tipo_activo: tipo,
+          texto: { valor: formData.get(`${id}_texto`)?.toString() || "" },
+          items: { valor: lista },
+        },
+      };
+    }),
   };
 
   await updateEstructuraPageSection("inicio", "metricas", data);
@@ -93,12 +83,6 @@ export async function updateInicioMetricas(formData: FormData) {
   revalidatePath("/admin/inicio/metricas");
 }
 
-/**
- * Uploads the home page's institutional image or video on its own, as soon as
- * it's picked, instead of bundling it into the section's "Guardar Cambios"
- * submit — a video would otherwise blow past the Server Action body limit and
- * fail the whole save.
- */
 export async function uploadInicioMedia(formData: FormData) {
   return uploadMediaFile(formData.get("file"), {
     pageSlug: "inicio",
@@ -144,11 +128,25 @@ export async function updateInicioServicios(formData: FormData) {
   revalidatePath("/admin/inicio/servicios");
 }
 
+/** Uploads the photo or video behind the closing quote. */
+export async function uploadInicioFraseFondo(formData: FormData) {
+  return uploadMediaFile(formData.get("file"), {
+    pageSlug: "inicio",
+    sectionKey: "frase",
+  });
+}
+
 export async function updateInicioFrase(formData: FormData) {
-  const data = {
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "inicio");
+
+  const data: any = {
     titulo_pequeno: { valor: formData.get("titulo_pequeno") as string },
-    texto: { valor: formData.get("texto") as string }
+    texto: { valor: formData.get("texto") as string },
   };
+
+  const fondo = leerFondoDeFormData(formData, "fondo", page?.secciones.frase?.fondo);
+  if (fondo) data.fondo = fondo;
 
   await updateEstructuraPageSection("inicio", "frase", data);
   revalidatePath("/");

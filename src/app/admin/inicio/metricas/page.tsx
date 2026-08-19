@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { AdminForm } from "@/components/AdminForm";
+import { MetricasEditor } from "./MetricasEditor";
 
 export default async function AdminInicioMetricasPage() {
   const data = await getEstructura();
@@ -54,59 +55,25 @@ export default async function AdminInicioMetricasPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Métricas Detalladas</CardTitle>
-            <CardDescription>Los números que demuestran el impacto.</CardDescription>
+            <CardTitle>Métricas</CardTitle>
+            <CardDescription>
+              Los números que demuestran el impacto. Puedes agregar, reordenar o eliminar las que quieras.
+            </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-4 border p-4 rounded-lg">
-              <h3 className="font-medium text-lg border-b pb-2">Métrica 1: Toneladas</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-3">
-                  <Label htmlFor="m1_numero">Número</Label>
-                  <Input id="m1_numero" name="m1_numero" defaultValue={section.items[0]?.numero.valor} />
-                </div>
-                <div className="flex flex-col gap-3">
-                  <Label htmlFor="m1_desc">Texto descriptivo</Label>
-                  <Input id="m1_desc" name="m1_desc" defaultValue={section.items[0]?.descripcion.texto.valor} />
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4 border p-4 rounded-lg">
-              <h3 className="font-medium text-lg border-b pb-2">Métrica 2: Localidades</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-3">
-                  <Label htmlFor="m2_numero">Número</Label>
-                  <Input id="m2_numero" name="m2_numero" defaultValue={section.items[1]?.numero.valor} />
-                </div>
-                <div className="flex flex-col gap-3">
-                  <Label htmlFor="m2_desc">Texto descriptivo</Label>
-                  <Input id="m2_desc" name="m2_desc" defaultValue={section.items[1]?.descripcion.texto.valor} />
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4 border p-4 rounded-lg">
-              <h3 className="font-medium text-lg border-b pb-2">Métrica 3: ECAs Activas</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-3">
-                  <Label htmlFor="m3_numero">Número</Label>
-                  <Input id="m3_numero" name="m3_numero" defaultValue={section.items[2]?.numero.valor} />
-                </div>
-                <div className="flex flex-col gap-3">
-                  <Label htmlFor="m3_desc">Texto descriptivo</Label>
-                  <Input id="m3_desc" name="m3_desc" defaultValue={section.items[2]?.descripcion.texto.valor} />
-                </div>
-                <div className="flex flex-col gap-3 md:col-span-2">
-                  <Label htmlFor="m3_eca_lista">Nombres de ECAs (separadas por coma)</Label>
-                  <Input id="m3_eca_lista" name="m3_eca_lista" defaultValue={section.items[3]?.descripcion.items.valor.join(", ")} />
-                </div>
-              </div>
-            </div>
+          <CardContent>
+            <MetricasEditor
+              key={section.items.map((m: any) => m.id).join("|")}
+              initialMetricas={section.items.map((m: any) => ({
+                id: m.id,
+                titulo: m.titulo?.valor ?? "",
+                numero: m.numero?.valor ?? "",
+                tipo: m.descripcion?.tipo_activo === "items" ? "items" : "texto",
+                texto: m.descripcion?.texto?.valor ?? "",
+                items: (m.descripcion?.items?.valor ?? []).join(", "),
+              }))}
+            />
           </CardContent>
         </Card>
-
-        
       </AdminForm>
     </div>
   );

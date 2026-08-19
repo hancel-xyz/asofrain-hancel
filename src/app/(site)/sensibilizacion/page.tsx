@@ -87,7 +87,7 @@ export default async function SensibilizacionPage() {
                 </span>
               </Reveal>
               <Reveal delay={100}>
-                <h1 className="font-display font-semibold text-[clamp(36px,6vw,64px)] leading-[1.05] m-0 tracking-[-0.02em] text-brand-ink">
+                <h1 className="font-display font-bold text-[clamp(38px,5.8vw,68px)] leading-[1.04] m-0 tracking-[-0.02em] text-brand-ink">
                   <HighlightText
                     text={s?.encabezado.titulo.valor || ""}
                     highlightClassName="font-display font-medium not-italic text-brand-dark"
@@ -100,7 +100,7 @@ export default async function SensibilizacionPage() {
                 <span className="absolute -top-3.5 left-6 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-lime text-brand-ink shadow-md">
                   <SparklesIcon className="h-4 w-4" aria-hidden />
                 </span>
-                <p className="text-[15px] md:text-[16px] leading-[1.75] text-brand-muted m-0 mt-3 text-just">
+                <p className="text-[16px] md:text-[19px] leading-[1.6] font-medium text-brand-muted m-0 mt-3 text-just">
                   {s?.encabezado.descripcion.valor}
                 </p>
               </div>
@@ -141,12 +141,12 @@ export default async function SensibilizacionPage() {
                       </span>
                     </div>
 
-                    <div className={cn("relative text-[11px] tracking-[2.5px] font-bold mb-2.5 uppercase", theme.eyebrow)}>
+                    <div className={cn("relative text-[12px] md:text-[13px] tracking-[2.5px] font-bold mb-2.5 uppercase", theme.eyebrow)}>
                       {tipo.tipo.valor}
                     </div>
                     <h3
                       className={cn(
-                        "relative font-display font-semibold text-[26px] md:text-[30px] leading-[1.12] mb-5 tracking-[-0.01em] m-0",
+                        "relative font-display font-bold text-[28px] md:text-[34px] leading-[1.08] mb-5 tracking-[-0.015em] m-0",
                         theme.title
                       )}
                     >
@@ -155,7 +155,7 @@ export default async function SensibilizacionPage() {
 
                     <ul className="relative m-0 p-0 list-none flex flex-col gap-2.5">
                       {tipo.vinetas.items.map((vineta: any) => (
-                        <li key={vineta.id} className={cn("flex items-start gap-2.5 text-[13.5px] md:text-[14px] leading-[1.6]", theme.body)}>
+                        <li key={vineta.id} className={cn("flex items-start gap-2.5 text-[13px] md:text-[13.5px] leading-[1.6]", theme.body)}>
                           <span className={cn("mt-0.5 inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full", theme.bulletChip)}>
                             <CheckIcon className="h-3 w-3" aria-hidden />
                           </span>

@@ -48,11 +48,13 @@ export function SectionHeading({
   const t = TONE[tone];
   const centered = align === "center";
 
+  // One step per rank, with real distance between them: the title is roughly
+  // three times the eyebrow and twice the subtitle at every size.
   const sizes = {
-    sm: "text-[26px] md:text-[32px]",
-    md: "text-[30px] md:text-[40px]",
-    lg: "text-[36px] md:text-[48px]",
-    xl: "text-[clamp(36px,5.5vw,64px)]",
+    sm: "text-[28px] md:text-[34px]",
+    md: "text-[32px] md:text-[42px]",
+    lg: "text-[38px] md:text-[52px]",
+    xl: "text-[clamp(38px,5.8vw,68px)]",
   } as const;
 
   return (
@@ -67,7 +69,7 @@ export function SectionHeading({
           <span className={cn("h-[2px] w-7 rounded-full", t.rule)} />
           <span
             className={cn(
-              "text-[11px] tracking-[2.5px] font-bold uppercase",
+              "text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase",
               t.text
             )}
           >
@@ -80,7 +82,7 @@ export function SectionHeading({
       {title && (
         <Tag
           className={cn(
-            "font-display font-semibold leading-[1.05] tracking-[-0.02em] m-0",
+            "font-display font-bold leading-[1.04] tracking-[-0.02em] m-0",
             tone === "white" ? "text-white" : "text-brand-ink",
             sizes[size],
             titleClassName
@@ -93,7 +95,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={cn(
-            "text-[15.5px] md:text-[16.5px] leading-[1.7] mt-4 md:mt-5 max-w-[560px] text-just",
+            "text-[16px] md:text-[19px] leading-[1.6] font-medium mt-4 md:mt-5 max-w-[620px] text-just",
             tone === "white" ? "text-white/75" : "text-brand-muted",
             centered && "mx-auto text-center"
           )}

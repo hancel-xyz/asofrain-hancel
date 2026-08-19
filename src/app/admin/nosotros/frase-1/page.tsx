@@ -1,11 +1,13 @@
 import { getEstructura } from "@/lib/data";
-import { updateNosotrosFrase1 } from "../actions";
+import { updateNosotrosFrase1, uploadNosotrosFrase1Fondo } from "../actions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { AdminForm } from "@/components/AdminForm";
+import { FondoMediaField } from "@/components/FondoMediaField";
+import { leerFondo, OSCURIDAD_POR_DEFECTO } from "@/lib/fondo";
 
 export default async function AdminNosotrosFrase1Page() {
   const data = await getEstructura();
@@ -13,6 +15,7 @@ export default async function AdminNosotrosFrase1Page() {
   const page = data.sitio.paginas.find((p: any) => p.id === "nosotros");
   if (!page) return <div>Página no encontrada</div>;
   const section = page.secciones.frase_1;
+  const fondo = leerFondo(section.fondo);
 
   return (
     <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
@@ -45,6 +48,27 @@ export default async function AdminNosotrosFrase1Page() {
         </Card>
 
         
+        <Card>
+          <CardHeader>
+            <CardTitle>Fondo de la seccion</CardTitle>
+            <CardDescription>
+              La imagen o el video que se ve detras de la frase. Si no subes nada, la seccion usa el verde de la
+              marca.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FondoMediaField
+              name="fondo"
+              subir={uploadNosotrosFrase1Fondo}
+              currentUrl={fondo?.url}
+              currentKey={fondo?.key}
+              currentMime={fondo?.mime}
+              currentEncuadre={fondo?.encuadre}
+              currentOscuridad={fondo?.oscuridad ?? OSCURIDAD_POR_DEFECTO}
+            />
+          </CardContent>
+        </Card>
+
       </AdminForm>
     </div>
   );

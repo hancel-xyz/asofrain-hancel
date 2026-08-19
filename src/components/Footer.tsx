@@ -57,9 +57,15 @@ export async function Footer() {
   const page = data?.sitio.paginas.find((p: any) => p.id === "footer");
   const fondoUrl = page?.secciones?.fondo?.imagen_fondo?.valor;
   const hasImage = isRealImageUrl(fondoUrl);
+  // Strength of the dark layer over that photo, dialled in from the admin.
+  const fondoOscuridad: number = page?.secciones?.fondo?.imagen_fondo?.oscuridad ?? 55;
 
   const descripcion = page?.secciones?.general?.descripcion?.valor || "";
-  const redes: { id: string; nombre: string; url: string }[] = page?.secciones?.general?.redes ?? [];
+  // A network without a link is one the organisation does not have yet, so it
+  // is left out rather than rendered as a dead icon.
+  const redes: { id: string; nombre: string; url: string }[] = (
+    page?.secciones?.general?.redes ?? []
+  ).filter((r: any) => r?.nombre && r?.url);
 
   const contacto = page?.secciones?.contacto ?? {};
   const email = contacto.email?.valor || "";
@@ -108,11 +114,11 @@ export async function Footer() {
                   </span>
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-forest" />
                 </div>
-                <h2 className="font-display font-semibold text-[28px] md:text-[38px] leading-[1.08] tracking-[-0.02em] m-0 text-brand-ink max-w-[620px]">
+                <h2 className="font-display font-bold text-[30px] md:text-[44px] leading-[1.06] tracking-[-0.02em] m-0 text-brand-ink max-w-[660px]">
                   {aliadosSection?.titulo?.valor || "Operamos de la mano del ecosistema institucional."}
                 </h2>
               </div>
-              <p className="text-[14px] leading-[1.7] text-brand-muted max-w-[360px] text-just">
+              <p className="text-[13.5px] leading-[1.7] text-brand-muted max-w-[360px] text-just">
                 Alineados con las entidades regulatorias, de vigilancia y de política pública del sector.
               </p>
             </Reveal>
@@ -125,8 +131,10 @@ export async function Footer() {
                 const nombre = aliado.titulo.valor.replace(/\*/g, "");
                 return (
                   <Reveal key={aliado.id} delay={(idx % 6) * 60} variant="scale">
-                    <div className="group h-full rounded-[14px] bg-white border border-black/[0.07] p-3.5 flex flex-col gap-2.5 transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-[0_14px_32px_-24px_rgba(0,46,31,0.45)]">
-                      <div className="h-11 w-11 rounded-lg overflow-hidden bg-white flex items-center justify-center font-display font-semibold text-[17px] text-brand-ink ring-1 ring-black/[0.05]">
+                    {/* Logo first and large, with just the name under it — the
+                        descriptions crowded the row and buried the marks. */}
+                    <div className="group h-full rounded-[16px] bg-white border border-black/[0.07] p-4 flex flex-col items-center gap-3 text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-[0_14px_32px_-24px_rgba(0,46,31,0.45)]">
+                      <div className="h-[76px] w-full rounded-lg overflow-hidden bg-white flex items-center justify-center font-display font-bold text-[26px] text-brand-ink">
                         {isRealImageUrl(aliado.logo?.valor) ? (
                           <ImageSlot
                             src={aliado.logo.valor}
@@ -137,13 +145,8 @@ export async function Footer() {
                           nombre.charAt(0)
                         )}
                       </div>
-                      <div className="mt-auto">
-                        <div className="text-[11px] tracking-[1.5px] font-bold uppercase text-brand-dark">{nombre}</div>
-                        {aliado.descripcion?.valor && (
-                          <div className="mt-1 text-[13px] leading-[1.45] font-medium text-brand-ink/75">
-                            {aliado.descripcion.valor}
-                          </div>
-                        )}
+                      <div className="mt-auto text-[12px] tracking-[1.2px] font-bold uppercase leading-tight text-brand-dark">
+                        {nombre}
                       </div>
                     </div>
                   </Reveal>
@@ -165,8 +168,11 @@ export async function Footer() {
           {hasImage && (
             <>
               <Image src={fondoUrl} alt="" fill unoptimized className="object-cover object-center -z-20" />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/88 via-black/65 to-black/45 pointer-events-none"></div>
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-deep/50 via-transparent to-brand-forest/40 pointer-events-none"></div>
+              <div
+                className="absolute inset-0 -z-10 bg-brand-deep pointer-events-none"
+                style={{ opacity: fondoOscuridad / 100 }}
+              ></div>
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-brand-deep/40 via-transparent to-brand-forest/30 pointer-events-none"></div>
             </>
           )}
           <div
@@ -200,9 +206,9 @@ export async function Footer() {
                     {redes.map((red) => (
                       <Link
                         key={red.id}
-                        href={red.url || "#"}
-                        target={red.url ? "_blank" : undefined}
-                        rel={red.url ? "noopener noreferrer" : undefined}
+                        href={red.url}
+                        target="_blank"
+                        rel="noopener noreferrer" 
                         aria-label={red.nombre}
                         title={red.nombre}
                         className={cn(

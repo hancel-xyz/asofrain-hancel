@@ -62,7 +62,7 @@ export default async function EventosPage() {
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="font-display font-semibold text-[clamp(36px,6vw,64px)] leading-[1.04] m-0 tracking-[-0.02em] max-w-[900px] text-brand-ink">
+              <h1 className="font-display font-bold text-[clamp(38px,5.8vw,68px)] leading-[1.04] m-0 tracking-[-0.02em] max-w-[900px] text-brand-ink">
                 <HighlightText
                   text={s?.titulo.valor || ""}
                   highlightClassName="font-display font-medium not-italic text-brand-dark"

@@ -2,6 +2,7 @@
 
 import { getEstructura, updateEstructuraPageSection } from "@/lib/data";
 import { uploadMediaFile } from "@/lib/media";
+import { leerFondoDeFormData } from "@/lib/fondo";
 import { revalidatePath } from "next/cache";
 
 export async function updateNosotrosHero(formData: FormData) {
@@ -28,11 +29,16 @@ export async function updateNosotrosHero(formData: FormData) {
   // `encuadre` is the object-position the hero photo is cropped around; it can
   // be re-adjusted without re-uploading the image.
   const encuadre = formData.get("imagen_fondo_encuadre")?.toString();
-  if (uploaded || encuadre) {
+  // How dark the layer over the photo is, so the hero copy stays readable
+  // whatever image is uploaded.
+  const oscuridadRaw = formData.get("imagen_fondo_oscuridad")?.toString();
+  const oscuridad = oscuridadRaw !== undefined ? Number(oscuridadRaw) : undefined;
+  if (uploaded || encuadre || oscuridad !== undefined) {
     data.imagen_fondo = {
       ...page?.secciones.hero.imagen_fondo,
       ...(uploaded ? { valor: uploaded.url, key: uploaded.key } : {}),
       ...(encuadre ? { encuadre } : {}),
+      ...(Number.isFinite(oscuridad) ? { oscuridad: Math.min(100, Math.max(0, oscuridad as number)) } : {}),
     };
   }
 
@@ -115,11 +121,26 @@ export async function updateNosotrosObjetoAmbiental(formData: FormData) {
   revalidatePath("/admin/nosotros/objeto-ambiental");
 }
 
+/** Uploads the photo or video behind the "compromiso con Bogota" band. */
+export async function uploadNosotrosFrase1Fondo(formData: FormData) {
+  return uploadMediaFile(formData.get("file"), {
+    pageSlug: "nosotros",
+    sectionKey: "frase_1",
+  });
+}
+
 export async function updateNosotrosFrase1(formData: FormData) {
-  const data = {
+  const estructura = await getEstructura();
+  const page = estructura?.sitio.paginas.find((p: any) => p.id === "nosotros");
+
+  const data: any = {
     titulo_pequeno: { valor: formData.get("titulo_pequeno") as string },
-    texto: { valor: formData.get("texto_frase") as string }
+    texto: { valor: formData.get("texto_frase") as string },
   };
+
+  const fondo = leerFondoDeFormData(formData, "fondo", page?.secciones.frase_1?.fondo);
+  if (fondo) data.fondo = fondo;
+
   await updateEstructuraPageSection("nosotros", "frase_1", data);
   revalidatePath("/");
   revalidatePath("/admin/nosotros/frase-1");
@@ -154,7 +175,11 @@ export async function updateNosotrosEntidadesAliadas(formData: FormData) {
         id,
         logo,
         titulo: { valor: formData.get(`${id}_titulo`)?.toString() || "" },
-        descripcion: { valor: formData.get(`${id}_desc`)?.toString() || "" },
+        // The footer shows only logo + name now, so the field is gone from the
+        // form; keep whatever was written in case it is ever shown again.
+        descripcion: formData.has(`${id}_desc`)
+          ? { valor: formData.get(`${id}_desc`)?.toString() || "" }
+          : existing?.descripcion ?? { valor: "" },
       };
     })
   );

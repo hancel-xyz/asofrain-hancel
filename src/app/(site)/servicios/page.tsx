@@ -30,6 +30,8 @@ export default async function ServiciosPage() {
   const pageData = data?.sitio.paginas.find((p: any) => p.id === "servicios");
   const s = pageData?.secciones;
   const heroFocal = focalToPosition(s?.hero.imagen_fondo?.encuadre);
+  // Extra scrim over the hero photo, dialled in from the admin.
+  const heroOscuridad: number = s?.hero.imagen_fondo?.oscuridad ?? 0;
   const procesos: any[] = s?.servicios.items ?? [];
   // One draw for the whole page so no photo repeats between sections.
   const fotos = fotosAlAzar(12);
@@ -55,6 +57,12 @@ export default async function ServiciosPage() {
               className="bg-brand-deep text-white/30"
             />
           </div>
+        )}
+        {heroOscuridad > 0 && (
+          <div
+            className="absolute inset-0 bg-brand-deep pointer-events-none"
+            style={{ opacity: heroOscuridad / 100 }}
+          ></div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 md:from-black/55 via-transparent to-transparent pointer-events-none"></div>
@@ -195,10 +203,10 @@ export default async function ServiciosPage() {
                           </span>
                         </div>
 
-                        <h3 className="relative font-display font-semibold text-[22px] md:text-[27px] leading-[1.18] tracking-[-0.01em] text-brand-ink m-0 mb-3">
+                        <h3 className="relative font-display font-bold text-[24px] md:text-[31px] leading-[1.14] tracking-[-0.015em] text-brand-ink m-0 mb-3">
                           {item.titulo.valor}
                         </h3>
-                        <p className="relative text-[14px] md:text-[15px] leading-[1.7] text-brand-muted m-0 text-just">
+                        <p className="relative text-[13.5px] md:text-[14.5px] leading-[1.7] text-brand-muted m-0 text-just">
                           {item.descripcion.valor}
                         </p>
 
@@ -222,134 +230,62 @@ export default async function ServiciosPage() {
             })}
           </ol>
 
-          {/* Compactación plus */}
+          {/* Plus diferencial — mismo lenguaje que Misión y Visión: panel de
+              color con su ícono, título grande y bajada pequeña, con la foto
+              del servicio al lado. */}
           <Reveal variant="scale">
-            <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-brand-deep via-brand-deep to-brand-forest text-white p-8 md:p-10 lg:p-[64px]">
+            <article className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-brand-forest to-brand-deep text-white shadow-[0_26px_60px_-38px_rgba(0,77,51,0.95)]">
               <div className="absolute inset-0 text-white/10 pattern-rings pointer-events-none"></div>
-              <div className="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-brand-lime/25 blur-[100px] pointer-events-none animate-af-float"></div>
 
-              <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-[60px] items-start">
-                <div>
-                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-lime text-brand-ink mb-6">
+              <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_1.15fr]">
+                <div className="relative min-h-[240px] lg:min-h-full overflow-hidden">
+                  <ImageSlot
+                    src={s?.servicio_destacado_plus.imagen?.valor || fotos[9]}
+                    focal={focalToPosition(s?.servicio_destacado_plus.imagen?.encuadre)}
+                    placeholder="Foto del servicio plus"
+                    className="h-full w-full bg-brand-forest"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-brand-deep/60 pointer-events-none hidden lg:block"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 to-transparent pointer-events-none lg:hidden"></div>
+                </div>
+
+                <div className="relative p-8 md:p-11 lg:p-[56px] flex flex-col justify-center">
+                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-lime text-brand-ink mb-6 transition-transform duration-500">
                     <BoxesIcon className="h-6 w-6" aria-hidden />
                   </span>
-                  <div className="flex items-center gap-2.5 mb-4">
-                    <span className="h-[2px] w-7 rounded-full bg-brand-lime" />
-                    <span className="text-[11px] tracking-[2.5px] font-bold uppercase text-brand-lime">
-                      {s?.servicio_destacado_plus.subtitulo_pequeno.valor}
-                    </span>
-                  </div>
-                  <h3 className="font-display font-semibold text-[34px] md:text-[46px] leading-[1.05] m-0 mb-4 md:mb-5 tracking-[-0.02em]">
+
+                  <h3 className="font-display font-bold text-[32px] md:text-[44px] leading-[1.04] m-0 tracking-[-0.02em]">
                     {s?.servicio_destacado_plus.titulo.valor}
                   </h3>
-                  <p className="text-[15px] md:text-[16px] leading-[1.7] m-0 text-white/75 text-just">
+                  <div className="text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase text-brand-lime mt-3">
+                    {s?.servicio_destacado_plus.subtitulo_pequeno.valor}
+                  </div>
+
+                  <p className="text-[14.5px] md:text-[15.5px] leading-[1.7] m-0 mt-5 text-white/75 text-just">
                     {s?.servicio_destacado_plus.descripcion.valor}
                   </p>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-1">
-                  {s?.servicio_destacado_plus.items.map((item: any, idx: number) => (
-                    <Reveal
-                      key={item.id}
-                      delay={idx * 70}
-                      variant="fade"
-                      className="flex items-start gap-4 py-4 border-b border-white/15 group/item"
-                    >
-                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/12 ring-1 ring-white/20 text-brand-lime transition-transform duration-500 group-hover/item:scale-110">
-                        <CheckIcon className="h-4 w-4" aria-hidden />
-                      </span>
-                      <div>
-                        <div className="text-[15.5px] md:text-[16px] font-semibold mb-1">{item.titulo.valor}</div>
-                        <div className="text-[13px] leading-[1.6] text-white/65">{item.descripcion.valor}</div>
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ================= RUTAS Y HORARIOS ================= */}
-      <section id="rutas" className="px-4 md:px-[60px] py-[50px] md:py-[80px] scroll-mt-[100px]">
-        <div className="max-w-[1360px] mx-auto">
-          <div className="flex justify-between items-start md:items-end mb-[40px] md:mb-[44px] flex-col md:flex-row gap-4 md:gap-5">
-            <SectionHeading
-              eyebrow="Rutas, localidades y horarios"
-              title={s?.rutas_localidades_horarios.titulo.valor}
-              as="h3"
-              size="lg"
-              tone="slate"
-            />
-            <Reveal delay={120} className="max-w-[360px]">
-              <p className="text-[13.5px] leading-[1.7] text-brand-muted md:text-right text-just">
-                {s?.rutas_localidades_horarios.descripcion.valor}
-              </p>
-            </Reveal>
-          </div>
-
-          <Reveal variant="fade">
-            <div className="overflow-hidden rounded-[22px] border border-black/[0.07] bg-white shadow-[0_20px_50px_-42px_rgba(0,46,31,0.5)]">
-              <div className="hidden md:grid grid-cols-[1fr_2fr_2fr_1fr] p-[18px_32px] bg-brand-forest text-white text-[11px] tracking-[2px] font-bold uppercase">
-                <div>Localidad</div>
-                <div>Días</div>
-                <div>Horario</div>
-                <div className="text-right">Estado</div>
-              </div>
-              {s?.rutas_localidades_horarios.tabla.filas.map((item: any, i: number) => {
-                const accent = accentAt(i);
-                return (
-                  <div
-                    key={item.id}
-                    className={cn(
-                      "group grid grid-cols-2 md:grid-cols-[1fr_2fr_2fr_1fr] p-[20px_24px] md:p-[26px_32px] items-center gap-y-3 gap-x-4 md:gap-0 text-brand-ink transition-colors hover:bg-brand-sand",
-                      i > 0 && "border-t border-black/[0.07]"
-                    )}
-                  >
-                    <div className="col-span-2 md:col-span-1 flex items-center gap-3">
-                      <span className={cn("inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl", accent.chip)}>
-                        <MapPinIcon className="h-4 w-4" aria-hidden />
-                      </span>
-                      <span className="font-display font-semibold text-[24px] md:text-[27px] leading-none">
-                        {item.localidad.valor}
-                      </span>
-                    </div>
-                    <div className="text-[14px] md:text-[15px]">
-                      <span className="md:hidden text-[11px] font-semibold uppercase tracking-[1.5px] text-brand-dark block mb-1">
-                        Días
-                      </span>
-                      {item.dias.valor}
-                    </div>
-                    <div className="text-[14px] md:text-[15px] flex items-center gap-2">
-                      <ClockIcon className="hidden md:block h-4 w-4 text-brand-ink/35 shrink-0" aria-hidden />
-                      <span>
-                        <span className="md:hidden text-[11px] font-semibold uppercase tracking-[1.5px] text-brand-dark block mb-1">
-                          Horario
+                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1">
+                    {s?.servicio_destacado_plus.items.map((item: any, idx: number) => (
+                      <Reveal
+                        key={item.id}
+                        delay={idx * 70}
+                        variant="fade"
+                        className="flex items-start gap-3.5 py-3.5 border-b border-white/15 group/item"
+                      >
+                        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/12 ring-1 ring-white/20 text-brand-lime transition-transform duration-500 group-hover/item:scale-110">
+                          <CheckIcon className="h-4 w-4" aria-hidden />
                         </span>
-                        {item.horario.valor}
-                      </span>
-                    </div>
-                    <div className="col-span-2 md:col-span-1 md:text-right mt-2 md:mt-0">
-                      {item.estado?.activa !== false ? (
-                        <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-brand-lime/20 text-brand-lime-dark rounded-full text-[12px] font-bold">
-                          <span className="relative flex h-2 w-2">
-                            <span className="absolute inline-flex h-full w-full rounded-full bg-brand-lime animate-af-ping-ring"></span>
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-lime-dark"></span>
-                          </span>
-                          Activa
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-black/[0.05] text-brand-ink/40 rounded-full text-[12px] font-semibold">
-                          <span className="h-2 w-2 rounded-full bg-brand-ink/25"></span>
-                          No activa
-                        </span>
-                      )}
-                    </div>
+                        <div>
+                          <div className="text-[15px] font-semibold mb-0.5">{item.titulo.valor}</div>
+                          <div className="text-[12.5px] leading-[1.55] text-white/65">{item.descripcion.valor}</div>
+                        </div>
+                      </Reveal>
+                    ))}
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              </div>
+            </article>
           </Reveal>
         </div>
       </section>
@@ -402,10 +338,10 @@ export default async function ServiciosPage() {
                       </span>
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[16px] md:text-[17px] font-semibold text-brand-ink leading-snug">
+                      <div className="text-[17px] md:text-[19px] font-bold text-brand-ink leading-snug">
                         {sector.titulo.valor}
                       </div>
-                      <div className="text-[12.5px] leading-[1.55] text-brand-muted mt-1">{sector.descripcion.valor}</div>
+                      <div className="text-[12.5px] leading-[1.55] text-brand-muted mt-1.5">{sector.descripcion.valor}</div>
                     </div>
                   </div>
                 </Reveal>

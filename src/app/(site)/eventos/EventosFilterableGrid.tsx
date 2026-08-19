@@ -118,11 +118,11 @@ export function EventosFilterableGrid({
                   </div>
 
                   <div className="p-5 md:p-[22px_24px]">
-                    <div className="text-[16.5px] md:text-[18px] font-semibold leading-snug text-brand-ink">
+                    <div className="text-[18px] md:text-[21px] font-bold leading-snug text-brand-ink">
                       {card.titulo}
                     </div>
                     {card.descripcion && (
-                      <p className="mt-2 text-[13.5px] leading-[1.6] text-brand-muted line-clamp-2 text-just">
+                      <p className="mt-2 text-[13px] leading-[1.6] text-brand-muted line-clamp-2 text-just">
                         {card.descripcion}
                       </p>
                     )}

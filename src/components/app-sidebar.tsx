@@ -123,10 +123,6 @@ const data = {
           url: "/admin/servicios/servicio-destacado-plus",
         },
         {
-          title: "Rutas, localidades y horarios",
-          url: "/admin/servicios/rutas-localidades-horarios",
-        },
-        {
           title: "Sectores atendidos",
           url: "/admin/servicios/sectores-atendidos",
         },

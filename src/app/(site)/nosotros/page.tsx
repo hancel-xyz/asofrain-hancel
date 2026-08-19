@@ -15,8 +15,10 @@ import { getEstructura } from "@/lib/data";
 import { HighlightText } from "@/components/HighlightText";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+import { MediaFondo } from "@/components/MediaFondo";
 import { accentAt, valueIcon } from "@/lib/brandVisuals";
 import { fotosAlAzar } from "@/lib/fotos";
+import { leerFondo } from "@/lib/fondo";
 import { cn } from "@/lib/utils";
 
 const HERO_MARGIN = "px-6 md:px-12 lg:px-[100px]";
@@ -28,8 +30,11 @@ export default async function NosotrosPage() {
   const pageData = data?.sitio.paginas.find((p: any) => p.id === "nosotros");
   const s = pageData?.secciones;
   const heroFocal = focalToPosition(s?.hero.imagen_fondo?.encuadre);
+  // Extra scrim over the hero photo, dialled in from the admin.
+  const heroOscuridad: number = s?.hero.imagen_fondo?.oscuridad ?? 0;
   // One draw for the whole page so no photo repeats between sections.
   const fotos = fotosAlAzar(10);
+  const fraseFondo = leerFondo(s?.frase_1?.fondo);
 
   return (
     <div className="bg-brand-sand font-sans">
@@ -52,6 +57,12 @@ export default async function NosotrosPage() {
               className="bg-brand-deep text-white/30"
             />
           </div>
+        )}
+        {heroOscuridad > 0 && (
+          <div
+            className="absolute inset-0 bg-brand-deep pointer-events-none"
+            style={{ opacity: heroOscuridad / 100 }}
+          ></div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 md:from-black/55 via-transparent to-transparent pointer-events-none"></div>
@@ -125,29 +136,48 @@ export default async function NosotrosPage() {
       >
         <div className="absolute inset-x-0 top-0 h-[280px] text-brand/[0.10] pattern-grid [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none"></div>
         <div className="relative max-w-[1360px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 md:gap-[80px] items-start">
-            <SectionHeading eyebrow="Quiénes somos" title={s?.quienes_somos.titulo.valor} size="xl" />
-            <Reveal delay={120} variant="right">
-              <div className="relative rounded-[24px] bg-white border border-black/[0.06] p-7 md:p-10 shadow-[0_20px_50px_-40px_rgba(0,46,31,0.5)]">
-                <span className="absolute -top-3 left-8 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand text-white shadow-lg">
-                  <UsersIcon className="h-5 w-5" aria-hidden />
-                </span>
-                <div className="text-[16px] md:text-[17px] leading-[1.75] text-brand-muted whitespace-pre-wrap text-just mt-4">
-                  {s?.quienes_somos.descripcion.valor}
+          <SectionHeading eyebrow="Quiénes somos" title="Nuestra razón de ser." size="xl" className="mb-9 md:mb-12" />
+
+          {/* Same panel as Misión and Visión: colour block, icon, title, then
+              its label, so the three read as one family. */}
+          <Reveal variant="scale">
+            <article className="group relative overflow-hidden rounded-[26px] bg-gradient-to-br from-brand to-brand-dark text-white shadow-[0_26px_60px_-38px_rgba(0,107,77,0.95)]">
+              <div className="absolute inset-0 text-white/10 pattern-rings pointer-events-none"></div>
+              <div className="absolute -right-24 -top-24 w-72 h-72 rounded-full bg-brand-lime/20 blur-3xl pointer-events-none"></div>
+
+              <div className="relative grid grid-cols-1 lg:grid-cols-[1.15fr_1fr]">
+                <div className="p-8 md:p-12 lg:p-[56px] flex flex-col justify-center">
+                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25 mb-6 transition-transform duration-500 group-hover:scale-110">
+                    <UsersIcon className="h-6 w-6 text-white" aria-hidden />
+                  </span>
+
+                  <div className="font-display font-bold text-[30px] md:text-[40px] leading-[1.05] tracking-[-0.015em]">
+                    <HighlightText
+                      text={s?.quienes_somos.titulo.valor || ""}
+                      highlightClassName="font-display font-bold not-italic text-brand-lime"
+                    />
+                  </div>
+                  <div className="text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase text-brand-lime mt-3">
+                    Quiénes somos
+                  </div>
+
+                  <p className="text-[14.5px] md:text-[16px] leading-[1.75] mt-6 mb-0 whitespace-pre-wrap text-just text-white/85">
+                    {s?.quienes_somos.descripcion.valor}
+                  </p>
                 </div>
 
                 {/* Faces of the organisation, in the photo-strip style of the
                     brand's printed pieces. */}
-                <div className="mt-7 grid grid-cols-3 gap-2.5">
+                <div className="relative grid grid-cols-2 lg:grid-cols-1 gap-2 p-4 lg:p-5 lg:pl-0">
                   {[0, 1, 2].map((i) => (
-                    <div key={i} className="h-[96px] md:h-[130px] rounded-[14px] overflow-hidden ring-1 ring-black/[0.06]">
-                      <ImageSlot src={fotos[i]} placeholder="" className="bg-brand/10" />
+                    <div key={i} className="h-[130px] lg:h-full min-h-[120px] rounded-[16px] overflow-hidden ring-1 ring-white/20 last:col-span-2 lg:last:col-span-1">
+                      <ImageSlot src={fotos[i]} placeholder="" className="bg-white/10" />
                     </div>
                   ))}
                 </div>
               </div>
-            </Reveal>
-          </div>
+            </article>
+          </Reveal>
         </div>
       </section>
 
@@ -187,10 +217,10 @@ export default async function NosotrosPage() {
                     </div>
                     <div className="flex items-start gap-5">
                       <div className="min-w-0 flex-1">
-                        <div className="text-[17px] md:text-[18.5px] font-semibold mb-1.5 text-brand-ink">
+                        <div className="text-[18px] md:text-[21px] font-bold mb-2 text-brand-ink leading-snug">
                           {item.titulo.valor}
                         </div>
-                        <div className="text-[14px] md:text-[14.5px] text-brand-muted leading-[1.65] text-just">
+                        <div className="text-[13.5px] md:text-[14px] text-brand-muted leading-[1.65] text-just">
                           {item.descripcion.valor}
                         </div>
                       </div>
@@ -313,10 +343,10 @@ export default async function NosotrosPage() {
                       </span>
                     </div>
 
-                    <div className="mt-6 text-[17px] md:text-[18px] font-semibold text-brand-ink leading-snug">
+                    <div className="mt-6 text-[18px] md:text-[20px] font-bold text-brand-ink leading-snug">
                       {v.titulo.valor}
                     </div>
-                    <div className="mt-2 text-[13.5px] leading-[1.6] text-brand-muted text-just">
+                    <div className="mt-2 text-[13px] leading-[1.6] text-brand-muted text-just">
                       {v.descripcion.valor}
                     </div>
 
@@ -346,6 +376,8 @@ export default async function NosotrosPage() {
             className="mb-9 md:mb-12"
           />
 
+          {/* Title first and large, its label under it — the same order the
+              Misión and Visión panels use, so the two ranks never blur. */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             {/* OBJETO SOCIAL */}
             <Reveal variant="left">
@@ -356,20 +388,21 @@ export default async function NosotrosPage() {
                 </div>
 
                 <div className="relative">
-                  <span className="inline-flex h-13 w-13 items-center justify-center rounded-2xl bg-brand-forest text-white p-3.5 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
+                  <span className="inline-flex items-center justify-center rounded-2xl bg-brand-forest text-white p-3.5 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
                     <UsersIcon className="h-6 w-6" aria-hidden />
                   </span>
-                  <div className="flex items-center gap-2.5 mt-6 mb-3">
-                    <span className="h-[2px] w-7 rounded-full bg-brand-forest" />
-                    <span className="text-[11px] tracking-[2.5px] font-bold uppercase text-brand-forest">Objeto social</span>
-                  </div>
-                  <h4 className="font-display font-semibold text-[28px] md:text-[34px] leading-[1.12] m-0 mb-4 tracking-[-0.01em] text-brand-ink">
+
+                  <h4 className="font-display font-bold text-[30px] md:text-[40px] leading-[1.06] m-0 mt-6 tracking-[-0.015em] text-brand-ink">
                     <HighlightText
                       text={s?.objeto_social.titulo.valor || ""}
-                      highlightClassName="font-display font-medium not-italic text-brand-forest"
+                      highlightClassName="font-display font-bold not-italic text-brand-forest"
                     />
                   </h4>
-                  <p className="text-[15.5px] md:text-[16px] leading-[1.7] text-brand-muted m-0 whitespace-pre-wrap text-just">
+                  <div className="text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase text-brand-forest mt-3">
+                    Objeto social
+                  </div>
+
+                  <p className="text-[14.5px] md:text-[15.5px] leading-[1.7] text-brand-muted m-0 mt-5 whitespace-pre-wrap text-just">
                     {s?.objeto_social.descripcion.valor}
                   </p>
                 </div>
@@ -388,19 +421,18 @@ export default async function NosotrosPage() {
                   <span className="inline-flex items-center justify-center rounded-2xl bg-brand-lime text-brand-ink p-3.5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
                     <SproutIcon className="h-6 w-6" aria-hidden />
                   </span>
-                  <div className="flex items-center gap-2.5 mt-6 mb-3">
-                    <span className="h-[2px] w-7 rounded-full bg-brand-lime" />
-                    <span className="text-[11px] tracking-[2.5px] font-bold uppercase text-brand-lime-dark">
-                      Objeto ambiental
-                    </span>
-                  </div>
-                  <h4 className="font-display font-semibold text-[28px] md:text-[34px] leading-[1.12] m-0 mb-4 tracking-[-0.01em] text-brand-ink">
+
+                  <h4 className="font-display font-bold text-[30px] md:text-[40px] leading-[1.06] m-0 mt-6 tracking-[-0.015em] text-brand-ink">
                     <HighlightText
                       text={s?.objeto_ambiental.titulo.valor || ""}
-                      highlightClassName="font-display font-medium not-italic text-brand-lime-dark"
+                      highlightClassName="font-display font-bold not-italic text-brand-lime-dark"
                     />
                   </h4>
-                  <p className="text-[15.5px] md:text-[16px] leading-[1.7] text-brand-muted m-0 whitespace-pre-wrap text-just">
+                  <div className="text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase text-brand-lime-dark mt-3">
+                    Objeto ambiental
+                  </div>
+
+                  <p className="text-[14.5px] md:text-[15.5px] leading-[1.7] text-brand-muted m-0 mt-5 whitespace-pre-wrap text-just">
                     {s?.objeto_ambiental.descripcion.valor}
                   </p>
                 </div>
@@ -408,26 +440,47 @@ export default async function NosotrosPage() {
             </Reveal>
           </div>
 
-          {/* FRASE */}
+          {/* FRASE — compromiso con Bogotá */}
           <Reveal variant="scale" className="mt-[50px] md:mt-[70px]">
-            <div className="relative overflow-hidden rounded-[26px] md:rounded-[32px] bg-brand-deep text-white px-6 md:px-16 py-[54px] md:py-[76px] text-center">
-              <div className="absolute inset-0 text-white/10 pattern-rings pointer-events-none"></div>
-              <div className="absolute -left-24 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-brand/30 blur-3xl pointer-events-none animate-af-float"></div>
-              <div className="absolute -right-24 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-brand-lime/25 blur-3xl pointer-events-none animate-af-float" style={{ animationDelay: "-3s" }}></div>
+            {/* Copy held to one column so the photo or video behind it stays
+                visible rather than being covered end to end. */}
+            <div
+              className={cn(
+                "relative isolate overflow-hidden rounded-[26px] md:rounded-[32px] min-h-[400px] md:min-h-[460px] flex items-center text-white",
+                !fraseFondo && "bg-brand-deep"
+              )}
+            >
+              <MediaFondo fondo={fraseFondo} className="-z-10" />
+              <div className="absolute inset-0 -z-10 text-white/10 pattern-rings pointer-events-none"></div>
+              {fraseFondo ? (
+                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-deep/85 via-brand-deep/45 to-transparent pointer-events-none"></div>
+              ) : (
+                <>
+                  <div className="absolute -left-24 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-brand/30 blur-3xl pointer-events-none animate-af-float -z-10"></div>
+                  <div
+                    className="absolute -right-24 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-brand-lime/25 blur-3xl pointer-events-none animate-af-float -z-10"
+                    style={{ animationDelay: "-3s" }}
+                  ></div>
+                </>
+              )}
 
-              <div className="relative">
-                <span className="inline-flex h-13 w-13 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/25 p-3.5 mb-6">
-                  <QuoteIcon className="h-6 w-6 text-brand-lime" aria-hidden />
-                </span>
-                <div className="text-[11px] tracking-[3px] text-brand-lime font-bold mb-5 uppercase">
-                  {s?.frase_1.titulo_pequeno.valor}
+              <div className="relative w-full px-6 md:px-12 lg:px-[64px] py-[48px] md:py-[64px]">
+                <div className="max-w-[680px]">
+                  <span className="inline-flex h-13 w-13 items-center justify-center rounded-full bg-brand-lime/25 ring-1 ring-brand-lime/50 p-3.5 mb-6">
+                    <QuoteIcon className="h-6 w-6 text-brand-lime" aria-hidden />
+                  </span>
+
+                  <p className="font-display font-bold text-[clamp(28px,4.2vw,46px)] leading-[1.12] m-0 tracking-[-0.015em] text-balance">
+                    <HighlightText
+                      text={s?.frase_1.texto.valor || ""}
+                      highlightClassName="font-display font-bold not-italic text-brand-lime"
+                    />
+                  </p>
+
+                  <div className="mt-6 text-[15px] md:text-[17px] tracking-[2.5px] text-brand-lime font-bold uppercase">
+                    {s?.frase_1.titulo_pequeno.valor}
+                  </div>
                 </div>
-                <p className="font-display font-semibold text-[28px] md:text-[42px] leading-[1.2] m-0 mx-auto max-w-[900px] tracking-[-0.01em] text-balance">
-                  <HighlightText
-                    text={s?.frase_1.texto.valor || ""}
-                    highlightClassName="font-display font-medium not-italic text-brand-lime"
-                  />
-                </p>
               </div>
             </div>
           </Reveal>

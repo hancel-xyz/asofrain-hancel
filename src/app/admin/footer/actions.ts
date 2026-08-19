@@ -14,8 +14,15 @@ export async function updateFooterFondo(formData: FormData) {
     pageSlug: "footer",
     sectionKey: "fondo",
   });
-  if (uploaded) {
-    data.imagen_fondo = { ...page.secciones.fondo.imagen_fondo, valor: uploaded.url, key: uploaded.key };
+  // How dark the layer over the photo is, so the footer copy stays readable.
+  const oscuridadRaw = formData.get("imagen_fondo_oscuridad")?.toString();
+  const oscuridad = oscuridadRaw !== undefined ? Number(oscuridadRaw) : undefined;
+  if (uploaded || oscuridad !== undefined) {
+    data.imagen_fondo = {
+      ...page.secciones.fondo.imagen_fondo,
+      ...(uploaded ? { valor: uploaded.url, key: uploaded.key } : {}),
+      ...(Number.isFinite(oscuridad) ? { oscuridad: Math.min(100, Math.max(0, oscuridad as number)) } : {}),
+    };
   }
 
   await updateEstructuraPageSection("footer", "fondo", data);

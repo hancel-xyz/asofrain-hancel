@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AdminForm } from "@/components/AdminForm";
+import { ImagenConEncuadreField } from "@/components/ImagenConEncuadreField";
 
 export default async function AdminServiciosServicioDestacadoPlusPage() {
   const data = await getEstructura();
@@ -42,6 +43,14 @@ export default async function AdminServiciosServicioDestacadoPlusPage() {
               <Label htmlFor="descripcion">Descripcion</Label>
               <Textarea id="descripcion" name="descripcion" defaultValue={section.descripcion.valor} rows={4} />
             </div>
+            <ImagenConEncuadreField
+              name="imagen"
+              label="Imagen del servicio"
+              help="Se muestra al lado del texto en la página pública. Formato horizontal recomendado."
+              currentUrl={section.imagen?.valor}
+              currentFocal={section.imagen?.encuadre}
+              aspectClassName="aspect-[4/3]"
+            />
           </CardContent>
         </Card>
         

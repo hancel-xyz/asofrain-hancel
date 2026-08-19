@@ -1,11 +1,13 @@
 import { getEstructura } from "@/lib/data";
-import { updateInicioFrase } from "../actions";
+import { updateInicioFrase, uploadInicioFraseFondo } from "../actions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { AdminForm } from "@/components/AdminForm";
+import { FondoMediaField } from "@/components/FondoMediaField";
+import { leerFondo, OSCURIDAD_POR_DEFECTO } from "@/lib/fondo";
 
 export default async function AdminInicioFrasePage() {
   const data = await getEstructura();
@@ -15,6 +17,7 @@ export default async function AdminInicioFrasePage() {
   if (!page) return <div>Página no encontrada</div>;
 
   const section = page.secciones.frase;
+  const fondo = leerFondo(section.fondo);
 
   return (
     <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
@@ -47,7 +50,26 @@ export default async function AdminInicioFrasePage() {
           </CardContent>
         </Card>
 
-        
+        <Card>
+          <CardHeader>
+            <CardTitle>Fondo de la sección</CardTitle>
+            <CardDescription>
+              La imagen o el video que se ve detrás de la frase. Si no subes nada, la sección usa el verde de la
+              marca.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FondoMediaField
+              name="fondo"
+              subir={uploadInicioFraseFondo}
+              currentUrl={fondo?.url}
+              currentKey={fondo?.key}
+              currentMime={fondo?.mime}
+              currentEncuadre={fondo?.encuadre}
+              currentOscuridad={fondo?.oscuridad ?? OSCURIDAD_POR_DEFECTO}
+            />
+          </CardContent>
+        </Card>
       </AdminForm>
     </div>
   );
