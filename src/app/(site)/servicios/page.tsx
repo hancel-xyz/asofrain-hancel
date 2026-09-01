@@ -254,11 +254,11 @@ export default async function ServiciosPage() {
                     <BoxesIcon className="h-6 w-6" aria-hidden />
                   </span>
 
-                  <h3 className="font-display font-bold text-[32px] md:text-[44px] leading-[1.04] m-0 tracking-[-0.02em]">
-                    {s?.servicio_destacado_plus.titulo.valor}
-                  </h3>
-                  <div className="text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase text-brand-lime mt-3">
+                  <h3 className="font-display font-bold text-[34px] md:text-[46px] leading-[1.02] m-0 tracking-[-0.015em] uppercase">
                     {s?.servicio_destacado_plus.subtitulo_pequeno.valor}
+                  </h3>
+                  <div className="font-display font-semibold text-[18px] md:text-[22px] leading-[1.25] text-brand-lime mt-3">
+                    {s?.servicio_destacado_plus.titulo.valor}
                   </div>
 
                   <p className="text-[14.5px] md:text-[15.5px] leading-[1.7] m-0 mt-5 text-white/75 text-just">

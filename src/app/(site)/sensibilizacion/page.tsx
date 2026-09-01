@@ -141,13 +141,13 @@ export default async function SensibilizacionPage() {
                       </span>
                     </div>
 
-                    <div className={cn("relative text-[12px] md:text-[13px] tracking-[2.5px] font-bold mb-2.5 uppercase", theme.eyebrow)}>
+                    <div className={cn("relative font-display font-bold text-[26px] md:text-[32px] leading-[1.05] tracking-[-0.01em] uppercase mb-2", theme.title)}>
                       {tipo.tipo.valor}
                     </div>
                     <h3
                       className={cn(
-                        "relative font-display font-bold text-[28px] md:text-[34px] leading-[1.08] mb-5 tracking-[-0.015em] m-0",
-                        theme.title
+                        "relative font-display font-semibold text-[17px] md:text-[21px] leading-[1.25] m-0 mb-5",
+                        theme.eyebrow
                       )}
                     >
                       {tipo.titulo.valor}

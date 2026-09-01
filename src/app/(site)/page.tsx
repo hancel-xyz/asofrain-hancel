@@ -493,7 +493,7 @@ export default async function HomePage() {
 
                 <div
                   className={cn(
-                    "mt-6 text-[15px] md:text-[17px] tracking-[2.5px] font-bold uppercase",
+                    "mt-6 font-display text-[20px] md:text-[26px] tracking-[0.1em] font-bold uppercase leading-none",
                     fraseFondo ? "text-brand-lime" : "text-brand-ink/70"
                   )}
                 >

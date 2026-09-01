@@ -48,8 +48,9 @@ export function SectionHeading({
   const t = TONE[tone];
   const centered = align === "center";
 
-  // One step per rank, with real distance between them: the title is roughly
-  // three times the eyebrow and twice the subtitle at every size.
+  // One step per rank, with real distance between them. The eyebrow names the
+  // section, so it is set as a heading in its own right rather than as fine
+  // print over the headline.
   const sizes = {
     sm: "text-[28px] md:text-[34px]",
     md: "text-[32px] md:text-[42px]",
@@ -66,10 +67,10 @@ export function SectionHeading({
             centered && "justify-center"
           )}
         >
-          <span className={cn("h-[2px] w-7 rounded-full", t.rule)} />
+          <span className={cn("h-[3px] w-9 rounded-full", t.rule)} />
           <span
             className={cn(
-              "text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase",
+              "font-display text-[16px] md:text-[19px] tracking-[0.14em] font-bold uppercase leading-none",
               t.text
             )}
           >

@@ -136,7 +136,7 @@ export default async function NosotrosPage() {
       >
         <div className="absolute inset-x-0 top-0 h-[280px] text-brand/[0.10] pattern-grid [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none"></div>
         <div className="relative max-w-[1360px] mx-auto">
-          <SectionHeading eyebrow="Quiénes somos" title="Nuestra razón de ser." size="xl" className="mb-9 md:mb-12" />
+          <SectionHeading eyebrow="La organización" title="Nuestra razón de ser." size="xl" className="mb-9 md:mb-12" />
 
           {/* Same panel as Misión and Visión: colour block, icon, title, then
               its label, so the three read as one family. */}
@@ -151,14 +151,14 @@ export default async function NosotrosPage() {
                     <UsersIcon className="h-6 w-6 text-white" aria-hidden />
                   </span>
 
-                  <div className="font-display font-bold text-[30px] md:text-[40px] leading-[1.05] tracking-[-0.015em]">
+                  <div className="font-display font-bold text-[34px] md:text-[46px] leading-[1.02] tracking-[-0.015em] uppercase">
+                    Quiénes somos
+                  </div>
+                  <div className="font-display font-semibold text-[18px] md:text-[22px] leading-[1.25] text-brand-lime mt-3">
                     <HighlightText
                       text={s?.quienes_somos.titulo.valor || ""}
-                      highlightClassName="font-display font-bold not-italic text-brand-lime"
+                      highlightClassName="font-display font-semibold not-italic text-white"
                     />
-                  </div>
-                  <div className="text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase text-brand-lime mt-3">
-                    Quiénes somos
                   </div>
 
                   <p className="text-[14.5px] md:text-[16px] leading-[1.75] mt-6 mb-0 whitespace-pre-wrap text-just text-white/85">
@@ -260,14 +260,16 @@ export default async function NosotrosPage() {
                     <TargetIcon className="h-6 w-6 text-white" aria-hidden />
                   </span>
                   <div>
-                    <div className="font-display font-semibold text-[26px] leading-none tracking-[-0.01em]">Misión</div>
-                    <div className="text-[11px] tracking-[2.5px] font-bold uppercase text-white/60 mt-1.5">
+                    <div className="font-display font-bold text-[34px] md:text-[42px] leading-none tracking-[-0.015em] uppercase">
+                      Misión
+                    </div>
+                    <div className="font-display font-semibold text-[15px] md:text-[17px] tracking-[0.12em] uppercase text-brand-lime mt-2">
                       Nuestro presente
                     </div>
                   </div>
                 </div>
 
-                <p className="relative font-display font-medium text-[21px] md:text-[26px] leading-[1.45] mt-8 mb-0 tracking-[-0.005em] whitespace-pre-wrap text-just text-white/95">
+                <p className="relative text-[16px] md:text-[19px] leading-[1.6] font-medium mt-8 mb-0 whitespace-pre-wrap text-just text-white/85">
                   {s?.mision.descripcion.valor}
                 </p>
               </div>
@@ -284,14 +286,16 @@ export default async function NosotrosPage() {
                     <TelescopeIcon className="h-6 w-6 text-brand-ink" aria-hidden />
                   </span>
                   <div>
-                    <div className="font-display font-semibold text-[26px] leading-none tracking-[-0.01em]">Visión</div>
-                    <div className="text-[11px] tracking-[2.5px] font-bold uppercase text-brand-ink/60 mt-1.5">
+                    <div className="font-display font-bold text-[34px] md:text-[42px] leading-none tracking-[-0.015em] uppercase">
+                      Visión
+                    </div>
+                    <div className="font-display font-semibold text-[15px] md:text-[17px] tracking-[0.12em] uppercase text-brand-ink/65 mt-2">
                       Hacia 2035
                     </div>
                   </div>
                 </div>
 
-                <p className="relative font-display font-medium text-[21px] md:text-[26px] leading-[1.45] mt-8 mb-0 tracking-[-0.005em] whitespace-pre-wrap text-just">
+                <p className="relative text-[16px] md:text-[19px] leading-[1.6] font-medium mt-8 mb-0 whitespace-pre-wrap text-just text-brand-ink/85">
                   {s?.vision.descripcion.valor}
                 </p>
               </div>
@@ -392,14 +396,14 @@ export default async function NosotrosPage() {
                     <UsersIcon className="h-6 w-6" aria-hidden />
                   </span>
 
-                  <h4 className="font-display font-bold text-[30px] md:text-[40px] leading-[1.06] m-0 mt-6 tracking-[-0.015em] text-brand-ink">
+                  <h4 className="font-display font-bold text-[34px] md:text-[46px] leading-[1.02] m-0 mt-6 tracking-[-0.015em] uppercase text-brand-ink">
+                    Objeto social
+                  </h4>
+                  <div className="font-display font-semibold text-[18px] md:text-[22px] leading-[1.25] text-brand-forest mt-3">
                     <HighlightText
                       text={s?.objeto_social.titulo.valor || ""}
-                      highlightClassName="font-display font-bold not-italic text-brand-forest"
+                      highlightClassName="font-display font-semibold not-italic text-brand-dark"
                     />
-                  </h4>
-                  <div className="text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase text-brand-forest mt-3">
-                    Objeto social
                   </div>
 
                   <p className="text-[14.5px] md:text-[15.5px] leading-[1.7] text-brand-muted m-0 mt-5 whitespace-pre-wrap text-just">
@@ -422,14 +426,14 @@ export default async function NosotrosPage() {
                     <SproutIcon className="h-6 w-6" aria-hidden />
                   </span>
 
-                  <h4 className="font-display font-bold text-[30px] md:text-[40px] leading-[1.06] m-0 mt-6 tracking-[-0.015em] text-brand-ink">
+                  <h4 className="font-display font-bold text-[34px] md:text-[46px] leading-[1.02] m-0 mt-6 tracking-[-0.015em] uppercase text-brand-ink">
+                    Objeto ambiental
+                  </h4>
+                  <div className="font-display font-semibold text-[18px] md:text-[22px] leading-[1.25] text-brand-lime-dark mt-3">
                     <HighlightText
                       text={s?.objeto_ambiental.titulo.valor || ""}
-                      highlightClassName="font-display font-bold not-italic text-brand-lime-dark"
+                      highlightClassName="font-display font-semibold not-italic text-brand-forest"
                     />
-                  </h4>
-                  <div className="text-[12px] md:text-[13px] tracking-[2.5px] font-bold uppercase text-brand-lime-dark mt-3">
-                    Objeto ambiental
                   </div>
 
                   <p className="text-[14.5px] md:text-[15.5px] leading-[1.7] text-brand-muted m-0 mt-5 whitespace-pre-wrap text-just">
@@ -477,7 +481,7 @@ export default async function NosotrosPage() {
                     />
                   </p>
 
-                  <div className="mt-6 text-[15px] md:text-[17px] tracking-[2.5px] text-brand-lime font-bold uppercase">
+                  <div className="mt-6 font-display text-[20px] md:text-[26px] tracking-[0.1em] text-brand-lime font-bold uppercase leading-none">
                     {s?.frase_1.titulo_pequeno.valor}
                   </div>
                 </div>
