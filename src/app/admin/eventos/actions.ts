@@ -34,6 +34,12 @@ export async function updateEventosListadoEventos(formData: FormData) {
       valor_default: formData.get("filtro_por_ano_valor_default")?.toString() || "",
     },
     permite_agregar: page.secciones.listado_eventos.permite_agregar,
+    // Year folders created by hand. They are kept so a year with no events yet
+    // survives a save; every year that has events is derived from the dates.
+    anos: formData
+      .getAll("anos")
+      .map((v) => Number(v.toString()))
+      .filter((n) => Number.isInteger(n)),
     cards: [] as any[],
   };
 

@@ -56,8 +56,9 @@ export default async function AdminEventosListadoEventosPage() {
           <CardHeader>
             <CardTitle>Eventos</CardTitle>
             <CardDescription>
-              Agrega, edita o elimina los eventos que se muestran en /eventos. Cada evento tiene su propia
-              galería de fotos y puedes elegir qué zona de cada imagen se ve al recortarse.
+              Los eventos se archivan en carpetas por año. Abre un año para ver y editar sus eventos, o crea uno
+              nuevo. Cada evento tiene su propia galería de fotos y puedes elegir qué zona de cada imagen se ve
+              al recortarse.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -66,6 +67,7 @@ export default async function AdminEventosListadoEventosPage() {
               // right after a save that uploaded something), discarding any
               // in-memory File objects so they can't be resubmitted on the next save.
               key={section.cards.map((item: any) => `${item.id}:${item.foto.url}`).join("|")}
+              initialAnos={section.anos ?? []}
               initialCards={section.cards.map((item: any) => ({
                 id: item.id,
                 fecha: item.fecha.valor,

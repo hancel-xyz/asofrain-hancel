@@ -19,7 +19,17 @@ export default async function EventosPage() {
   const pageData = data?.sitio.paginas.find((p: { id: string }) => p.id === "eventos");
   const s = pageData?.secciones.listado_eventos;
 
-  const cards: EventoCard[] = ((s?.cards ?? []) as RawEventoCard[]).map((card) => ({
+  // Oldest first: the listing reads as a timeline, so the most recent event
+  // closes it. Entries with a legacy, non-ISO date sort to the end.
+  const ordenados = [...((s?.cards ?? []) as RawEventoCard[])].sort((a, b) => {
+    const fa = a.fecha.valor || "";
+    const fb = b.fecha.valor || "";
+    if (!fa) return 1;
+    if (!fb) return -1;
+    return fa.localeCompare(fb);
+  });
+
+  const cards: EventoCard[] = ordenados.map((card) => ({
     id: card.id,
     fecha: card.fecha.valor,
     titulo: card.titulo.valor,
@@ -37,7 +47,7 @@ export default async function EventosPage() {
 
   const years = Array.from(
     new Set(cards.map((c) => getEventYear(c.fecha)).filter((y): y is number => y !== null))
-  ).sort((a, b) => b - a);
+  ).sort((a, b) => a - b);
 
   const totalFotos = cards.reduce((acc, card) => acc + card.galeria.filter((i) => i.url).length, 0);
 
