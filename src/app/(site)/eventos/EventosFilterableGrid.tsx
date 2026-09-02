@@ -19,7 +19,6 @@ export interface EventoCard {
   id: string;
   fecha: string;
   titulo: string;
-  descripcion: string;
   fotoUrl: string;
   fotoAlt: string;
   fotoEncuadre?: string;
@@ -68,7 +67,8 @@ export function EventosFilterableGrid({
           {visibleCards.map((card, idx) => {
             const accent = accentAt(idx);
             const fotos = card.galeria.filter((img) => img.url);
-            const abrible = fotos.length > 0 || !!card.descripcion;
+            // Only a gallery makes an event worth opening now.
+            const abrible = fotos.length > 0;
 
             const CardTag = abrible ? "button" : "div";
 
@@ -122,11 +122,6 @@ export function EventosFilterableGrid({
                     <div className="text-[18px] md:text-[21px] font-bold leading-snug text-brand-ink">
                       {card.titulo}
                     </div>
-                    {card.descripcion && (
-                      <p className="mt-2 text-[13px] leading-[1.6] text-brand-muted line-clamp-2 text-just">
-                        {card.descripcion}
-                      </p>
-                    )}
                     {abrible && (
                       <span className={cn("mt-4 inline-flex items-center gap-2 text-[12.5px] font-bold uppercase tracking-[1.5px]", accent.text)}>
                         Ver galería
@@ -244,11 +239,6 @@ function EventoGaleriaModal({ evento, onClose }: { evento: EventoCard; onClose: 
             <h2 className="font-display font-semibold text-[26px] md:text-[36px] leading-[1.1] tracking-[-0.01em] mt-4 mb-0 pr-12">
               {evento.titulo}
             </h2>
-            {evento.descripcion && (
-              <p className="mt-3 text-[14.5px] leading-[1.7] text-white/80 max-w-[720px] text-just">
-                {evento.descripcion}
-              </p>
-            )}
           </div>
         </div>
 

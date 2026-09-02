@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { ImageSlot } from "@/components/ImageSlot";
 import { FocalPointPicker } from "@/components/FocalPointPicker";
@@ -34,7 +33,6 @@ export interface EventoCardData {
   id: string;
   fecha: string;
   titulo: string;
-  descripcion: string;
   fotoUrl: string;
   fotoEncuadre: string;
   galeria: EventoGaleriaImagen[];
@@ -173,7 +171,6 @@ export function EventosCardsEditor({
         id: generateCardId(),
         fecha,
         titulo: "",
-        descripcion: "",
         fotoUrl: "",
         fotoEncuadre: "50% 50%",
         galeria: [],
@@ -413,17 +410,6 @@ export function EventosCardsEditor({
                       placeholder="Título del evento"
                     />
                   </div>
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  <Label htmlFor={`${card.id}_descripcion`}>Descripción (opcional)</Label>
-                  <Textarea
-                    id={`${card.id}_descripcion`}
-                    name={`${card.id}_descripcion`}
-                    defaultValue={card.descripcion}
-                    rows={3}
-                    placeholder="Un párrafo corto que se muestra al abrir el evento."
-                  />
                 </div>
 
                 {/* ---- Foto de portada + encuadre ---- */}

@@ -72,7 +72,6 @@ export default async function AdminEventosListadoEventosPage() {
                 id: item.id,
                 fecha: item.fecha.valor,
                 titulo: item.titulo.valor,
-                descripcion: item.descripcion?.valor ?? "",
                 fotoUrl: item.foto.url,
                 fotoEncuadre: item.foto.encuadre ?? "50% 50%",
                 galeria: (item.galeria ?? []).map((img: any) => ({

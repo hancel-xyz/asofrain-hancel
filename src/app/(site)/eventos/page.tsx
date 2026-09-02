@@ -9,7 +9,6 @@ interface RawEventoCard {
   id: string;
   fecha: { valor: string };
   titulo: { valor: string };
-  descripcion?: { valor?: string };
   foto: { url: string; alt: string; encuadre?: string };
   galeria?: { id: string; url?: string; alt?: string; encuadre?: string }[];
 }
@@ -33,7 +32,6 @@ export default async function EventosPage() {
     id: card.id,
     fecha: card.fecha.valor,
     titulo: card.titulo.valor,
-    descripcion: card.descripcion?.valor ?? "",
     fotoUrl: card.foto.url,
     fotoAlt: card.foto.alt,
     fotoEncuadre: card.foto.encuadre,
