@@ -29,19 +29,23 @@ export interface EventoCard {
 export function EventosFilterableGrid({
   cards,
   years,
+  anoInicial,
   filtroActivo,
 }: {
   cards: EventoCard[];
   years: number[];
+  /** Year the listing opens on; null when there is nothing dated to show. */
+  anoInicial: number | null;
   filtroActivo: boolean;
 }) {
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(anoInicial);
   const [openEventId, setOpenEventId] = useState<string | null>(null);
 
   const visibleCards = useMemo(() => {
-    if (selectedYear === null) return cards;
+    // With the filter switched off there is nothing to pick, so everything shows.
+    if (!filtroActivo || selectedYear === null) return cards;
     return cards.filter((c) => getEventYear(c.fecha) === selectedYear);
-  }, [cards, selectedYear]);
+  }, [cards, selectedYear, filtroActivo]);
 
   const openEvent = cards.find((c) => c.id === openEventId) ?? null;
 
@@ -49,9 +53,6 @@ export function EventosFilterableGrid({
     <>
       {filtroActivo && years.length > 0 && (
         <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar snap-x snap-mandatory mb-[40px] md:mb-[50px]">
-          <FilterPill active={selectedYear === null} onClick={() => setSelectedYear(null)}>
-            Todos
-          </FilterPill>
           {years.map((year) => (
             <FilterPill key={year} active={selectedYear === year} onClick={() => setSelectedYear(year)}>
               {year}

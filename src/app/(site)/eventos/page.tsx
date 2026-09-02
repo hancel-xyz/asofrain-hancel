@@ -49,6 +49,12 @@ export default async function EventosPage() {
     new Set(cards.map((c) => getEventYear(c.fecha)).filter((y): y is number => y !== null))
   ).sort((a, b) => a - b);
 
+  // The listing opens on the current year; if nothing was published this year,
+  // it falls back to the most recent one that has events. Chosen here rather
+  // than in the client component so the server and the browser never disagree.
+  const anoActual = new Date().getFullYear();
+  const anoInicial = years.length === 0 ? null : years.includes(anoActual) ? anoActual : years[years.length - 1];
+
   const totalFotos = cards.reduce((acc, card) => acc + card.galeria.filter((i) => i.url).length, 0);
 
   return (
@@ -97,7 +103,12 @@ export default async function EventosPage() {
             </Reveal>
           </div>
 
-          <EventosFilterableGrid cards={cards} years={years} filtroActivo={!!s?.filtro_por_ano?.activo} />
+          <EventosFilterableGrid
+            cards={cards}
+            years={years}
+            anoInicial={anoInicial}
+            filtroActivo={!!s?.filtro_por_ano?.activo}
+          />
         </div>
       </section>
     </div>
