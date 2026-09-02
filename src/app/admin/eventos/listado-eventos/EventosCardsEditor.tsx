@@ -487,6 +487,8 @@ export function EventosCardsEditor({
                               <input type="hidden" name={`${card.id}_galeria_id`} value={img.id} />
                               <input type="hidden" name={`${img.id}_url`} value={img.url} />
                               {img.key && <input type="hidden" name={`${img.id}_key`} value={img.key} />}
+                              {/* No longer editable, but carried forward so text written
+                                  before the field was removed is not lost. */}
                               <input type="hidden" name={`${img.id}_alt`} value={img.alt} readOnly />
                             </>
                           )}
@@ -542,14 +544,6 @@ export function EventosCardsEditor({
                               )}
                             </div>
                           )}
-
-                          <Input
-                            value={img.alt}
-                            onChange={(e) => patchImagen(card.id, img.id, { alt: e.target.value })}
-                            placeholder="Descripción de la foto"
-                            className="h-8 text-xs"
-                            disabled={!img.url}
-                          />
                         </div>
                       ))}
                     </div>

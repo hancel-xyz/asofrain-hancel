@@ -296,10 +296,6 @@ function EventoGaleriaModal({ evento, onClose }: { evento: EventoCard; onClose: 
               )}
             </div>
 
-            {actual.alt && (
-              <p className="mt-3 px-1 text-[13.5px] leading-[1.6] text-brand-muted">{actual.alt}</p>
-            )}
-
             {fotos.length > 1 && (
               <div className="mt-4 flex gap-2.5 overflow-x-auto hide-scrollbar pb-1">
                 {fotos.map((foto, i) => (
