@@ -9,10 +9,16 @@ export default async function AdminSettingsAdministradoresPage() {
     <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Configuración - Administradores</h1>
-        <p className="text-muted-foreground">Crea o elimina las cuentas que pueden entrar a este panel.</p>
+        <p className="text-muted-foreground">
+          Crea, elimina y restablece la contraseña de las cuentas que pueden entrar a este panel.
+        </p>
       </div>
 
-      <AdminUsersManager users={users} currentUserId={currentUser?.id ?? null} />
+      <AdminUsersManager
+        users={users}
+        currentUserId={currentUser?.id ?? null}
+        currentUserEmail={currentUser?.email ?? null}
+      />
     </div>
   );
 }

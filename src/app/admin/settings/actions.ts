@@ -31,7 +31,9 @@ export interface AdminUserRow {
   id: string;
   email: string;
   created_at: string;
+  is_project_admin: boolean;
 }
+
 
 export async function listAdminUsers(): Promise<AdminUserRow[]> {
   const { data, error } = await insforge.database.rpc("admin_list_users");

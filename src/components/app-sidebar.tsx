@@ -243,7 +243,7 @@ const data = {
           url: "/admin/settings/general",
         },
         {
-          title: "Administradores",
+          title: "Miembros",
           url: "/admin/settings/administradores",
         },
       ],
