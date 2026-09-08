@@ -123,29 +123,27 @@ export async function Footer() {
               </p>
             </Reveal>
 
-            {/* Compact cards: more of them fit per row and each takes less
-                room, while the type inside keeps its size so the entity names
-                stay just as readable. */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 md:gap-3">
+            {/* Compact square cards: the mark fills the whole tile edge to
+                edge and the entity name sits underneath, outside the square, so
+                the card stays exactly as tall as it is wide. */}
+            <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2 md:gap-2.5">
               {aliados.map((aliado, idx) => {
                 const nombre = aliado.titulo.valor.replace(/\*/g, "");
                 return (
-                  <Reveal key={aliado.id} delay={(idx % 6) * 60} variant="scale">
-                    {/* Logo first and large, with just the name under it — the
-                        descriptions crowded the row and buried the marks. */}
-                    <div className="group h-full rounded-[16px] bg-white border border-black/[0.07] p-4 flex flex-col items-center gap-3 text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-[0_14px_32px_-24px_rgba(0,46,31,0.45)]">
-                      <div className="h-[76px] w-full rounded-lg overflow-hidden bg-white flex items-center justify-center font-display font-bold text-[26px] text-brand-ink">
+                  <Reveal key={aliado.id} delay={(idx % 8) * 60} variant="scale">
+                    <div className="group flex flex-col items-center gap-1.5 text-center">
+                      <div className="aspect-square w-full rounded-[10px] overflow-hidden bg-white border border-black/[0.07] flex items-center justify-center font-display font-bold text-[22px] text-brand-ink transition-all duration-300 group-hover:-translate-y-1 group-hover:border-brand/50 group-hover:shadow-[0_14px_32px_-24px_rgba(0,46,31,0.45)]">
                         {isRealImageUrl(aliado.logo?.valor) ? (
                           <ImageSlot
                             src={aliado.logo.valor}
                             placeholder={nombre}
-                            imgClassName="object-contain p-1 transition-transform duration-500 group-hover:scale-110"
+                            imgClassName="object-contain transition-transform duration-500 group-hover:scale-110"
                           />
                         ) : (
                           nombre.charAt(0)
                         )}
                       </div>
-                      <div className="mt-auto text-[12px] tracking-[1.2px] font-bold uppercase leading-tight text-brand-dark">
+                      <div className="text-[9.5px] tracking-[0.7px] font-bold uppercase leading-tight text-brand-dark">
                         {nombre}
                       </div>
                     </div>
