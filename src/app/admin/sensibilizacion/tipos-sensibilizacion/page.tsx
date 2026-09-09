@@ -1,10 +1,10 @@
 import { getEstructura } from "@/lib/data";
 import { updateSensibilizacionTiposSensibilizacion } from "../actions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { AdminForm } from "@/components/AdminForm";
+import { TiposEditor, type TipoData } from "./TiposEditor";
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export default async function AdminSensibilizacionTiposSensibilizacionPage() {
   const data = await getEstructura();
@@ -15,6 +15,22 @@ export default async function AdminSensibilizacionTiposSensibilizacionPage() {
 
   const section = page.secciones.tipos_sensibilizacion;
 
+  const tipos: TipoData[] = (section.tipos ?? []).map((item: any) => ({
+    id: item.id,
+    tipo: item.tipo.valor,
+    titulo: item.titulo.valor,
+    // The seeded content stores a placeholder string here until a real photo
+    // is uploaded, which ImageSlot already renders as "no image".
+    imagenUrl: item.imagen.valor,
+    vinetas: (item.vinetas?.items ?? []).map((vineta: any) => ({ id: vineta.id, valor: vineta.valor })),
+    galeria: (item.galeria ?? []).map((img: any) => ({
+      id: img.id,
+      url: img.url,
+      alt: img.alt ?? "",
+      key: img.key,
+    })),
+  }));
+
   return (
     <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
       <div>
@@ -23,47 +39,24 @@ export default async function AdminSensibilizacionTiposSensibilizacionPage() {
       </div>
 
       <AdminForm action={updateSensibilizacionTiposSensibilizacion} className="grid gap-6">
-        
-        
         <Card>
           <CardHeader>
             <CardTitle>TIPOS</CardTitle>
+            <CardDescription>
+              Crea los tipos de sensibilización que necesites. Cada uno tiene su portada, sus viñetas y su propia
+              galería de fotos, que se ve en la página pública al abrir la tarjeta.
+            </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            {section.tipos.map((item: any, i: number) => (
-              <div key={item.id} className="p-4 border rounded-lg space-y-4">
-                <h4 className="font-medium">Item {i + 1}</h4>
-                <input type="hidden" name="tipos_id" value={item.id} />
-                
-            <div className="flex flex-col gap-3">
-              <Label htmlFor={`${item.id}_imagen`}>Imagen</Label>
-              <Input id={`${item.id}_imagen`} name={`${item.id}_imagen`} type="file" accept="image/*,video/*" />
-              <p className="text-xs text-muted-foreground">Actual: {item.imagen.valor}</p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <Label htmlFor={`${item.id}_tipo`}>Tipo</Label>
-              <Input id={`${item.id}_tipo`} name={`${item.id}_tipo`} defaultValue={item.tipo.valor} />
-            </div>
-            <div className="flex flex-col gap-3">
-              <Label htmlFor={`${item.id}_titulo`}>Titulo</Label>
-              <Input id={`${item.id}_titulo`} name={`${item.id}_titulo`} defaultValue={item.titulo.valor} />
-            </div>
-            <div className="flex flex-col gap-3">
-              <Label>Viñetas</Label>
-              <div className="space-y-2">
-                {item.vinetas.items.map((vineta: any, vi: number) => (
-                  <div key={vineta.id} className="flex flex-col gap-1">
-                    <Label htmlFor={`${item.id}_${vineta.id}`} className="text-xs text-muted-foreground">Viñeta {vi + 1}</Label>
-                    <Input id={`${item.id}_${vineta.id}`} name={`${item.id}_${vineta.id}`} defaultValue={vineta.valor} />
-                  </div>
-                ))}
-              </div>
-            </div>
-              </div>
-            ))}
+          <CardContent>
+            <TiposEditor
+              // Remounts whenever the persisted types/photos change (e.g. right
+              // after a save that uploaded something), discarding any in-memory
+              // File objects so they can't be resubmitted on the next save.
+              key={tipos.map((t) => `${t.id}:${t.imagenUrl}:${t.galeria.length}`).join("|")}
+              initialTipos={tipos}
+            />
           </CardContent>
         </Card>
-      
       </AdminForm>
     </div>
   );

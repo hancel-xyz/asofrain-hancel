@@ -1,69 +1,35 @@
 import Link from "next/link";
-import { ArrowRightIcon, CameraIcon, CheckIcon, MegaphoneIcon, SparklesIcon } from "lucide-react";
+import { ArrowRightIcon, CameraIcon, MegaphoneIcon, SparklesIcon } from "lucide-react";
 import { ImageSlot } from "@/components/ImageSlot";
 import { getEstructura } from "@/lib/data";
 import { HighlightText } from "@/components/HighlightText";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
-import { awarenessIcon } from "@/lib/brandVisuals";
+import { TiposSensibilizacionGrid, type TipoSensibilizacion } from "./TiposSensibilizacionGrid";
 import { cn } from "@/lib/utils";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-// One deliberate colour per audience: teal for los niños, slate for la
-// propiedad horizontal, lime for los usuarios en general. Everything in the
-// card (chip, bullets, glow, footer rule) is derived from that choice.
-const CARD_THEMES = [
-  {
-    wrapper: "bg-gradient-to-br from-brand to-brand-dark text-white",
-    pattern: "text-white/15 pattern-rings",
-    chip: "bg-white/25 ring-1 ring-white/35 text-white",
-    eyebrow: "text-white/85",
-    title: "text-white",
-    body: "text-white/80",
-    bullet: "bg-white/70",
-    bulletChip: "bg-white/25 text-white",
-    rule: "bg-white/40",
-    frame: "ring-white/30",
-    imgFallback: "bg-white/15 text-white/60",
-  },
-  {
-    wrapper: "bg-gradient-to-br from-brand-forest to-brand-forest-dark text-white",
-    pattern: "text-white/12 pattern-grid",
-    chip: "bg-white/20 ring-1 ring-white/30 text-white",
-    eyebrow: "text-white/85",
-    title: "text-white",
-    body: "text-white/80",
-    bullet: "bg-brand-lime",
-    bulletChip: "bg-brand-lime/30 text-brand-lime",
-    rule: "bg-brand-lime/70",
-    frame: "ring-white/25",
-    imgFallback: "bg-white/12 text-white/60",
-  },
-  {
-    // Verde Lima is light enough that body copy needs near-full ink to hold
-    // its contrast against it.
-    // Both ends stay light (Verde Lima into Verde Oliva) so the dark type on
-    // this card holds its contrast all the way down.
-    wrapper: "bg-gradient-to-br from-brand-lime to-brand-olive text-brand-ink",
-    pattern: "text-white/25 pattern-waves",
-    chip: "bg-brand-ink/12 ring-1 ring-brand-ink/20 text-brand-ink",
-    eyebrow: "text-brand-ink/75",
-    title: "text-brand-ink",
-    body: "text-brand-ink/90",
-    bullet: "bg-brand-ink/70",
-    bulletChip: "bg-brand-ink/15 text-brand-ink",
-    rule: "bg-brand-ink/35",
-    frame: "ring-brand-ink/15",
-    imgFallback: "bg-brand-ink/10 text-brand-ink/50",
-  },
-];
 
 export default async function SensibilizacionPage() {
   const data = await getEstructura();
   const pageData = data?.sitio.paginas.find((p: any) => p.id === "sensibilizacion");
   const s = pageData?.secciones;
   const imagenes: any[] = s?.galeria.imagenes ?? [];
+  // Flattened here so the (client) cards get plain data instead of the whole
+  // editable-field structure.
+  const tipos: TipoSensibilizacion[] = (s?.tipos_sensibilizacion.tipos ?? []).map((tipo: any) => ({
+    id: tipo.id,
+    tipo: tipo.tipo.valor,
+    titulo: tipo.titulo.valor,
+    imagenUrl: tipo.imagen.valor,
+    vinetas: (tipo.vinetas?.items ?? []).map((vineta: any) => vineta.valor),
+    galeria: (tipo.galeria ?? []).map((img: any) => ({
+      id: img.id,
+      url: img.url,
+      alt: img.alt,
+      encuadre: img.encuadre,
+    })),
+  }));
 
   return (
     <div className="bg-brand-sand font-sans">
@@ -112,64 +78,7 @@ export default async function SensibilizacionPage() {
       {/* ================= TIPOS DE SENSIBILIZACIÓN ================= */}
       <section id="campanas" className="px-4 md:px-[60px] pb-[50px] md:pb-[90px] scroll-mt-[100px]">
         <div className="max-w-[1360px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {s?.tipos_sensibilizacion.tipos.map((tipo: any, idx: number) => {
-              const theme = CARD_THEMES[idx % CARD_THEMES.length];
-              const Icon = awarenessIcon(`${tipo.tipo.valor} ${tipo.titulo.valor}`, idx);
-              return (
-                <Reveal key={tipo.id} delay={idx * 120}>
-                  <article
-                    className={cn(
-                      "group relative h-full overflow-hidden rounded-[26px] p-6 md:p-[34px_30px] md:min-h-[560px] flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-34px_rgba(0,46,31,0.6)]",
-                      theme.wrapper
-                    )}
-                  >
-                    <div className={cn("absolute inset-0 pointer-events-none", theme.pattern)}></div>
-                    <div className="absolute -right-16 -bottom-16 w-56 h-56 rounded-full bg-white/15 blur-3xl pointer-events-none"></div>
-
-                    <div className={cn("relative h-[200px] rounded-[16px] overflow-hidden mb-6 ring-1", theme.frame)}>
-                      <div className="absolute inset-0 transition-transform duration-[900ms] group-hover:scale-110">
-                        <ImageSlot src={tipo.imagen.valor} placeholder={tipo.titulo.valor} className={theme.imgFallback} />
-                      </div>
-                      <span
-                        className={cn(
-                          "absolute bottom-3 left-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl backdrop-blur-md transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6",
-                          theme.chip
-                        )}
-                      >
-                        <Icon className="h-5 w-5" aria-hidden />
-                      </span>
-                    </div>
-
-                    <div className={cn("relative font-display font-bold text-[26px] md:text-[32px] leading-[1.05] tracking-[-0.01em] uppercase mb-2", theme.title)}>
-                      {tipo.tipo.valor}
-                    </div>
-                    <h3
-                      className={cn(
-                        "relative font-display font-semibold text-[17px] md:text-[21px] leading-[1.25] m-0 mb-5",
-                        theme.eyebrow
-                      )}
-                    >
-                      {tipo.titulo.valor}
-                    </h3>
-
-                    <ul className="relative m-0 p-0 list-none flex flex-col gap-2.5">
-                      {tipo.vinetas.items.map((vineta: any) => (
-                        <li key={vineta.id} className={cn("flex items-start gap-2.5 text-[13px] md:text-[13.5px] leading-[1.6]", theme.body)}>
-                          <span className={cn("mt-0.5 inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full", theme.bulletChip)}>
-                            <CheckIcon className="h-3 w-3" aria-hidden />
-                          </span>
-                          <span>{vineta.valor}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className={cn("relative mt-auto pt-7 h-[3px] w-12 rounded-full transition-all duration-500 group-hover:w-24", theme.rule)}></div>
-                  </article>
-                </Reveal>
-              );
-            })}
-          </div>
+          <TiposSensibilizacionGrid tipos={tipos} />
         </div>
       </section>
 

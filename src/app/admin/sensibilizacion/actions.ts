@@ -3,6 +3,8 @@ import { getEstructura, updateEstructuraPageSection } from "@/lib/data";
 import { uploadMediaFile } from "@/lib/media";
 import { revalidatePath } from "next/cache";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // Uploads a single gallery image directly (bypassing the big form submit).
 // Bundling many photos into one giant Server Action payload alongside the
 // rest of the (potentially dozens of images long) gallery form is what was
@@ -33,6 +35,20 @@ export async function updateSensibilizacionEncabezado(formData: FormData) {
   revalidatePath("/", "layout");
 }
 
+/**
+ * Uploads one photo of a campaign's gallery on its own, the moment it's
+ * picked, for the same reason the site-wide gallery does: a type can hold
+ * dozens of photos and bundling them into the single "Guardar Cambios" submit
+ * would push the whole (already uploaded) set through the Server Action body
+ * again and fail the entire save.
+ */
+export async function uploadTipoSensibilizacionImagen(formData: FormData) {
+  return uploadMediaFile(formData.get("file"), {
+    pageSlug: "sensibilizacion",
+    sectionKey: "tipos_sensibilizacion",
+  });
+}
+
 export async function updateSensibilizacionTiposSensibilizacion(formData: FormData) {
   const estructura = await getEstructura();
   const page = estructura?.sitio.paginas.find((p: any) => p.id === "sensibilizacion");
@@ -43,38 +59,73 @@ export async function updateSensibilizacionTiposSensibilizacion(formData: FormDa
     tipos: [] as any[],
   };
 
-  // Handle arrays explicitly if they exist
-  const tiposArray = page.secciones.tipos_sensibilizacion.tipos;
-  if (tiposArray) {
-    data.tipos = await Promise.all(
-      tiposArray.map(async (item: any) => {
-        const id = item.id;
-        const updatedItem = { ...item };
-        const uploaded = await uploadMediaFile(formData.get(`${id}_imagen`), {
-          pageSlug: "sensibilizacion",
-          sectionKey: "tipos_sensibilizacion",
-        });
-        if (uploaded) updatedItem.imagen = { ...updatedItem.imagen, valor: uploaded.url, key: uploaded.key };
-        if (formData.has(`${id}_tipo`)) updatedItem.tipo = { ...updatedItem.tipo, valor: formData.get(`${id}_tipo`)?.toString() || "" };
-        if (formData.has(`${id}_titulo`)) updatedItem.titulo = { ...updatedItem.titulo, valor: formData.get(`${id}_titulo`)?.toString() || "" };
+  // The admin UI lets you add/remove types client-side, so the set of ids to
+  // persist comes from the submission itself (tipos_id, one per card, in
+  // order) rather than from the previously saved array.
+  const existingById = new Map(
+    (page.secciones.tipos_sensibilizacion.tipos ?? []).map((item: any) => [item.id, item])
+  );
+  const tipoIds = formData.getAll("tipos_id").map((v) => v.toString()).filter(Boolean);
 
-        const vinetasArray = item.vinetas?.items;
-        if (vinetasArray) {
-          updatedItem.vinetas = {
-            ...item.vinetas,
-            items: vinetasArray.map((vineta: any) => {
-              const vinetaKey = `${id}_${vineta.id}`;
-              return formData.has(vinetaKey)
-                ? { ...vineta, valor: formData.get(vinetaKey)?.toString() || "" }
-                : vineta;
-            }),
+  data.tipos = await Promise.all(
+    tipoIds.map(async (id) => {
+      const existing = existingById.get(id) as any;
+      const updatedItem: any = existing
+        ? { ...existing }
+        : {
+            id,
+            imagen: { valor: "", editable_admin: true, tipo: "imagen" },
+            tipo: { valor: "", editable_admin: true },
+            titulo: { valor: "", editable_admin: true },
+            vinetas: { permite_agregar: true, items: [] },
+            galeria: [],
           };
-        }
 
-        return updatedItem;
-      })
-    );
-  }
+      const uploaded = await uploadMediaFile(formData.get(`${id}_imagen`), {
+        pageSlug: "sensibilizacion",
+        sectionKey: "tipos_sensibilizacion",
+      });
+      if (uploaded) updatedItem.imagen = { ...updatedItem.imagen, valor: uploaded.url, key: uploaded.key };
+      if (formData.has(`${id}_tipo`)) updatedItem.tipo = { ...updatedItem.tipo, valor: formData.get(`${id}_tipo`)?.toString() || "" };
+      if (formData.has(`${id}_titulo`)) updatedItem.titulo = { ...updatedItem.titulo, valor: formData.get(`${id}_titulo`)?.toString() || "" };
+
+      // Bullets can be added and removed too, so the list is rebuilt from the
+      // ids that came back (they are only unique within their own card, hence
+      // the card id prefix on every field).
+      const vinetasExistentes = new Map(
+        (updatedItem.vinetas?.items ?? []).map((vineta: any) => [vineta.id, vineta])
+      );
+      const vinetaIds = formData.getAll(`${id}_vineta_id`).map((v) => v.toString()).filter(Boolean);
+      updatedItem.vinetas = {
+        permite_agregar: updatedItem.vinetas?.permite_agregar ?? true,
+        items: vinetaIds.map((vinetaId) => {
+          const previa = vinetasExistentes.get(vinetaId) as any;
+          const vineta: any = previa ? { ...previa } : { id: vinetaId, valor: "", editable_admin: true };
+          const campo = `${id}_${vinetaId}`;
+          if (formData.has(campo)) vineta.valor = formData.get(campo)?.toString() || "";
+          return vineta;
+        }),
+      };
+
+      // Gallery photos were already uploaded one by one; only their ids, urls,
+      // keys and alt text travel with this save.
+      const galeriaExistente = new Map(
+        (updatedItem.galeria ?? []).map((img: any) => [img.id, img])
+      );
+      const imagenIds = formData.getAll(`${id}_galeria_id`).map((v) => v.toString()).filter(Boolean);
+      updatedItem.galeria = imagenIds.map((imagenId) => {
+        const previa = galeriaExistente.get(imagenId) as any;
+        const imagen: any = previa ? { ...previa } : { id: imagenId, url: "", alt: "" };
+        const url = formData.get(`${imagenId}_url`)?.toString() || "";
+        if (url) imagen.url = url;
+        if (formData.has(`${imagenId}_key`)) imagen.key = formData.get(`${imagenId}_key`)?.toString() || imagen.key;
+        if (formData.has(`${imagenId}_alt`)) imagen.alt = formData.get(`${imagenId}_alt`)?.toString() || "";
+        return imagen;
+      });
+
+      return updatedItem;
+    })
+  );
 
   await updateEstructuraPageSection("sensibilizacion", "tipos_sensibilizacion", data);
   revalidatePath("/", "layout");
